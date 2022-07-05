@@ -1,16 +1,22 @@
 function signUp () {
     const signup = `
-    <h1>Crear cuenta</h1>
-    <form id="create-account">
-        <label>Username:</label>
-        <input class="username" type="text" required>
-        <label>Email:</label>
-        <input class="email" type="email" required>
-        <span class="create-account__error-email" ></span>
-        <label>Contraseña:</label>
-        <input class="password" type="password" maxlength="8" required>
-            <button class="send-data" type="button">Enviar</button>
-            <a href="/">tienes cuenta</a>
+    <h1 class="form-create" >Crear cuenta</h1>
+    <p>Por favor llene los datos antes de continuar.</p>
+    <form class="create-account">
+        <div class="create-input" >
+            <img src="./icons/user.png"/>
+            <input class="username" type="text" placeholder="nombre de usuario" required>
+        </div>
+        <div class="create-input">
+            <img src="./icons/email.png"/>
+            <input class="email" type="email" placeholder="email" required>
+        </div>
+        <div class="create-input">
+            <img src="./icons/key.png"/>
+            <input class="password" type="password" placeholder="contraseña" required>
+        </div>
+        <button class="form-create-account-button" type="button">Enviar</button>
+        <a href="/">tienes cuenta</a>
     </form>
     `
     const element = document.querySelector('body');

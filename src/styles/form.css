@@ -1,0 +1,60 @@
+@media (min-width: 390px) {
+   body {
+      margin: 18px;
+   }
+   .page-name {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 30px;
+
+      color: #0c141c;
+   }
+   .create-account {
+      display: flex;
+      flex-direction: column;
+      gap: 33px;
+   }
+
+   .create-input {
+      width: 354px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      border-bottom: 0.5px solid #ADB5BD;
+   }
+
+   .create-input input{
+      outline: none;
+      border: none;
+      background: transparent;
+   }
+
+   .create-input input::placeholder {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 18px;
+      color: #ADB5BD;
+   }
+
+   .form-create-account-button {
+      margin:44px 0 ;
+      width: 354px;
+      height: 44px;
+      outline: none;
+      cursor: pointer;
+      background: #F5B2E8;
+      backdrop-filter: blur(54.37px);
+      border-radius: 13px;
+      border: none;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.38px;
+      color: #FFFFFF;
+   }
+}
