@@ -34,10 +34,6 @@
   },
   "engines": {
     "node": ">=14"
-<<<<<<< HEAD
-  }
-=======
   },
   "dependencies": {}
->>>>>>> 3d49e4ff7ccfc95a725882a1b6aad96dc6b21578
 }
