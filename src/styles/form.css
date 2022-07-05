@@ -1,22 +1,38 @@
-@media (min-width: 390px) {
-   body {
-      margin: 18px;
+@import url(./fonts.css);
+
+/* estilos para mobile form*/
+@media (max-width: 390px) {
+   .background {
+      position: absolute;
+      top: 0;
    }
-   .page-name {
+   .main-form {
+      margin: 349px 18px;
+      position: absolute;
+   }
+   .main-form h1 {
+      font-family: SF Pro Rounded;
       font-style: normal;
       font-weight: 500;
       font-size: 25px;
       line-height: 30px;
-
-      color: #0c141c;
+      color: #343A40;
    }
-   .create-account {
+   .main-form p {
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 18px;
+      color: #343A40;
+   }
+   .form {
+      margin: 33px 0;
       display: flex;
       flex-direction: column;
       gap: 33px;
    }
-
-   .create-input {
+   .form-input {
       width: 354px;
       height: 33px;
       display: flex;
@@ -24,23 +40,21 @@
       gap: 11px;
       border-bottom: 0.5px solid #ADB5BD;
    }
-
-   .create-input input{
+   .form-input input{
       outline: none;
       border: none;
       background: transparent;
    }
-
-   .create-input input::placeholder {
+   .form-input input::placeholder {
+      font-family: SF Pro Rounded;
       font-style: normal;
       font-weight: 300;
       font-size: 15px;
       line-height: 18px;
       color: #ADB5BD;
    }
-
-   .form-create-account-button {
-      margin:44px 0 ;
+   .form-button {
+      margin: 11px 0;
       width: 354px;
       height: 44px;
       outline: none;
@@ -49,6 +63,7 @@
       backdrop-filter: blur(54.37px);
       border-radius: 13px;
       border: none;
+      font-family: SF Pro Rounded;
       font-style: normal;
       font-weight: 500;
       font-size: 18px;
@@ -56,5 +71,16 @@
       text-align: center;
       letter-spacing: 0.38px;
       color: #FFFFFF;
+   }
+   .form-link {
+      margin-top: -22px;
+      text-align: end;
+      text-decoration: none;
+      font-family: SF Pro Rounded;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 17px;
+      color: #343A40;
    }
 }

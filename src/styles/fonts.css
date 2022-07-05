@@ -1,0 +1,17 @@
+@font-face {
+    font-family: SF Pro Rounded;
+    font-weight: 300;
+    src: url(../fonts/SF-Pro-Rounded-Light.ttf);
+}
+ 
+@font-face {
+    font-family: SF Pro Rounded;
+    font-weight: 500;
+    src: url(../fonts/SF-Pro-Rounded-Light.ttf);
+ }
+ 
+@font-face {
+    font-family: SF Pro Rounded;
+    font-weight: 400;
+    src: url(../fonts/SF-Pro-Rounded-Light.ttf);
+ }
