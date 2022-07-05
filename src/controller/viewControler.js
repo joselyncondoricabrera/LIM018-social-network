@@ -8,5 +8,3 @@ export default function changeView (route) {
         console.log('la pagina a la que esta tratando de acceder no existe')
     }
 }
-
-//export { changeView };

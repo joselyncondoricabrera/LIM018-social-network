@@ -17,7 +17,7 @@ function signUp () {
                 <img src="./icons/key.png"/>
                 <input class="password" type="password" placeholder="contraseña" required>
             </div>
-            <button class="form-button" type="button">Crear cuenta</button>
+            <button class="form-button create-account" type="button">Crear cuenta</button>
             <a href="/" class="form-link" >tienes cuenta?</a>
         </form>
     </main>
