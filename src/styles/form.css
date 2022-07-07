@@ -60,10 +60,14 @@
       font-weight: 300;
       font-size: 15px;
       line-height: 18px;
+   }
+   .incorrect-username, .incorrect-mail, .incorrect-password {
+      display: none;
       color: #FF7581;
    }
-   .incorrect-input {
+   .correct-username, .correct-mail, .correct-password {
       display: none;
+      color: #0ead69;
    }
    .form-button {
       margin: 11px 0;
