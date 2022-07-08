@@ -27,7 +27,7 @@
     </form>
   </main>
 
-  
+
   <!--ESTO PROVIENE DEL FIREBASE-->
   <script type="module">
     // Import the functions you need from the SDKs you need
@@ -35,7 +35,6 @@
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
     import { getFirestore } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-    //import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -55,7 +54,9 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    const auth = getAuth();
   </script>
+
 <!--   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> -->  
 <!--AQUI TERMINA LO DEL FIREBASE-->
 

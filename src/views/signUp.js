@@ -1,10 +1,13 @@
+import {validateInput} from '../lib/index.js';
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+
 function signUp () {
     const signup = `
     <img class="background" src="./icons/mobile-createA.png" />
     <main class="main-form">
         <h1>Crear cuenta</h1>
         <p>Por favor llene los datos antes de continuar.</p>
-        <form   class="form">
+        <form class="form">
             <div class="form-input" >
                 <img src="./icons/user.png"/>
                 <input class="username" name="username" type="text" placeholder="nombre de usuario" required>
@@ -29,47 +32,54 @@ function signUp () {
             <button class="form-button create-account" type="button">Crear cuenta</button>
             <a href="/" class="form-link" >tienes cuenta?</a>
         </form>
+        <button class="button-authentication" >registrarse con google</button>
     </main>
     `
 
     const element = document.querySelector('body');
     element.innerHTML = signup;
+    //firebase
+    const auth = getAuth();
 
-    //vamos a usar regex para validar los inputs del formulario
-    const regex = {
-        'userR': /^[a-zA-Z0-9\_\-]{4,16}$/, //letras (mayus, minus), numeros, guion y guion bajo - de 4 a 16 caracteres
-        'mailR':  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // letras (mayus, minus), guion bajo antes de numeros, cadena de texto que precede al arroba y
-        //al punto, después del punto cadena de caracteres
-        'passwordR': /^.{4,12}$/, // caulquier tipo de caracter - de 4 a 12 caracteres
-    }
 
     const saveData = () => {
         const username = element.querySelector('.username').value;
         const mail = element.querySelector('.email').value;
         const password = element.querySelector('.password').value;
-        validateInput(username, 'userR', 'username')
-        validateInput(mail, 'mailR', 'mail')
-        validateInput(password, 'passwordR', 'password')
+        sendData(validateInput(username, 'userR', 'username', element), validateInput(mail, 'mailR', 'mail', element), validateInput(password, 'passwordR', 'password', element))
     }
 
     element.querySelector('.create-account').addEventListener('click', saveData )
 
+    const sendData = (username, mail, password) => {
+        if(username && mail && password != false) {
+            //console.log(username,mail, password, 'estas aquí')
 
-    const validateInput = (input, type, campo) => {
-        if(regex[`${type}`].test(input)){
-            console.log('está bien')
-            element.querySelector(`.incorrect-${campo}`).style.display = 'none'
-            element.querySelector(`.correct-${campo}`).style.display = 'flex'
-        } else {
-            console.log('esta mal')
-            element.querySelector(`.incorrect-${campo}`).style.display = 'flex'
-            element.querySelector(`.correct-${campo}`).style.display = 'none'
+            createUserWithEmailAndPassword(auth, mail, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+
+                // aquí envio datos al firestore
+                element.querySelector('.form').reset()
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+                    element.querySelector('.form').reset()
+                    alert('Este usuario ya está en uso, porfavor use otro')
+                } else {
+                    element.querySelector('.form').reset()
+                    alert('Algo salio mal, intentelo de nuevo más tarde')
+                }
+            });
+            //llamar al window.location
+            // mostrar un mensaje de registro exitoso
+            //validar que el username sea unico
         }
     }
-
-    /* const sendData = () => {
-    
-    } */
 
     return element;
 }
