@@ -12,4 +12,3 @@ function currentWindowPath() {
 window.addEventListener('load', currentWindowPath)
 
 window.addEventListener('hashchange', () => changeView(window.location.hash))
-

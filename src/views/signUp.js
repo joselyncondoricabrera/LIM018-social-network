@@ -1,3 +1,10 @@
+import {validateInput} from '../lib/index.js';
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+
+//sintaxis nueva
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
+
 function signUp () {
     const signup = `
     <img class="background" src="./icons/mobile-createA.png" />
@@ -7,66 +14,120 @@ function signUp () {
         <form class="form">
             <div class="form-input" >
                 <img src="./icons/user.png"/>
-                <input class="username" type="text" placeholder="nombre de usuario" required>
+                <input class="username" name="username" type="text" placeholder="nombre de usuario" required>
             </div>
-                 <span class="usuarioCorrecto"> nombre de usuario válido</span>
-                 <span class="usuarioIncorrecto">nombre de usuario incorrecto</span>
+            <span class="form-alert correct-username">El nombre de usurio es válido</span>
+            <span class="form-alert incorrect-username ">El nombre de usurio no es válido</span>
+
             <div class="form-input">
                 <img src="./icons/email.png"/>
                 <input class="email" type="email" placeholder="email" required>
             </div>
-                <span class="emailCorrecto">email válido</span>
-                <span class="emailIncorrecto" >email incorrecto</span>
+            <span class="form-alert correct-mail">El email es válido</span>
+            <span class="form-alert incorrect-mail">El email no es válido</span>
+
             <div class="form-input">
                 <img src="./icons/key.png"/>
-                <input class="password" type="password" placeholder="contraseña" required>
+                <input class="password" name="password" type="password" placeholder="contraseña" required>
             </div>
-                <span class="passwordCorrecto">contraseña válida</span>
-                <span class="passwordIncorrecto">contraseña incorrecta</span>
+            <span class="form-alert correct-password">La contraseña es válida</span>
+            <span class="form-alert incorrect-password">La contraseña debe contener al menos 4 caracteres y como máximo 12</span>
+
             <button class="form-button create-account" type="button">Crear cuenta</button>
             <a href="/" class="form-link" >tienes cuenta?</a>
         </form>
+        <button class="button-authentication" >registrarse con google</button>
     </main>
     `
+
     const element = document.querySelector('body');
     element.innerHTML = signup;
-  
+    //firebase
+    const auth = getAuth();
 
-    const regex = {
-        'userR': /^[a-zA-Z0-9\_\-]{4,16}$/, //letras (mayus, minus), numeros, guion y guion bajo - de 4 a 16 caracteres
-        'mailR':  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // letras (mayus, minus), guion bajo antes de numeros, cadena de texto que precede al arroba y
-        //al punto, después del punto cadena de caracteres
-        'passwordR': /^.{4,12}$/, // caulquier tipo de caracter - de 4 a 12 caracteres
+    //firestore/ inicializando firebase (codigo nuevo)
+   const firebaseConfig = {
+        apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
+        authDomain: "social-network-hugme.firebaseapp.com",
+        projectId: "social-network-hugme",
+        storageBucket: "social-network-hugme.appspot.com",
+        messagingSenderId: "98064810188",
+        appId: "1:98064810188:web:95af45d902de461c694269",
+        measurementId: "G-4CWFF7HQ9L"
+      };
+   
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore();
+    //-----(codigo nuevonp,)
 
+
+    const saveData = () => {
+        const username = element.querySelector('.username').value;
+        const mail = element.querySelector('.email').value;
+        const password = element.querySelector('.password').value;
+        sendData(validateInput(username, 'userR', 'username', element), 
+        validateInput(mail, 'mailR', 'mail', element), 
+        validateInput(password, 'passwordR', 'password', element));
     }
 
-    function saveData(){
-        let username= element.querySelector('.username').value;
-        let mail=element.querySelector('.email').value;
-        let password= element.querySelector('.password').value;
-        validarRegex(username,'userR','usuario');
-        validarRegex(mail,'mailR','email');
-        validarRegex(password,'passwordR','password');
-    }
+    element.querySelector('.create-account').addEventListener('click', saveData )
+    
 
-    let btnCreateAccount = element.querySelector('.create-account');
-    btnCreateAccount.addEventListener('click',saveData);
-    //usuarioCorrecto
-    function validarRegex(input,type,className){
-        if(regex[`${type}`].test(input)){
-            element.querySelector(`.${className}Correcto`).style.display='flex';
-            element.querySelector(`.${className}Incorrecto`).style.display='none';
-            console.log('correcto');
+    const sendData = (username, mail, password) => {
+        if(username && mail && password != false) {
+            //console.log(username,mail, password, 'estas aquí')
+
+            createUserWithEmailAndPassword(auth, mail, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+             //guardando datos en el firestore (codigo nuevo)
+             addDoc(collection(db,"usuario"),{
+                contraseña: element.querySelector('.password').value,
+                correo:  element.querySelector('.email').value,
+                nombreUsuario: element.querySelector('.username').value             
+             });
+             //---//--codigonuevo
+
+
+                // aquí envio datos al firestore
+                element.querySelector('.form').reset()
+
+                // borrando los mensajes de los spans(codigo nuevo)
+                const span = element.querySelectorAll('.form-alert'); 
+                span.forEach(function(e) {
+                    e.innerHTML='';
+                });
+               //--aqui termina--//--codigonuevo         
+
+               
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+                    element.querySelector('.form').reset()
+                    alert('Este usuario ya está en uso, porfavor use otro')
+                } else {
+                    element.querySelector('.form').reset()
+                    alert('Algo salio mal, intentelo de nuevo más tarde')
+                }
+            });
+
+             
+            
+
+            
+
+
+
+
+            //llamar al window.location
+            // mostrar un mensaje de registro exitoso
+            //validar que el username sea unico
         }
-        else{
-            element.querySelector(`.${className}Incorrecto`).style.display='flex';
-            element.querySelector(`.${className}Correcto`).style.display='none';
-            console.log('incorrecto');
-
-        }
-
     }
-
 
     return element;
 }
