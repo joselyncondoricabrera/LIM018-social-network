@@ -18,10 +18,14 @@ const validateInput = (input, type, campo, document) => {
     }
 }
 
-const resetForm = (classname, element, campo) => {
+const resetForm = (classname, element) => {
   element.querySelector(`.${classname}`).reset();
-  document.querySelector(`.incorrect-${campo}`).style.display = 'none'
-  document.querySelector(`.correct-${campo}`).style.display = 'none'
+  //document.querySelector(`.incorrect-${campo}`).style.display = 'none'
+  //document.querySelector(`.correct-${campo}`).style.display = 'none'
+  const span = element.querySelectorAll('.form-alert'); 
+    span.forEach(function(e) {
+      e.innerHTML='';
+    });
 }
 
 export {validateInput, resetForm}
