@@ -99,4 +99,14 @@
       line-height: 17px;
       color: #343A40;
    }
+   .usuarioCorrecto,.emailCorrecto,.passwordCorrecto{
+      display: none;
+      color:green;
+
+   }
+   .usuarioIncorrecto,.emailIncorrecto,.passwordIncorrecto{
+      display: none;
+      color:red;
+
+   }
 }

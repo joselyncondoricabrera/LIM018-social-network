@@ -1,5 +1,9 @@
 import {validateInput} from '../lib/index.js';
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+
+//sintaxis nueva
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
 
 function signUp () {
     const signup = `
@@ -41,15 +45,33 @@ function signUp () {
     //firebase
     const auth = getAuth();
 
+    //firestore/ inicializando firebase (codigo nuevo)
+   const firebaseConfig = {
+        apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
+        authDomain: "social-network-hugme.firebaseapp.com",
+        projectId: "social-network-hugme",
+        storageBucket: "social-network-hugme.appspot.com",
+        messagingSenderId: "98064810188",
+        appId: "1:98064810188:web:95af45d902de461c694269",
+        measurementId: "G-4CWFF7HQ9L"
+      };
+   
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore();
+    //-----(codigo nuevonp,)
+
 
     const saveData = () => {
         const username = element.querySelector('.username').value;
         const mail = element.querySelector('.email').value;
         const password = element.querySelector('.password').value;
-        sendData(validateInput(username, 'userR', 'username', element), validateInput(mail, 'mailR', 'mail', element), validateInput(password, 'passwordR', 'password', element))
+        sendData(validateInput(username, 'userR', 'username', element), 
+        validateInput(mail, 'mailR', 'mail', element), 
+        validateInput(password, 'passwordR', 'password', element));
     }
 
     element.querySelector('.create-account').addEventListener('click', saveData )
+    
 
     const sendData = (username, mail, password) => {
         if(username && mail && password != false) {
@@ -60,9 +82,26 @@ function signUp () {
                 // Signed in
                 const user = userCredential.user;
                 // ...
+             //guardando datos en el firestore (codigo nuevo)
+             addDoc(collection(db,"usuario"),{
+                contraseña: element.querySelector('.password').value,
+                correo:  element.querySelector('.email').value,
+                nombreUsuario: element.querySelector('.username').value             
+             });
+             //---//--codigonuevo
+
 
                 // aquí envio datos al firestore
                 element.querySelector('.form').reset()
+
+                // borrando los mensajes de los spans(codigo nuevo)
+                const span = element.querySelectorAll('.form-alert'); 
+                span.forEach(function(e) {
+                    e.innerHTML='';
+                });
+               //--aqui termina--//--codigonuevo         
+
+               
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -75,6 +114,15 @@ function signUp () {
                     alert('Algo salio mal, intentelo de nuevo más tarde')
                 }
             });
+
+             
+            
+
+            
+
+
+
+
             //llamar al window.location
             // mostrar un mensaje de registro exitoso
             //validar que el username sea unico
