@@ -1,5 +1,6 @@
-import {validateInput} from '../lib/index.js';
+import {validateInput, resetForm} from '../lib/index.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 
 function signUp () {
     const signup = `
@@ -62,22 +63,33 @@ function signUp () {
                 // ...
 
                 // aquí envio datos al firestore
-                element.querySelector('.form').reset()
+                //llamar al window.location
+                alert('Registro exitoso')
+                //reseteando formulario
+                resetForm('form', element, 'username')
+                resetForm('form', element, 'mail')
+                resetForm('form', element, 'password')
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorMessage)
+                console.log(errorCode)
                 if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-                    element.querySelector('.form').reset()
                     alert('Este usuario ya está en uso, porfavor use otro')
+                    resetForm('form', element, 'username')
+                    resetForm('form', element, 'mail')
+                    resetForm('form', element, 'password')
                 } else {
-                    element.querySelector('.form').reset()
                     alert('Algo salio mal, intentelo de nuevo más tarde')
+                    resetForm('form', element, 'username')
+                    resetForm('form', element, 'mail')
+                    resetForm('form', element, 'password')
                 }
+                resetForm('form', element, 'username')
+                resetForm('form', element, 'mail')
+                resetForm('form', element, 'password')
             });
-            //llamar al window.location
-            // mostrar un mensaje de registro exitoso
-            //validar que el username sea unico
         }
     }
 

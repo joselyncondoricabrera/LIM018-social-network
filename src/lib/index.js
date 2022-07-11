@@ -18,8 +18,10 @@ const validateInput = (input, type, campo, document) => {
     }
 }
 
-/* const resetForm = () => {
-
+const resetForm = (classname, element, campo) => {
+  element.querySelector(`.${classname}`).reset();
+  document.querySelector(`.incorrect-${campo}`).style.display = 'none'
+  document.querySelector(`.correct-${campo}`).style.display = 'none'
 }
- */
-export {validateInput}
+
+export {validateInput, resetForm}
