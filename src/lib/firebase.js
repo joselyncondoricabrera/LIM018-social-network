@@ -1,16 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
-import { getFirestore, collection, addDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
     authDomain: "social-network-hugme.firebaseapp.com",
@@ -23,7 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
@@ -36,21 +29,20 @@ const continueWithGoogle = document.querySelector('.button-authentication');
 const saveData = () => {
     const mail = document.querySelector('.login-email').value
     const password = document.querySelector('.login-password').value
-    sendData(validateInput(mail, 'mailR', 'mail', document),
+    sendDataLogin(validateInput(mail, 'mailR', 'mail', document),
     validateInput(password, 'passwordR', 'password', document))
-
-    //validateInput(mail, 'mailR', 'mail', element), 
 }
 
 logInButton.addEventListener('click', saveData);
 
-const sendData = (mail, password) => {
+const sendDataLogin = (mail, password) => {
     if( mail && password != false) {
         signInWithEmailAndPassword(auth, mail, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           // ...
+
           alert('inicio de sesión exitoso')
 
         })
@@ -62,9 +54,20 @@ const sendData = (mail, password) => {
     }
 }
 
+/* import { doc, getDoc } from "firebase/firestore";
+
+const docRef = doc(db, "cities", "SF");
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+} else {
+  // doc.data() will be undefined in this case
+  console.log("No such document!");
+} */
+
 
 // autenticación con google
-
 const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider)
   .then((result) => {
@@ -73,8 +76,9 @@ const googleAuthtenticationButton = () => {
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    console.log(user.auth.currentUser.email)
-    console.log(user.auth.currentUser.displayName)
+    
+    
+    //console.log(user.auth.currentUser.displayName)
 
     alert('inicio de sesión exitoso')
     // ...
@@ -93,5 +97,43 @@ const googleAuthtenticationButton = () => {
 
 continueWithGoogle.addEventListener('click', googleAuthtenticationButton )
 
+const sendDataSignUp = (username, mail, password, document) => {
+  if(username && mail && password != false) {
+      //console.log(username,mail, password, 'estas aquí')
 
-export {googleAuthtenticationButton};
+      createUserWithEmailAndPassword(auth, mail, password)
+      .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // con setDoc especificamos el id del usuario en este caso utlizaremos el mismo id de auth
+          setDoc(doc(db, "users", user.uid), {
+              userName: document.querySelector('.username').value,
+              email:  document.querySelector('.email').value,
+              password: document.querySelector('.password').value,
+            });
+          //llamar al window.location
+          alert('Registro exitoso')
+          //reseteando formulario
+          resetForm('form', document)
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage)
+          console.log(errorCode)
+          if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+              alert('Este usuario ya está en uso, porfavor use otro')
+              resetForm('form', document)
+          } else {
+              alert('Algo salio mal, intentelo de nuevo más tarde')
+              resetForm('form', document)
+          }
+          resetForm('form', document)
+      });
+
+      //llamar al window.location
+      // mostrar un mensaje de registro exitoso
+  }
+}
+
+export {sendDataSignUp};
