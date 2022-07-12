@@ -1,10 +1,11 @@
-import {validateInput} from '../lib/index.js';
+import {validateInput, resetForm} from '../lib/index.js';
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+//import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 
 //sintaxis nueva
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
-
+//import {googleAuthtenticationButton} from '../lib/firebase.js'
 function signUp () {
     const signup = `
     <img class="background" src="./icons/mobile-createA.png" />
@@ -36,14 +37,15 @@ function signUp () {
             <button class="form-button create-account" type="button">Crear cuenta</button>
             <a href="/" class="form-link" >tienes cuenta?</a>
         </form>
-        <button class="button-authentication" >registrarse con google</button>
     </main>
     `
 
     const element = document.querySelector('body');
     element.innerHTML = signup;
+
+    //const continueWithGoogle = element.querySelector('.button-authentication');
     //firebase
-    const auth = getAuth();
+    //const auth = getAuth();
 
     //firestore/ inicializando firebase (codigo nuevo)
    const firebaseConfig = {
@@ -56,9 +58,11 @@ function signUp () {
         measurementId: "G-4CWFF7HQ9L"
       };
    
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore();
-    //-----(codigo nuevonp,)
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const db = getFirestore(app);
+      //const provider = new GoogleAuthProvider();
+
 
 
     const saveData = () => {
@@ -72,64 +76,78 @@ function signUp () {
 
     element.querySelector('.create-account').addEventListener('click', saveData )
     
+const sendData = (username, mail, password) => {
+    if(username && mail && password != false) {
+        //console.log(username,mail, password, 'estas aquí')
 
-    const sendData = (username, mail, password) => {
-        if(username && mail && password != false) {
-            //console.log(username,mail, password, 'estas aquí')
-
-            createUserWithEmailAndPassword(auth, mail, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                // ...
-             //guardando datos en el firestore (codigo nuevo)
-             addDoc(collection(db,"usuario"),{
-                contraseña: element.querySelector('.password').value,
-                correo:  element.querySelector('.email').value,
-                nombreUsuario: element.querySelector('.username').value             
-             });
-             //---//--codigonuevo
-
-
-                // aquí envio datos al firestore
-                element.querySelector('.form').reset()
-
-                // borrando los mensajes de los spans(codigo nuevo)
-                const span = element.querySelectorAll('.form-alert'); 
-                span.forEach(function(e) {
-                    e.innerHTML='';
-                });
-               //--aqui termina--//--codigonuevo         
-
-               
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-                    element.querySelector('.form').reset()
-                    alert('Este usuario ya está en uso, porfavor use otro')
-                } else {
-                    element.querySelector('.form').reset()
-                    alert('Algo salio mal, intentelo de nuevo más tarde')
-                }
+        createUserWithEmailAndPassword(auth, mail, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+            //guardando datos en el firestore (codigo nuevo)
+            addDoc(collection(db,"usuario"),{
+            contraseña: element.querySelector('.password').value,
+            correo:  element.querySelector('.email').value,
+            nombreUsuario: element.querySelector('.username').value             
             });
-
-             
-            
-
-            
+            //---//--codigonuevo
 
 
-
-
+            // aquí envio datos al firestore
             //llamar al window.location
-            // mostrar un mensaje de registro exitoso
-            //validar que el username sea unico
-        }
-    }
+            alert('Registro exitoso')
+            //reseteando formulario
+            resetForm('form', element)
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage)
+            console.log(errorCode)
+            if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+                alert('Este usuario ya está en uso, porfavor use otro')
+                resetForm('form', element)
+            } else {
+                alert('Algo salio mal, intentelo de nuevo más tarde')
+                resetForm('form', element, 'username')
+            }
+            resetForm('form', element)
+        });
 
-    return element;
+        //llamar al window.location
+        // mostrar un mensaje de registro exitoso
+    }
+}
+
+/* const a = () => {
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+    ///
+
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  }
+
+  continueWithGoogle.addEventListener('click', a ) */
+
+
+
+return element;
 }
 
 export { signUp };
