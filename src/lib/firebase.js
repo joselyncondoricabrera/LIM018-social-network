@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification,deleteUser  } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
 
@@ -24,6 +24,7 @@ const provider = new GoogleAuthProvider();
 // capturando elementos
 const logInButton = document.querySelector('.log-in');
 const continueWithGoogle = document.querySelector('.button-authentication');
+
 
 // iniciar sesión code
 const saveData = () => {
@@ -54,19 +55,6 @@ const sendDataLogin = (mail, password) => {
     }
 }
 
-/* import { doc, getDoc } from "firebase/firestore";
-
-const docRef = doc(db, "cities", "SF");
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-} else {
-  // doc.data() will be undefined in this case
-  console.log("No such document!");
-} */
-
-
 // autenticación con google
 const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider)
@@ -76,7 +64,8 @@ const googleAuthtenticationButton = () => {
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    
+    console.log(user)
+
     
     //console.log(user.auth.currentUser.displayName)
 
@@ -95,32 +84,37 @@ const googleAuthtenticationButton = () => {
   });
 }
 
-continueWithGoogle.addEventListener('click', googleAuthtenticationButton )
+continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
+
 
 const sendDataSignUp = (username, mail, password, document) => {
   if(username && mail && password != false) {
       //console.log(username,mail, password, 'estas aquí')
-
       createUserWithEmailAndPassword(auth, mail, password)
       .then((userCredential) => {
+          //console.log(userCredential)
           // Signed in
           const user = userCredential.user;
           // con setDoc especificamos el id del usuario en este caso utlizaremos el mismo id de auth
-          setDoc(doc(db, "users", user.uid), {
+          sendEmailVerification(user)
+          if(user.emailVerified === true) {
+            setDoc(doc(db, "users", user.uid), {
               userName: document.querySelector('.username').value,
               email:  document.querySelector('.email').value,
               password: document.querySelector('.password').value,
             });
+            alert('registro exitoso')
+          } else {
+            deleteUser(user.uid)
+            alert('la cuenta no fue verificada')
+          }
           //llamar al window.location
-          alert('Registro exitoso')
           //reseteando formulario
           resetForm('form', document)
       })
       .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorMessage)
-          console.log(errorCode)
           if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
               alert('Este usuario ya está en uso, porfavor use otro')
               resetForm('form', document)
@@ -130,9 +124,6 @@ const sendDataSignUp = (username, mail, password, document) => {
           }
           resetForm('form', document)
       });
-
-      //llamar al window.location
-      // mostrar un mensaje de registro exitoso
   }
 }
 
