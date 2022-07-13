@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification,deleteUser  } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
 
@@ -38,20 +38,30 @@ logInButton.addEventListener('click', saveData);
 
 const sendDataLogin = (mail, password) => {
     if( mail && password != false) {
-        signInWithEmailAndPassword(auth, mail, password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
+      onAuthStateChanged(auth, (user) => {
+        if (user && user.emailVerified()) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
           // ...
 
-          alert('inicio de sesión exitoso')
+          signInWithEmailAndPassword(auth, mail, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            alert('inicio de sesión exitoso')
 
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage)
-        });
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage)
+          });
+
+        } else {
+          // User is signed out
+          // ...
+        }
+      });
     }
 }
 
@@ -67,8 +77,6 @@ const googleAuthtenticationButton = () => {
     console.log(user)
 
     
-    //console.log(user.auth.currentUser.displayName)
-
     alert('inicio de sesión exitoso')
     // ...
   }).catch((error) => {
@@ -86,44 +94,23 @@ const googleAuthtenticationButton = () => {
 
 continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
 
-
 const sendDataSignUp = (username, mail, password, document) => {
-  if(username && mail && password != false) {
-      //console.log(username,mail, password, 'estas aquí')
-      createUserWithEmailAndPassword(auth, mail, password)
-      .then((userCredential) => {
-          //console.log(userCredential)
-          // Signed in
-          const user = userCredential.user;
-          // con setDoc especificamos el id del usuario en este caso utlizaremos el mismo id de auth
-          sendEmailVerification(user)
-          if(user.emailVerified === true) {
-            setDoc(doc(db, "users", user.uid), {
-              userName: document.querySelector('.username').value,
-              email:  document.querySelector('.email').value,
-              password: document.querySelector('.password').value,
-            });
-            alert('registro exitoso')
-          } else {
-            deleteUser(user.uid)
-            alert('la cuenta no fue verificada')
-          }
-          //llamar al window.location
-          //reseteando formulario
-          resetForm('form', document)
-      })
-      .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-              alert('Este usuario ya está en uso, porfavor use otro')
-              resetForm('form', document)
-          } else {
-              alert('Algo salio mal, intentelo de nuevo más tarde')
-              resetForm('form', document)
-          }
-          resetForm('form', document)
-      });
+  if( username && mail && password != false ){
+ createUserWithEmailAndPassword(auth, mail, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    sendEmailVerification(user)
+    // See the UserRecord reference doc for the contents of userRecord.
+    setDoc(doc(db, "users", user.uid), {
+      userName: document.querySelector('.username').value,
+      email:  document.querySelector('.email').value,
+      password: document.querySelector('.password').value,
+    });
+    console.log('Successfully created new user:', user.emailVerified);
+  })
+  .catch((error) => {
+    console.log('Error creating new user:', error);
+  });
   }
 }
 
