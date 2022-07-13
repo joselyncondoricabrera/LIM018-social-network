@@ -1,11 +1,6 @@
-import {validateInput, resetForm} from '../lib/index.js';
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-//import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import {validateInput} from '../lib/index.js';
+import {sendDataSignUp} from '../lib/firebase.js'
 
-//sintaxis nueva
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
-//import {googleAuthtenticationButton} from '../lib/firebase.js'
 function signUp () {
     const signup = `
     <img class="background" src="./icons/mobile-createA.png" />
@@ -43,111 +38,18 @@ function signUp () {
     const element = document.querySelector('body');
     element.innerHTML = signup;
 
-    //const continueWithGoogle = element.querySelector('.button-authentication');
-    //firebase
-    //const auth = getAuth();
-
-    //firestore/ inicializando firebase (codigo nuevo)
-   const firebaseConfig = {
-        apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
-        authDomain: "social-network-hugme.firebaseapp.com",
-        projectId: "social-network-hugme",
-        storageBucket: "social-network-hugme.appspot.com",
-        messagingSenderId: "98064810188",
-        appId: "1:98064810188:web:95af45d902de461c694269",
-        measurementId: "G-4CWFF7HQ9L"
-      };
-   
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth();
-      const db = getFirestore(app);
-      //const provider = new GoogleAuthProvider();
-
-
-
     const saveData = () => {
         const username = element.querySelector('.username').value;
         const mail = element.querySelector('.email').value;
         const password = element.querySelector('.password').value;
-        sendData(validateInput(username, 'userR', 'username', element), 
+        sendDataSignUp(validateInput(username, 'userR', 'username', element), 
         validateInput(mail, 'mailR', 'mail', element), 
-        validateInput(password, 'passwordR', 'password', element));
+        validateInput(password, 'passwordR', 'password', element), element);
     }
 
     element.querySelector('.create-account').addEventListener('click', saveData )
-    
-const sendData = (username, mail, password) => {
-    if(username && mail && password != false) {
-        //console.log(username,mail, password, 'estas aquí')
 
-        createUserWithEmailAndPassword(auth, mail, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-            //guardando datos en el firestore (codigo nuevo)
-            addDoc(collection(db,"usuario"),{
-            contraseña: element.querySelector('.password').value,
-            correo:  element.querySelector('.email').value,
-            nombreUsuario: element.querySelector('.username').value             
-            });
-            //---//--codigonuevo
-
-
-            // aquí envio datos al firestore
-            //llamar al window.location
-            alert('Registro exitoso')
-            //reseteando formulario
-            resetForm('form', element)
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage)
-            console.log(errorCode)
-            if(errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-                alert('Este usuario ya está en uso, porfavor use otro')
-                resetForm('form', element)
-            } else {
-                alert('Algo salio mal, intentelo de nuevo más tarde')
-                resetForm('form', element, 'username')
-            }
-            resetForm('form', element)
-        });
-
-        //llamar al window.location
-        // mostrar un mensaje de registro exitoso
-    }
-}
-
-/* const a = () => {
-  signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // ...
-    ///
-
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
-  }
-
-  continueWithGoogle.addEventListener('click', a ) */
-
-
-
-return element;
+    return element;
 }
 
 export { signUp };
