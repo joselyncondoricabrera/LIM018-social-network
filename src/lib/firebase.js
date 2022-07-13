@@ -38,30 +38,22 @@ logInButton.addEventListener('click', saveData);
 
 const sendDataLogin = (mail, password) => {
     if( mail && password != false) {
-      onAuthStateChanged(auth, (user) => {
-        if (user && user.emailVerified()) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
-          // ...
+     if(auth.currentUser.emailVerified){
+        signInWithEmailAndPassword(auth, mail, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          alert('inicio de sesión exitoso')
 
-          signInWithEmailAndPassword(auth, mail, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            alert('inicio de sesión exitoso')
 
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage)
-          });
-
-        } else {
-          // User is signed out
-          // ...
-        }
-      });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage, errorCode)
+        });
+      } else {
+        alert('tu cuenta no está verificada')
+      }
     }
 }
 
@@ -69,30 +61,23 @@ const sendDataLogin = (mail, password) => {
 const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider)
   .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    // The signed-in user info.
     const user = result.user;
-    console.log(user)
-
     
     alert('inicio de sesión exitoso')
-    // ...
+
   }).catch((error) => {
-    // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
     const email = error.customData.email;
-    // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
     console.log(errorMessage)
   });
 }
 
 continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
+
 
 const sendDataSignUp = (username, mail, password, document) => {
   if( username && mail && password != false ){
@@ -100,7 +85,6 @@ const sendDataSignUp = (username, mail, password, document) => {
   .then((userCredential) => {
     const user = userCredential.user;
     sendEmailVerification(user)
-    // See the UserRecord reference doc for the contents of userRecord.
     setDoc(doc(db, "users", user.uid), {
       userName: document.querySelector('.username').value,
       email:  document.querySelector('.email').value,
