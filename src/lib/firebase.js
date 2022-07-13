@@ -38,8 +38,6 @@ const saveData = () => {
     const password = document.querySelector('.login-password').value
     sendData(validateInput(mail, 'mailR', 'mail', document),
     validateInput(password, 'passwordR', 'password', document))
-
-    //validateInput(mail, 'mailR', 'mail', element), 
 }
 
 logInButton.addEventListener('click', saveData);

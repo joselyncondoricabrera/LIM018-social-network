@@ -3,6 +3,7 @@ import { signUp } from '../views/signUp.js'
 
 const components = {
     signup: signUp,
+    
 }
 
 export {components};

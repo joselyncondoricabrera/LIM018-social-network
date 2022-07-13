@@ -7,6 +7,7 @@ import changeView from './controller/viewControler.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 import { getFirestore,getDocs, collection} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
 
+/*
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
     authDomain: "social-network-hugme.firebaseapp.com",
@@ -18,7 +19,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+const db = getFirestore();*/
 
 
 //--aqui termina(codigo nuevo)
@@ -36,7 +37,7 @@ window.addEventListener('hashchange', () => changeView(window.location.hash))
 
 
 //comparando dato para iniciar sesión (codigo nuevo)
-let buttonSingIn = document.querySelector('.form-button');
+/*let buttonSingIn = document.querySelector('.form-button');
 
 
 buttonSingIn.addEventListener('click', async ()=>{
@@ -66,5 +67,5 @@ buttonSingIn.addEventListener('click', async ()=>{
     });
    
 
-} );
+} );*/
 //--aqui termina (codigo nuevo)
