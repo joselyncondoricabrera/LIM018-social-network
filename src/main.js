@@ -2,6 +2,7 @@
 //import changeView from './controller/viewControler.js'
 //import {} from './lib/firebase.js'
 
+
 import changeView from './controller/viewControler.js';
 //codigo nuevo
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
