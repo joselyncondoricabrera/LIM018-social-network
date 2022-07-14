@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
 
@@ -38,13 +38,11 @@ logInButton.addEventListener('click', saveData);
 
 const sendDataLogin = (mail, password) => {
     if( mail && password != false) {
-     if(auth.currentUser.emailVerified){
+       if(auth.currentUser.emailVerified){
         signInWithEmailAndPassword(auth, mail, password)
         .then((userCredential) => {
           const user = userCredential.user;
           alert('inicio de sesión exitoso')
-
-
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -58,14 +56,28 @@ const sendDataLogin = (mail, password) => {
 }
 
 // autenticación con google
-const googleAuthtenticationButton = () => {
-  signInWithPopup(auth, provider)
+const googleAuthtenticationButton =async () => {
+  signInWithPopup(auth, provider) 
   .then((result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
     
     alert('inicio de sesión exitoso')
+    const docRef = doc(db, "users", user.uid);
+
+    getDoc(docRef)
+    .then((doc) => {
+     /*  if(doc.exists && doc.data() != undefined){
+        console.log('Document data:', doc.data())
+      } else {
+        setDoc(doc(db, "users", user.uid), {
+          username: user.displayName,
+          email: user.email,
+        });
+        console.log('No such document')
+      } */
+    })
 
   }).catch((error) => {
     const errorCode = error.code;
@@ -79,6 +91,7 @@ const googleAuthtenticationButton = () => {
 continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
 
 
+// función para crear usuario 
 const sendDataSignUp = (username, mail, password, document) => {
   if( username && mail && password != false ){
  createUserWithEmailAndPassword(auth, mail, password)
@@ -86,9 +99,9 @@ const sendDataSignUp = (username, mail, password, document) => {
     const user = userCredential.user;
     sendEmailVerification(user)
     setDoc(doc(db, "users", user.uid), {
-      userName: document.querySelector('.username').value,
-      email:  document.querySelector('.email').value,
-      password: document.querySelector('.password').value,
+      username: username,
+      email: mail,
+      password: password,
     });
     console.log('Successfully created new user:', user.emailVerified);
   })
