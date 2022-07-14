@@ -44,7 +44,7 @@ const sendDataLogin = (mail, password) => {
         .then((userCredential) => {
           const user = userCredential.user;
           alert('inicio de sesión exitoso')
-          window.location.hash = changeView('#/home')
+          window.location.hash = '#/home';
         })
         .catch((error) => {
           const errorCode = error.code;
