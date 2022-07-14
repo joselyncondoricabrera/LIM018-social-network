@@ -5,7 +5,7 @@ import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/fireba
 import {validateInput, resetForm} from './index.js'
 //getDocs,collection,query,where
 
-import changeView from './controller/viewControler.js';
+//import changeView from './controller/viewControler.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -59,7 +59,7 @@ const sendDataLogin = (mail, password) => {
 }
 
 // autenticación con google
-const googleAuthtenticationButton =async () => {
+const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider) 
   .then((result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -68,19 +68,19 @@ const googleAuthtenticationButton =async () => {
 
     //agrega data a firestore(codigo nuevo)
 
-    /*setDoc(doc(db, "users", user.uid), {
+    setDoc(doc(db, "users", user.uid), {
       userName: user.displayName,
       email: user.email,
       password: '',
-    });*/
+    });
     //---
 
   
     
     alert('inicio de sesión exitoso')
-    const docRef = doc(db, "users", user.uid);
+   // const docRef = doc(db, "users", user.uid);
 
-    getDoc(docRef)
+    /*getDoc(docRef)
     .then((doc) => {
      /*  if(doc.exists && doc.data() != undefined){
         console.log('Document data:', doc.data())
@@ -90,8 +90,8 @@ const googleAuthtenticationButton =async () => {
           email: user.email,
         });
         console.log('No such document')
-      } */
-    })
+      } 
+    })*/
 
   }).catch((error) => {
     const errorCode = error.code;
