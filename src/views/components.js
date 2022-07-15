@@ -1,11 +1,10 @@
 //import {signUp} from "./signUp.js"
 import { signUp } from '../views/signUp.js'
-//import { home } from '../views/home.js'
+import { Home } from '../views/home.js';
 
 const components = {
     signup: signUp,
-   // home: home,
-    
+    home: Home,
 }
 
 export {components};

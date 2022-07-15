@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+import changeView from "../controller/viewControler.js";
 import {validateInput, resetForm} from './index.js'
 //getDocs,collection,query,where
 
@@ -46,6 +47,7 @@ const sendDataLogin = (mail, password) => {
         .then((userCredential) => {
           const user = userCredential.user;
           alert('inicio de sesión exitoso')
+          window.location.hash = changeView('#/home')
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -59,39 +61,45 @@ const sendDataLogin = (mail, password) => {
 }
 
 // autenticación con google
-const googleAuthtenticationButton = () => {
+ const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider) 
   .then((result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
 
-    //agrega data a firestore(codigo nuevo)
+   /* 
+   
+   
+   
+   
+   agrega data a firestore(codigo nuevo)
 
     setDoc(doc(db, "users", user.uid), {
       userName: user.displayName,
       email: user.email,
       password: '',
     });
-    //---
+    //---*/
 
   
     
     alert('inicio de sesión exitoso')
    // const docRef = doc(db, "users", user.uid);
 
-    /*getDoc(docRef)
+    getDoc(docRef)
     .then((doc) => {
-     /*  if(doc.exists && doc.data() != undefined){
+      if(doc.exists && doc.data() != undefined){
         console.log('Document data:', doc.data())
-      } else {
+      } 
+      else {
         setDoc(doc(db, "users", user.uid), {
           username: user.displayName,
           email: user.email,
         });
         console.log('No such document')
-      } 
-    })*/
+      }
+    })
 
   }).catch((error) => {
     const errorCode = error.code;
@@ -117,6 +125,7 @@ const sendDataSignUp = (username, mail, password, document) => {
       email: mail,
       password: password,
     });
+    window.location.hash = changeView('#/signup')
     console.log('Successfully created new user:', user.emailVerified);
   })
   .catch((error) => {

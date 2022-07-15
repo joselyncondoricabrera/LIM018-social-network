@@ -1,0 +1,103 @@
+@import url(./fonts.css);
+
+@media (max-width: 390px) {
+    .form-home{
+       /* display:flex;*/
+        justify-content: center;
+       /* background-color: yellow;*/
+    }
+    .containerHead{
+        display: flex;
+        align-items: center;
+    }
+    .containerHead:last-child {
+        
+        justify-content: flex-end;
+    }
+    .imageLogo{
+        margin-left: 15px;
+    }
+    .username{
+        margin-left: 120px;
+        text-align: center;
+    }
+    
+    .buttonAdd{
+        display: flex;
+        width: 33px;
+        height: 33px;
+        margin-left: 120px;
+        align-items: center;
+        justify-content: center;
+        background: #FFFFFF;
+        box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        border:none;
+  
+    }
+  
+    .subtitle{
+        font-size: 24px;
+       /* text-align: left;*/
+        margin-left: 15px;
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 29px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    .containerSearch{
+        text-align: center;
+    }
+    .inputSearch{
+        width: 354px;
+        height: 44px;
+        background: #F7F7F8;
+        border-radius: 12px;
+        border:none;
+    }
+    .inputSearch::placeholder{
+        background-color: aqua;
+        text-align: center;
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #ADB5BD;
+    }
+
+    .containerButtons{
+        display:flex;
+        justify-content: center;
+        margin-top:30px;
+        margin-bottom: 30px;
+    }
+    .buttonOption{
+        width: 70.6px;
+        height: 21px;
+        color: #ADB5BD;
+        background-color:white;
+        border:none;
+        text-align: center;
+    }
+   
+    .sectionPublication{
+        width: 100px;
+        height: 400px;
+        background-color: blue;
+    }
+
+    .footer{
+        width: 390px;
+        height: 100px;
+        background-color: #F5F0D0;
+    }
+    .containerDataFooter{
+        background-color: blue;
+        font-size: 15px;
+    }
+    
+}
