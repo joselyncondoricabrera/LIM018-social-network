@@ -7,7 +7,5 @@ export default function changeView (route) {
         case '#/home':  {return components.home()};
         case '#/newPublication': {return components.publication()};
         case '#/information': {return components.information()};
-        default :
-        console.log('la pagina a la que esta tratando de acceder no existe')
     }
 }

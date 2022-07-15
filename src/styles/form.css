@@ -107,6 +107,5 @@
    .usuarioIncorrecto,.emailIncorrecto,.passwordIncorrecto{
       display: none;
       color:red;
-
    }
 }

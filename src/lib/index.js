@@ -20,12 +20,18 @@ const validateInput = (input, type, campo, document) => {
 
 const resetForm = (classname, element) => {
   element.querySelector(`.${classname}`).reset();
-  //document.querySelector(`.incorrect-${campo}`).style.display = 'none'
-  //document.querySelector(`.correct-${campo}`).style.display = 'none'
   const span = element.querySelectorAll('.form-alert'); 
     span.forEach(function(e) {
       e.innerHTML='';
     });
 }
 
-export {validateInput, resetForm}
+const selectedOption = (arr) => {
+  for(let option of arr){
+    if(option.checked){
+      return option.value;
+      }
+  }
+}
+
+export {validateInput, resetForm, selectedOption}

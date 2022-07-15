@@ -3,7 +3,7 @@ function Home () {
     <main>
         <div>
             <img src="./icons/hugme-logo.png"/>
-            <button>Agregar</button>
+            <button class="publication-add">Agregar</button>
         </div>
         <p>username</p>
         <h1>Encuentra un nuevo amigo</h1>
@@ -38,6 +38,10 @@ function Home () {
 
     const element = document.querySelector('body');
     element.innerHTML = home;
+
+    const addPublicationButton = element.querySelector('.publication-add')
+
+    addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication';} )
 
    
     return element;
