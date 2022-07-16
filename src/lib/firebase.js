@@ -1,7 +1,26 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
-import { getFirestore, doc, setDoc, getDoc, updateDoc,collection } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-import {validateInput, resetForm} from './index.js'
+import { getStorage, ref, uploadString, uploadBytes, getDownloadURL, uploadBytesResumable   } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
+import { 
+  getAuth, 
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+import { 
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+import { validateInput, resetForm} from './index.js'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -18,6 +37,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+const storage = getStorage(app);
 
 // capturando elementos
 const logInButton = document.querySelector('.log-in');
@@ -77,7 +97,6 @@ const sendDataLogin = (mail, password) => {
         setDoc(doc(db, "users", user.uid), {
           username: user.displayName,
           email: user.email,
-          publications: [],
         });
         window.location.hash = '#/home';
       }
@@ -106,7 +125,6 @@ const sendDataSignUp = (username, mail, password, document) => {
       username: username,
       email: mail,
       password: password,
-      publications: [],
     });
     resetForm('form', document)
     console.log('Successfully created new user:', user.emailVerified);
@@ -119,33 +137,62 @@ const sendDataSignUp = (username, mail, password, document) => {
   }
 }
 
-//crear publicaciones
+//subir img
 const createPublicationF = (type, sex, img, name, description) => {
-  //const docRef = doc(db, "users", auth);
   const user = auth.currentUser.uid
-  updateDoc(doc(db, "users", user), {
-   publications: [
-    /* type: type,
-    sex: sex,
-    img: img,
-    petname: name,
-    petdescription: description, */
-   ]
-  })
-  /* updateDoc(docRef.publications, {
+  const imgRef = ref(storage, img.name);
+  const metadata = {
+    contentType: img.type,
+  };
 
-  }) */
- /*  washingtonRef.update({
-    capital: true
-})
-.then(() => {
-    console.log("Document successfully updated!");
-})
-.catch((error) => {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-}); */
+  // Upload the file and metadata
+  //const uploadImg = uploadBytesResumable(imgRef, imgName, metadata);
+  const uploadImg = uploadBytesResumable(imgRef, img, metadata);
+ uploadImg
+  .then(snapshot => getDownloadURL(snapshot.ref))
+  .then( url => {
+    console.log(url)
+    const pubCollection = collection(db, "users", user, "publications");
+    addDoc(pubCollection, { 
+      type: type, 
+      sex: sex , 
+      img: url, 
+      petname: name, 
+      petdescription: description
+    }) 
+  })
 }
 
+// listar publicaciones
+const listPublications = (document) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const publications =  collection(db, "users", user.uid, "publications");
+      console.log(publications)
+     getDocs(publications)
+      .then(function(publications) {
 
-export {sendDataSignUp, createPublicationF};
+        publications.forEach(publication => {
+          console.log(publication.id, '=>', publication.data());
+          const pub = publication.data()
+
+          console.log(pub);
+
+          document.innerHTML += `
+          <div>
+            <img src=${pub.img}/>
+            <p>${pub.petname}</p>
+          </div>
+          `
+        });
+      })
+      .catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    }else {
+      console.log('no existe')
+    }
+  });
+}
+
+export {sendDataSignUp, createPublicationF, listPublications };

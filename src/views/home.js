@@ -1,3 +1,5 @@
+import {listPublications} from '../lib/firebase.js'
+
 function Home () {
     const home = `
     <main>
@@ -10,7 +12,6 @@ function Home () {
         <div>
             <input type="text" placeholder="Buscar" />
         </div>
-
         <div>
             <button>Todo</button>
             <button>Perro</button>
@@ -18,7 +19,7 @@ function Home () {
             <button>Roedor</button>
             <button>Ave</button>
         </div>
-        <div>Publicaciones</div>
+        <section class="publications-section"></section>
     </main>
     <footer>
         <p>© Todos los derechos reservados</p>
@@ -41,9 +42,10 @@ function Home () {
 
     const addPublicationButton = element.querySelector('.publication-add')
 
-    addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication';} )
-
-   
+    addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication'; })
+    const allPub = element.querySelector('.publications-section');
+    console.log(allPub)
+    listPublications(allPub);
     return element;
 }
 

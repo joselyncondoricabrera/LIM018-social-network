@@ -69,11 +69,9 @@ function newPublication ()  {
     const publicationData = () => {
         const option1 = selectedOption(question1);
         const option2 = selectedOption(question2);
-        const petimg = element.querySelector('.question3__img').value;
+        const petimg = element.querySelector('.question3__img').files[0]
         const petname = element.querySelector('.question4__petname').value;
         const description = element.querySelector('.question5__description').value;
-        console.log(option1, option2,petimg, petname,description)
-        //console.log(createPublicationF());
         createPublicationF(option1, option2, petimg, petname, description)
     }
    
