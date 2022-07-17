@@ -1,5 +1,7 @@
 @import url('./form.css');
 @import url('./home.css');
+@import url('./informationView.css');
+@import url('./newPublication.css');
 
 body {
     margin: 0;

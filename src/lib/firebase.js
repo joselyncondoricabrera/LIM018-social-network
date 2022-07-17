@@ -1,8 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
-import { getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-import changeView from "../controller/viewControler.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc,collection } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
 //getDocs,collection,query,where
 
@@ -20,7 +18,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
@@ -30,7 +27,7 @@ const logInButton = document.querySelector('.log-in');
 const continueWithGoogle = document.querySelector('.button-authentication');
 
 
-// iniciar sesión code
+// iniciar sesión
 const saveData = () => {
     const mail = document.querySelector('.login-email').value
     const password = document.querySelector('.login-password').value
@@ -47,12 +44,14 @@ const sendDataLogin = (mail, password) => {
         .then((userCredential) => {
           const user = userCredential.user;
           alert('inicio de sesión exitoso')
-          window.location.hash = changeView('#/home')
+          window.location.hash = '#/home';
+          resetForm('form', document)
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorMessage, errorCode)
+          resetForm('form', document)
         });
       } else {
         alert('tu cuenta no está verificada')
@@ -91,13 +90,15 @@ const sendDataLogin = (mail, password) => {
     .then((doc) => {
       if(doc.exists && doc.data() != undefined){
         console.log('Document data:', doc.data())
+        window.location.hash = '#/home';
       } 
       else {
         setDoc(doc(db, "users", user.uid), {
           username: user.displayName,
           email: user.email,
+          publications: [],
         });
-        console.log('No such document')
+        window.location.hash = '#/home';
       }
     })
 
@@ -124,14 +125,46 @@ const sendDataSignUp = (username, mail, password, document) => {
       username: username,
       email: mail,
       password: password,
+      publications: [],
     });
-    window.location.hash = changeView('#/signup')
+    resetForm('form', document)
     console.log('Successfully created new user:', user.emailVerified);
+    window.location.hash = ''
   })
   .catch((error) => {
     console.log('Error creating new user:', error);
+    resetForm('form', document)
   });
   }
 }
 
-export {sendDataSignUp};
+//crear publicaciones
+const createPublicationF = (type, sex, img, name, description) => {
+  //const docRef = doc(db, "users", auth);
+  const user = auth.currentUser.uid
+  updateDoc(doc(db, "users", user), {
+   publications: [
+    /* type: type,
+    sex: sex,
+    img: img,
+    petname: name,
+    petdescription: description, */
+   ]
+  })
+  /* updateDoc(docRef.publications, {
+
+  }) */
+ /*  washingtonRef.update({
+    capital: true
+})
+.then(() => {
+    console.log("Document successfully updated!");
+})
+.catch((error) => {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+}); */
+}
+
+
+export {sendDataSignUp, createPublicationF};

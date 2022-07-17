@@ -29,44 +29,8 @@ const db = getFirestore();*/
 // aquí inicializamos window
 
 function currentWindowPath() {
+    changeView(window.location.hash)
     window.addEventListener('hashchange', () => changeView(window.location.hash))
 }
-//se ejecuta cada vez que hay una recarga de la pagina
+
 window.addEventListener('load', currentWindowPath)
-
-window.addEventListener('hashchange', () => changeView(window.location.hash))
-
-
-//comparando dato para iniciar sesión (codigo nuevo)
-/*let buttonSingIn = document.querySelector('.form-button');
-
-
-buttonSingIn.addEventListener('click', async ()=>{
-    let usernameInput = document.querySelector('.username').value;
-    //probando si funciona el boton
-    console.log('boton funcionando');
-    console.log(usernameInput);
-
-    console.log(getDocs(collection(db,'usuario')));
-
-    let arrayNombreUsuario;
-
-    const nuvData = await  getDocs(collection(db,'usuario'));
-    nuvData.forEach(element => {
-        const usuario = element.data();
-        arrayNombreUsuario = usuario.nombreUsuario;
-        if(usernameInput == arrayNombreUsuario){
-            console.log('ya existe este usuario' );
-        }
-        else{
-            console.log('no existe este usuario');
-        }
-
-        
-        
-        
-    });
-   
-
-} );*/
-//--aqui termina (codigo nuevo)

@@ -3,7 +3,7 @@ function Home () {
     <main class="form-home">
         <div class="containerHead">
             <img class="imageLogo" src="./icons/hugme-logo.png"/>
-            <p class="username">username</p>
+            <p class="userName">username</p>
             <button class= "buttonAdd">
             <img class="imageAddButton" src="./icons/add.png">
             </button>
@@ -11,7 +11,7 @@ function Home () {
         
         <h1 class="subtitle">Encuentra un nuevo <br> amigo</h1>
         <div class="containerSearch">
-            <input class="inputSearch"  type="text" placeholder="Buscar" />
+            <input class="inputSearch" type="text" placeholder="Buscar" />
         </div>
 
         <div class="containerButtons">
@@ -24,20 +24,12 @@ function Home () {
         <div class="sectionPublication">Publicaciones</div>
     </main>
     <footer class="footer">
-        <p>© Todos los derechos reservados</p>
-        <div class="containerDataFooter">
-          <div>
-            <p>diseño : </p>
-            <a>@Joselyn Condori </a>
-            <a>- @Diana Llerena</a>
-          </div>
-          <div>
-            <p>developers : </p>
-            <a>@Joselyn Condori </a>
-            <a>- @Diana Llerena</a>
-          </div>
+        <div class="containerInfoFooter">
+            <p class="infoFooterTitle">© Todos los derechos reservados</p>
+            <p>diseño : @Joselyn Condori - @Diana Llerena</p>
+            <p>developers : @Joselyn Condori - @Diana Llerena </p>
         </div>
-        <img src="./icons/footer-logo.png"/>
+        <img class="imageFooter" src="./icons/footer-logo.png"/>
     </footer>
     `
 

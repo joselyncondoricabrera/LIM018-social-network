@@ -5,7 +5,7 @@ export default function changeView (route) {
     switch (route) {
         case '#/signup': {return components.signup()};
         case '#/home':  {return components.home()};
-        default :
-        console.log('la pagina a la que esta tratando de acceder no existe')
+        case '#/newPublication': {return components.publication()};
+        case '#/information': {return components.information()};
     }
 }
