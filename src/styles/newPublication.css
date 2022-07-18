@@ -1,0 +1,193 @@
+@import url(./fonts.css);
+
+@media (max-width: 390px) {
+  .form-newPublication{
+ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .title{
+    
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 31px;
+    text-align: center;
+    color: #000000;
+    margin-top:-40px;
+    margin-bottom: 33px;
+  }
+  .question{
+    width: 354px;
+    text-align: left;
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    margin-top: 0px;
+    margin-bottom: 11px;
+  }
+  .publication-form__question1{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: flex-start;
+    color: #6C757D;
+    justify-content: space-evenly;
+    margin-bottom: 22px;
+  }
+  .radioButton[type=radio]{
+    border: 0px;
+    width: 16px;
+    height: 16px;
+
+  }
+  
+  .publication-form__question2{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+ 
+    color: #6C757D;
+    align-items: flex-start;
+    margin-bottom: 22px;
+
+  }
+  .publication-form__question3{
+    display: flex;
+    height: 33px;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 22px;
+
+  }
+  .question3{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+  
+  .divInputFile{
+    position: relative;
+    width: 119px;
+    height: 33px;
+    background: #C2F8CB;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .question3__img{
+    position: absolute;
+    top:0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+  }
+  .textInputFile{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #4F4A42;
+  }
+
+  
+
+  .question4__petname{
+    width: 281px;
+    height: 33px;
+    background: #F7F7F8;
+    border-radius: 12px;
+    border:none;
+    margin-bottom: 22px;
+
+  }
+  .question4__petname::placeholder{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #ADB5BD;
+    padding: 6px 0 6px 12px;
+
+  }
+  
+  .question5__petAge{
+    width: 281px;
+    height: 33px;
+    background: #F7F7F8;
+    border-radius: 12px;
+    border:none;
+    margin-bottom: 22px;
+  }
+  .question5__petAge::placeholder{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #ADB5BD;
+    padding: 6px 0 6px 12px;
+
+  }
+  .question5__description{
+    width: 354px;
+    height: 114px;
+    top: 553px;
+    background: #F7F7F8;
+    border-radius: 12px;
+    border:none;
+    padding: 0;
+    margin-bottom: 55px;
+  }
+  .question5__description::placeholder{
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #ADB5BD;
+    padding:15px 0 0 15px;
+    
+  }
+  .create-publication{
+    width: 354px;
+    height: 55px;   
+    background: #C2F8CB;
+    border-radius: 20px;
+    border: none;
+    font-family: 'SF Pro Rounded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 50px;
+
+  }
+
+ 
+ 
+
+}

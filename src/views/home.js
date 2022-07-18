@@ -2,38 +2,36 @@ import {listPublications} from '../lib/firebase.js'
 
 function Home () {
     const home = `
-    <main>
-        <div>
-            <img src="./icons/hugme-logo.png"/>
-            <button class="publication-add">Agregar</button>
+    <main class="form-home">
+        <div class="containerHead">
+            <img class="imageLogo" src="./icons/hugme-logo.png"/>
+            <p class="userName">username</p>
+            <button class= "buttonAdd publication-add">
+            <img class="imageAddButton" src="./icons/add.png">
+            </button>
         </div>
-        <p>username</p>
-        <h1>Encuentra un nuevo amigo</h1>
-        <div>
-            <input type="text" placeholder="Buscar" />
+        
+        <h1 class="subtitle">Encuentra un nuevo <br> amigo</h1>
+        <div class="containerSearch">
+            <input class="inputSearch" type="text" placeholder="Buscar" />
         </div>
-        <div>
-            <button>Todo</button>
-            <button>Perro</button>
-            <button>Gato</button>
-            <button>Roedor</button>
-            <button>Ave</button>
+
+        <div class="containerButtons">
+            <button class="buttonOption all">Todo</button>
+            <button class="buttonOption do">Perro</button>
+            <button class="buttonOption cat">Gato</button>
+            <button class="buttonOption rodent" >Roedor</button>
+            <button class="buttonOption bird">Ave</button>
         </div>
-        <section class="publications-section"></section>
+        <div class="sectionPublication publications-section">Publicaciones</div>
     </main>
-    <footer>
-        <p>© Todos los derechos reservados</p>
-        <div>
-            <p>diseño : </p>
-            <a>@Joselyn Condori </a>
-            <a>- @Diana Llerena</a>
+    <footer class="footer">
+        <div class="containerInfoFooter">
+            <p class="infoFooterTitle">© Todos los derechos reservados</p>
+            <p>diseño : @Joselyn Condori - @Diana Llerena</p>
+            <p>developers : @Joselyn Condori - @Diana Llerena </p>
         </div>
-        <div>
-            <p>developers : </p>
-            <a>@Joselyn Condori </a>
-            <a>- @Diana Llerena</a>
-        </div>
-        <img src="./icons/footer-logo.png"/>
+        <img class="imageFooter" src="./icons/footer-logo.png"/>
     </footer>
     `
 

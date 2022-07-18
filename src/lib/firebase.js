@@ -83,9 +83,9 @@ const sendDataLogin = (mail, password) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
-    
+
     alert('inicio de sesión exitoso')
-    const docRef = doc(db, "users", user.uid);
+   // const docRef = doc(db, "users", user.uid);
 
     getDoc(docRef)
     .then((doc) => {
@@ -107,7 +107,7 @@ const sendDataLogin = (mail, password) => {
     const errorMessage = error.message;
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
-    console.log(errorMessage)
+    console.log(errorMessage, email)
   });
 }
 
@@ -148,7 +148,7 @@ const createPublicationF = (type, sex, img, name, description) => {
   // Upload the file and metadata
   //const uploadImg = uploadBytesResumable(imgRef, imgName, metadata);
   const uploadImg = uploadBytes(imgRef, img, metadata);
- uploadImg
+  uploadImg
   .then(snapshot => getDownloadURL(snapshot.ref))
   .then( url => {
     console.log(url)
