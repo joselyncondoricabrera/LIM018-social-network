@@ -179,10 +179,10 @@ const listPublications = (document) => {
           console.log(pub);
 
           document.innerHTML += `
-          <div class="publication-card">
-            <img src=${pub.img}/>
-            <div class="card-info">
-              <p>${pub.petname}</p>
+          <div class=" card publication-card">
+            <img class="card" src=${pub.img}/>
+            <div class="card card-info">
+              <p class="card">${pub.petname}</p>
             </div>
           </div>
           `
@@ -196,5 +196,11 @@ const listPublications = (document) => {
     }
   });
 }
+
+/* const allInformationCard = element.querySelectorAll('.publication-card');
+console.log(allInformationCard) */
+/* allInformationCard.forEach(e => {
+  e.addEventListener('click', console.log('tocaste algo'))
+}) */
 
 export {sendDataSignUp, createPublicationF, listPublications };

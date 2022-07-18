@@ -43,8 +43,21 @@ function Home () {
 
     addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication'; })
     const allPub = element.querySelector('.home-publications');
+    const publication = element.querySelectorAll('.publication-card')
     console.log(allPub)
     listPublications(allPub);
+
+    allPub.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(e.target)
+        if(e.target.classList.contains("card")){
+            console.log('estás aquí')
+        }else{
+            console.log('nafdas')
+        }
+    })
+    
+
     return element;
 }
 
