@@ -3,42 +3,61 @@ import {createPublicationF} from '../lib/firebase.js'
 
 function newPublication ()  {
     const publication = `
-    <main class="form-newPublication">
-        <button class="button-back">
-            <img src='./icons/back.png'>
-        </button>
-        <h1 class="title">Crear publicación</h1>
-        <form class="publication-form">
-            <p class="question">Selecciona el tipo de tu mascota</p>
-            <div class="publication-form__question1">
-                <input class="radioButton" type="radio" name="question1__options" value="perro"/>
-                <label>Perro</label>
-                <input class="radioButton" type="radio" name="question1__options" value="gato"/>
-                <label>Gato</label>
-                <input class="radioButton" type="radio" name="question1__options" value="roedor"/>
-                <label>Roedor</label>
-                <input class="radioButton" type="radio" name="question1__options" value="ave"/>
-                <label>Ave</label>
-            </div>
+    <main class="new-publication">
+        <div class="new-publication-header">
+            <button class="button-back">
+                <img src='./icons/back.png'>
+            </button>
+            <h1 class="title">Crear publicación</h1>
+        </div>
+        <form class="form__new-publication">
+            <div>
+                <p>Selecciona el tipo de tu mascota</p>
+                <div class="options-group">
+                    <div>
+                        <input class="radioButton" type="radio" name="question1__options" value="perro"/>
+                        <label>Perro</label>
+                    </div>
+                    <div>
+                        <input class="radioButton" type="radio" name="question1__options" value="gato"/>
+                        <label>Gato</label>
+                    </div>
 
-            <p class="question">Selecciona el sexo de tu mascota</p>
-            <div class="publication-form__question2">
-                <input class="radioButton" type="radio" name="question2__options" value="hembra"/>
-                <label>Hembra</label>
-                <input class="radioButton" type="radio" name="question2__options" value="macho"/>
-                <label>Macho</label>
-            </div>
+                    <div>
+                        <input class="radioButton" type="radio" name="question1__options" value="roedor"/>
+                        <label>Roedor</label>
+                    </div>
 
-            <div class="publication-form__question3">
-                <p class="question3">Añadir imagen</p>
-                <div class="divInputFile">
-                   <p class="textInputFile">Subir Archivo</p>
-                   <input class="question3__img" type="file"/>
+                    <div>
+                        <input class="radioButton" type="radio" name="question1__options" value="ave"/>
+                        <label>Ave</label>
+                    </div>
                 </div>
-                
             </div>
 
-            <div class="publication-form__questin4">
+            <diV>
+                <p class="question">Selecciona el sexo de tu mascota</p>
+                <div class="options-group">
+                    <div>
+                        <input class="radioButton" type="radio" name="question2__options" value="hembra"/>
+                        <label>Hembra</label>
+                    </div>
+                    <div>
+                        <input class="radioButton" type="radio" name="question2__options" value="macho"/>
+                        <label>Macho</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question__upload-group">
+                <p>Añadir imagen</p>
+                <label class="option__upload-file">
+                    Subir archivo
+                    <input class="question3__img" type="file"/>
+                </label>
+            </div>
+
+            <div>
                 <p class="question">Nombre de la mascota</p>
                 <input class="question4__petname" type="text" placeholder="Escribe con amor..."/>
             </div>
@@ -48,20 +67,25 @@ function newPublication ()  {
                 <input class="question5__petAge" type="text" placeholder="01 meses"/>
             </div>
 
-            <div class="publication-form__question5">
+            <div>
                 <p class="question">Descripción de la mascota</p>
                 <textarea class="question5__description" placeholder="Escribe con amor..."></textarea>
             </div>
+            
             <button type="button" class="create-publication">Crear publicación</button>
         </form>
     </main>
-    <footer class="footer">
-        <div class="containerInfoFooter">
-            <p class="infoFooterTitle">© Todos los derechos reservados</p>
-            <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-            <p>developers : @Joselyn Condori - @Diana Llerena </p>
+
+
+    <footer>
+        <div class="container__footer-info">
+            <div class="container__developers-info">
+                <p class="developers-info__title">© Todos los derechos reservados</p>
+                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
+                <p>developers : @Joselyn Condori - @Diana Llerena </p>
+            </div>
+            <img class="imageFooter" src="./icons/footer-logo.png"/>
         </div>
-        <img class="imageFooter" src="./icons/footer-logo.png"/>
     </footer>
     `
 
@@ -84,6 +108,9 @@ function newPublication ()  {
 
     
    createPublication.addEventListener('click', publicationData )
+   const backHomeButton = element.querySelector('.button-back')
+
+   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
    return element;
 }
 export { newPublication };

@@ -2,46 +2,47 @@ import {listPublications} from '../lib/firebase.js'
 
 function Home () {
     const home = `
-    <main class="form-home">
-        <div class="containerHead">
+    <main class="home">
+        <div class="home-header">
             <img class="imageLogo" src="./icons/hugme-logo.png"/>
-            <p class="userName">username</p>
-            <button class= "buttonAdd publication-add">
+            <p class="header__username">username</p>
+            <button class= "header__add-button">
             <img class="imageAddButton" src="./icons/add.png">
             </button>
         </div>
         
-        <h1 class="subtitle">Encuentra un nuevo <br> amigo</h1>
-        <div class="containerSearch">
-            <input class="inputSearch" type="text" placeholder="Buscar" />
-        </div>
+        <h1 class="home__subtitle">Encuentra un nuevo <br> amigo</h1>
 
-        <div class="containerButtons">
-            <button class="buttonOption all">Todo</button>
-            <button class="buttonOption do">Perro</button>
-            <button class="buttonOption cat">Gato</button>
-            <button class="buttonOption rodent" >Roedor</button>
-            <button class="buttonOption bird">Ave</button>
+        <input class="home__input-search" type="text" placeholder="Buscar"/>
+
+        <div class="home__container-buttons">
+            <button class="button-option">Todo</button>
+            <button class="button-option">Perro</button>
+            <button class="button-option">Gato</button>
+            <button class="button-option">Roedor</button>
+            <button class="button-option">Ave</button>
         </div>
-        <div class="sectionPublication publications-section">Publicaciones</div>
+        <section class="home-publications"></section>
     </main>
-    <footer class="footer">
-        <div class="containerInfoFooter">
-            <p class="infoFooterTitle">© Todos los derechos reservados</p>
-            <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-            <p>developers : @Joselyn Condori - @Diana Llerena </p>
+    <footer>
+        <div class="container__footer-info">
+            <div class="container__developers-info">
+                <p class="developers-info__title">© Todos los derechos reservados</p>
+                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
+                <p>developers : @Joselyn Condori - @Diana Llerena </p>
+            </div>
+            <img class="imageFooter" src="./icons/footer-logo.png"/>
         </div>
-        <img class="imageFooter" src="./icons/footer-logo.png"/>
     </footer>
     `
 
     const element = document.querySelector('body');
     element.innerHTML = home;
 
-    const addPublicationButton = element.querySelector('.publication-add')
+    const addPublicationButton = element.querySelector('.header__add-button')
 
     addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication'; })
-    const allPub = element.querySelector('.publications-section');
+    const allPub = element.querySelector('.home-publications');
     console.log(allPub)
     listPublications(allPub);
     return element;

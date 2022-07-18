@@ -38,12 +38,14 @@ function informationView ()  {
 
     </main>
     <footer>
-       <div class="containerInfoFooter">
-           <p class="infoFooterTitle">© Todos los derechos reservados</p>
-           <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-           <p>developers : @Joselyn Condori - @Diana Llerena </p>
-       </div>
-       <img class="imageFooter" src="./icons/footer-logo.png"/>
+        <div class="container__footer-info">
+            <div class="container__developers-info">
+                <p class="developers-info__title">© Todos los derechos reservados</p>
+                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
+                <p>developers : @Joselyn Condori - @Diana Llerena </p>
+            </div>
+            <img class="imageFooter" src="./icons/footer-logo.png"/>
+        </div>
     </footer>
     `
 

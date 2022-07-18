@@ -181,7 +181,9 @@ const listPublications = (document) => {
           document.innerHTML += `
           <div class="publication-card">
             <img src=${pub.img}/>
-            <p>${pub.petname}</p>
+            <div class="card-info">
+              <p>${pub.petname}</p>
+            </div>
           </div>
           `
         });
