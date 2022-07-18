@@ -1,0 +1,159 @@
+@import url(./fonts.css);
+
+@media (max-width: 390px) {
+    .main-infornationView{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+ /*  .main-infornationView :first-child{
+    color:#6C757D;
+       margin-left: 10px;
+    }*/
+    .button-back{       
+        width: 33px;
+        height: 33px;
+        background: #FFFFFF;
+        border:none;
+        box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 330px;
+        margin-top: 22px;
+        margin-bottom: 22px;
+        margin-left: 20px;
+
+    }
+    .titleName{
+        font-family: 'CookieRun';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 41px;
+        text-align: center;
+        color: #F5B2E8;
+        -webkit-text-stroke: 2px #4F4A42;
+        margin-top: -25px;
+       
+    }
+    .imagePet{
+        width: 283px;
+        height: 429px;
+        border-radius: 39.0909px;
+        background-color: dimgray;
+    }
+    .subTitle{
+        width: 360px;
+        margin: 0;
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+        text-align: left;
+        margin-top: 33px;
+        margin-bottom: 22px;
+    }
+    .text-caracter-pet{
+        display: flex;
+        width: 360px;
+        height: 30px;
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #6C757D;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 11px;
+
+    }
+    .description{
+        width: 360px;
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        margin-top: 22px;
+        color: #6C6C6C;
+
+    }
+    .div-buttons{
+        display: flex ;
+        justify-content: space-around;
+        width: 390px;
+        margin-top: 17px;
+        margin-bottom: 44px;
+    }
+    .button-love{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 64px;
+        height: 55px;
+        background: #F5B2E8;
+        border-radius: 20px;
+        border: none;
+    }
+    .button-Adopt{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 281px;
+        height: 55px;
+        background: #C2F8CB;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        color: #4F4A42;
+
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    footer{
+        position:absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 390px;
+        height: 100px;
+        background: #FCF6BD;
+    }
+    .containerInfoFooter{
+        width: 290px;
+        height: 72px;
+
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+    }
+    .containerInfoFooter p{
+        margin-top: 0;
+        margin-bottom: 11px;
+
+    }
+    .infoFooterTitle{
+        font-family: 'SF Pro Rounded';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 18px;
+    }
+    .imageFooter{
+        width: 69px;
+        height: 68px;
+
+    }
+}

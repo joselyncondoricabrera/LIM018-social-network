@@ -1,5 +1,5 @@
 import {validateInput} from '../lib/index.js';
-import {sendDataSignUp} from '../lib/firebase.js'
+import {sendDataSignUp} from '../lib/firebase.js';
 
 function signUp () {
     const signup = `

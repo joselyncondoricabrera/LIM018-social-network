@@ -9,8 +9,18 @@
    .main-form {
       margin: 349px 18px;
       position: absolute;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      align-items: center;
+     
+
+    
    }
    .main-form h1 {
+      width: 354px;
       font-family: SF Pro Rounded;
       font-style: normal;
       font-weight: 500;
@@ -19,6 +29,7 @@
       color: #343A40;
    }
    .main-form p {
+      width: 354px;
       font-family: SF Pro Rounded;
       font-style: normal;
       font-weight: 400;
@@ -107,5 +118,31 @@
    .usuarioIncorrecto,.emailIncorrecto,.passwordIncorrecto{
       display: none;
       color:red;
+   }
+   .divButton-authentication{
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;     
+      align-items: center;
+      font-family: 'SF Pro Rounded';
+      color: #343A40;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 17px;
+   }
+   .divButton-authentication p{
+      margin-top: 0;
+      text-align: center;
+   }
+   .button-authentication{
+      background-color: white;
+      width: 19.2px;
+      height: 19.2px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
    }
 }

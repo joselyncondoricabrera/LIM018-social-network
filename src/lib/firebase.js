@@ -2,6 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 import { getFirestore, doc, setDoc, getDoc, updateDoc,collection } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import {validateInput, resetForm} from './index.js'
+//getDocs,collection,query,where
+
+//import changeView from './controller/viewControler.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -63,9 +66,25 @@ const sendDataLogin = (mail, password) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
+
+   /* 
+   
+   
+   
+   
+   agrega data a firestore(codigo nuevo)
+
+    setDoc(doc(db, "users", user.uid), {
+      userName: user.displayName,
+      email: user.email,
+      password: '',
+    });
+    //---*/
+
+  
     
     alert('inicio de sesión exitoso')
-    const docRef = doc(db, "users", user.uid);
+   // const docRef = doc(db, "users", user.uid);
 
     getDoc(docRef)
     .then((doc) => {
@@ -88,7 +107,7 @@ const sendDataLogin = (mail, password) => {
     const errorMessage = error.message;
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
-    console.log(errorMessage)
+    console.log(errorMessage, email)
   });
 }
 
