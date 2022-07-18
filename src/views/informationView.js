@@ -1,41 +1,31 @@
+import {informatioPub} from '../lib/firebase.js'
+
 function informationView ()  {
     const information = `
-    <main class="main-infornationView">
-        <button class="button-back">
+    <main class="infornation-view">
+    <div class="information-header">
+      <button class="button-back">
           <img src='./icons/back.png'>
+      </button>
+      <h1 class="pet-name"></h1>
+      <div class="buttons-group">
+        <button class="button-trash">
+            <img src='./icons/trash.png'>
         </button>
-        <h1 class="titleName">Lucas</h1>
-        <img class="imagePet">
-       
-        <h1 class="subTitle">Acerca de:</h1>
-        <div class="text-caracter-pet">
-          <p>Tipo de mascota:</p>
-          <p>perro</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Sexo de la mascota:</p>
-          <p>masculino</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Edad de la mascota en meses:</p>
-          <p>01 meses</p>
-        </div>
-        <p class="description">Lorem Ipsum is simply dummy text of the printing and 
-        typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and 
-        scrambled it to make a type specimen book. 
-        </p>
-        
-        <div class="div-buttons">
+        <button class="button-edit">
+            <img src='./icons/edit.png'>
+        </button>
+      </div>
+    </div>
+      <div class="publication-information"></div>
+      <div class="div-buttons">
            <button class="button-love">
              <img src="./icons/love.png">
            </button>
-           <button class="button-Adopt">
+           <button class="button-adopt">
              <img src="./icons/logo-buttonAdopt.png">Adoptar
            </button>
-        </div>
-
+      </div>
     </main>
     <footer>
         <div class="container__footer-info">
@@ -52,6 +42,9 @@ function informationView ()  {
     const element = document.querySelector('body');
     element.innerHTML = information;
 
+    const backHomeButton = element.querySelector('.button-back')
+
+    backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
    
     return element;
 }

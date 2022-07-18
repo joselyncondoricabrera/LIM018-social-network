@@ -18,9 +18,12 @@ import {
   collection,
   addDoc,
   getDocs,
-  onSnapshot
+  onSnapshot,
+  query, 
+  where,
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import { validateInput, resetForm} from './index.js'
+import { informationView } from "../views/informationView.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -137,16 +140,15 @@ const sendDataSignUp = (username, mail, password, document) => {
   }
 }
 
-//subir img
-const createPublicationF = (type, sex, img, name, description) => {
+//crear publicaión
+const createPublicationF = (type, sex, img, name, age, description) => {
   const user = auth.currentUser.uid
   const imgRef = ref(storage, img.name);
   const metadata = {
     contentType: img.type,
   };
 
-  // Upload the file and metadata
-  //const uploadImg = uploadBytesResumable(imgRef, imgName, metadata);
+  // subir imagen
   const uploadImg = uploadBytes(imgRef, img, metadata);
   uploadImg
   .then(snapshot => getDownloadURL(snapshot.ref))
@@ -154,11 +156,12 @@ const createPublicationF = (type, sex, img, name, description) => {
     console.log(url)
     const pubCollection = collection(db, "users", user, "publications");
     addDoc(pubCollection, { 
-      type: type, 
-      sex: sex , 
-      img: url, 
-      petname: name, 
-      petdescription: description
+      petType: type, 
+      petSex: sex , 
+      petImg: url, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
     }) 
   })
 }
@@ -168,21 +171,15 @@ const listPublications = (document) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const publications =  collection(db, "users", user.uid, "publications");
-      console.log(publications)
      getDocs(publications)
       .then(function(publications) {
-
         publications.forEach(publication => {
-          console.log(publication.id, '=>', publication.data());
           const pub = publication.data()
-
-          console.log(pub);
-
           document.innerHTML += `
-          <div class=" card publication-card">
-            <img class="card" src=${pub.img}/>
+          <div class="card publication-card">
+            <img class="card-img" src=${pub.petImg}/>
             <div class="card card-info">
-              <p class="card">${pub.petname}</p>
+              <p class="card-name">${pub.petName}</p>
             </div>
           </div>
           `
@@ -197,10 +194,45 @@ const listPublications = (document) => {
   });
 }
 
-/* const allInformationCard = element.querySelectorAll('.publication-card');
-console.log(allInformationCard) */
-/* allInformationCard.forEach(e => {
-  e.addEventListener('click', console.log('tocaste algo'))
-}) */
+const informatioPub = (pub) => {
+  const a = document.querySelector('.publication-information');
+  const b = document.querySelector('.pet-name');
+  b.innerHTML = `${pub.petName.toUpperCase()}`
+  a.innerHTML = `
+      <img src=${pub.petImg}>
+      <div class="information-content">
+        <h1>Acerca de:</h1>
+        <div class="text-caracter-pet">
+          <p>Tipo de mascota:</p>
+          <p>${pub.petType}</p>
+        </div>
+        <div class="text-caracter-pet">
+          <p>Sexo de la mascota:</p>
+          <p>${pub.petSex}</p>
+        </div>
+        <div class="text-caracter-pet">
+          <p>Edad de la mascota en meses:</p>
+          <p>${pub.petAge}</p>
+        </div>
+      </div>
+      <p class="description">${pub.petDescription}</p>
+  `
+}
 
-export {sendDataSignUp, createPublicationF, listPublications };
+const searchPub = (name) => {
+  window.location.hash = '#/information';
+  onAuthStateChanged(auth, user => {
+    if(user){
+      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", name));
+      getDocs(publications)
+      .then(function(publications){
+        publications.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+          informatioPub(doc.data())
+        });
+      })
+    }
+  })
+}
+
+export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub};

@@ -69,7 +69,7 @@ function newPublication ()  {
 
             <div>
                 <p class="question">Descripción de la mascota</p>
-                <textarea class="question5__description" placeholder="Escribe con amor..."></textarea>
+                <textarea class="question6__description" placeholder="Escribe con amor..."></textarea>
             </div>
             
             <button type="button" class="create-publication">Crear publicación</button>
@@ -98,10 +98,11 @@ function newPublication ()  {
     const publicationData = () => {
         const option1 = selectedOption(question1);
         const option2 = selectedOption(question2);
-        const petimg = element.querySelector('.question3__img').files[0]
-        const petname = element.querySelector('.question4__petname').value;
-        const description = element.querySelector('.question5__description').value;
-        createPublicationF(option1, option2, petimg, petname, description)
+        const petImg = element.querySelector('.question3__img').files[0]
+        const petName = element.querySelector('.question4__petname').value;
+        const petAge = element.querySelector('.question5__petAge').value;
+        const description = element.querySelector('.question6__description').value;
+        createPublicationF(option1, option2, petImg, petName, petAge, description)
     }
    
    const createPublication = element.querySelector('.create-publication');

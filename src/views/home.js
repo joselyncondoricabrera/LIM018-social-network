@@ -1,4 +1,4 @@
-import {listPublications} from '../lib/firebase.js'
+import {listPublications, searchPub} from '../lib/firebase.js'
 
 function Home () {
     const home = `
@@ -49,10 +49,9 @@ function Home () {
 
     allPub.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log(e.target)
-        if(e.target.classList.contains("card")){
-            console.log('estás aquí')
-        }else{
+        if(e.target.classList.contains("card-name")){
+            searchPub(e.target.innerText)
+        } else{
             console.log('nafdas')
         }
     })
