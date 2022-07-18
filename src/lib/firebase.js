@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-import { getStorage, ref, uploadString, uploadBytes, getDownloadURL, uploadBytesResumable   } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
 import { 
   getAuth, 
   onAuthStateChanged, 
@@ -147,7 +147,7 @@ const createPublicationF = (type, sex, img, name, description) => {
 
   // Upload the file and metadata
   //const uploadImg = uploadBytesResumable(imgRef, imgName, metadata);
-  const uploadImg = uploadBytesResumable(imgRef, img, metadata);
+  const uploadImg = uploadBytes(imgRef, img, metadata);
  uploadImg
   .then(snapshot => getDownloadURL(snapshot.ref))
   .then( url => {
@@ -179,7 +179,7 @@ const listPublications = (document) => {
           console.log(pub);
 
           document.innerHTML += `
-          <div>
+          <div class="publication-card">
             <img src=${pub.img}/>
             <p>${pub.petname}</p>
           </div>
