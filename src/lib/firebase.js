@@ -137,8 +137,9 @@ const sendDataSignUp = (username, mail, password, document) => {
   }
 }
 
-//subir img
+//subir img createPublicationF(tipoMascota,SexoMascota,imagenMascota,nombreMascota, descripciónMascota)
 const createPublicationF = (type, sex, img, name, description) => {
+  console.log(img)
   const user = auth.currentUser.uid
   const imgRef = ref(storage, img.name);
   const metadata = {
@@ -165,10 +166,13 @@ const createPublicationF = (type, sex, img, name, description) => {
 
 // listar publicaciones
 const listPublications = (document) => {
+  //onAuthStateChanged -> para obtener el usuario con sesión activa  user.uid
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const publications =  collection(db, "users", user.uid, "publications");
+      const publications =  collection(db, "users", "publications");
       console.log(publications)
+
+      // promesa 
      getDocs(publications)
       .then(function(publications) {
 
