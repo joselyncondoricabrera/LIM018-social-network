@@ -1,5 +1,3 @@
-import {informatioPub} from '../lib/firebase.js'
-
 function informationView ()  {
     const information = `
     <main class="infornation-view">
@@ -41,11 +39,18 @@ function informationView ()  {
 
     const element = document.querySelector('body');
     element.innerHTML = information;
-
     const backHomeButton = element.querySelector('.button-back')
 
     backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
-   
+    const editPublication = element.querySelector('.button-edit');
+
+     editPublication.addEventListener('click', () => {
+      const name = element.querySelector('.pet-name')
+      console.log('clicked')
+      updatePublication(name.innerText.toLowerCase())
+      window.location.hash = '#/edit'
+    })
+  
     return element;
 }
 export { informationView };

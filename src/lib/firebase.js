@@ -23,7 +23,6 @@ import {
   where,
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import { validateInput, resetForm} from './index.js'
-import { informationView } from "../views/informationView.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -219,6 +218,35 @@ const informatioPub = (pub) => {
   `
 }
 
+const updatePublication = (pub) => {
+  onAuthStateChanged(auth, user => {
+    if(user){
+      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
+      getDocs(publications)
+     /*  .then(function(publications){
+        //searchPub()
+        publications.forEach((doc) => {
+          updateDoc(doc, {
+            
+          });
+        });
+      }) */
+    }
+  })
+  console.log(pub)
+}
+
+const dtaPublication = (type, sex, img, name, age, description) => {
+  return {
+    petType: type, 
+    petSex: sex , 
+    petImg: img, 
+    petName: name, 
+    petAge: age,
+    petDescription: description
+  }
+}
+
 const searchPub = (name) => {
   window.location.hash = '#/information';
   onAuthStateChanged(auth, user => {
@@ -227,7 +255,6 @@ const searchPub = (name) => {
       getDocs(publications)
       .then(function(publications){
         publications.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
           informatioPub(doc.data())
         });
       })
@@ -235,4 +262,4 @@ const searchPub = (name) => {
   })
 }
 
-export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub};
+export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, dtaPublication};
