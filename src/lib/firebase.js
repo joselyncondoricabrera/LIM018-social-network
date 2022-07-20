@@ -169,7 +169,7 @@ const createPublicationF = (type, sex, img, name, age, description) => {
 const listPublications = (document) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const publications =  collection(db, "users", user.uid, "publications");
+     const publications =  collection(db, "users", user.uid, "publications");
      getDocs(publications)
       .then(function(publications) {
         publications.forEach(publication => {
@@ -196,7 +196,7 @@ const listPublications = (document) => {
 const informatioPub = (pub) => {
   const a = document.querySelector('.publication-information');
   const b = document.querySelector('.pet-name');
-  b.innerHTML = `${pub.petName.toUpperCase()}`
+  b.innerHTML = `${pub.petName}`
   a.innerHTML = `
       <img src=${pub.petImg}>
       <div class="information-content">
@@ -218,7 +218,7 @@ const informatioPub = (pub) => {
   `
 }
 
-const updatePublication = (pub) => {
+/* const updatePublication = (pub) => {
   onAuthStateChanged(auth, user => {
     if(user){
       const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
@@ -230,21 +230,32 @@ const updatePublication = (pub) => {
             
           });
         });
-      }) */
+      })
     }
   })
   console.log(pub)
-}
+} */
 
-const dtaPublication = (type, sex, img, name, age, description) => {
-  return {
-    petType: type, 
-    petSex: sex , 
-    petImg: img, 
-    petName: name, 
-    petAge: age,
-    petDescription: description
-  }
+const updatePublication = (pub, type, sex, img, name, age, description) => {
+  onAuthStateChanged(auth, user => {
+    if(user){
+      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
+      getDocs(publications)
+      .then(function(publications){
+        publications.forEach((publication) => {
+          const publicationDoc = doc(db, "users", user.uid, "publications", publication.id);
+          updateDoc(publicationDoc, {
+            petType: type, 
+            petSex: sex , 
+            petImg: img.name, 
+            petName: name, 
+            petAge: age,
+            petDescription: description
+          })
+        });
+      })
+    }
+  })
 }
 
 const searchPub = (name) => {
@@ -262,4 +273,4 @@ const searchPub = (name) => {
   })
 }
 
-export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, dtaPublication};
+export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, updatePublication};

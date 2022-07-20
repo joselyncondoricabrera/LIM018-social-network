@@ -47,8 +47,7 @@ function informationView ()  {
      editPublication.addEventListener('click', () => {
       const name = element.querySelector('.pet-name')
       console.log('clicked')
-      updatePublication(name.innerText.toLowerCase())
-      window.location.hash = '#/edit'
+      window.location.hash = '#/edit/' + name.innerText
     })
   
     return element;

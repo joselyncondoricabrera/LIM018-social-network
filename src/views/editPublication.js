@@ -1,4 +1,4 @@
-import { dtaPublication } from "../lib/firebase.js";
+import { updatePublication } from "../lib/firebase.js";
 import {selectedOption} from '../lib/index.js';
 
 
@@ -96,23 +96,21 @@ function editPublication ()  {
     const question2 = document.querySelectorAll('input[name="question2__options"]');
     
     const editData = () => {
-        //
+        const data = window.location.hash.substring(7);
         const option1 = selectedOption(question1);
         const option2 = selectedOption(question2);
         const petImg = element.querySelector('.question3__img').files[0]
         const petName = element.querySelector('.question4__petname').value;
         const petAge = element.querySelector('.question5__petAge').value;
         const description = element.querySelector('.question6__description').value;
-        dtaPublication(option1, option2, petImg, petName, petAge, description)
+        updatePublication(data, option1, option2, petImg, petName, petAge, description)
     }
 
     const editPublication = element.querySelector('.edit-publication');
 
     
     editPublication.addEventListener('click', editData )
-    //const backHomeButton = element.querySelector('.button-back')
-
-
+    
     return element;
 }
 export { editPublication };

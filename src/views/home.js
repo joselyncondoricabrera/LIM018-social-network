@@ -52,7 +52,7 @@ function Home () {
         if(e.target.classList.contains("card-name")){
             searchPub(e.target.innerText)
         } else{
-            console.log('nafdas')
+            console.log('nada')
         }
     })
     
