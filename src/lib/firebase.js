@@ -189,7 +189,7 @@ const listPublications = (document) => {
         });
       })
       .catch(function(error) {
-          console.log("Error getting document:", error);
+         alert('Algo salio mal, intentalo más tarde!')
       });
     }else {
       console.log('no existe')
@@ -257,7 +257,12 @@ const updatePublication = (pub, type, sex, img, name, age, description) => {
             petDescription: description
           })
         });
+        alert('La publicación fue actualizada!')
       })
+      .catch(function(error) {
+        console.log(error)
+       alert('Algo salio mal, intentalo más tarde!')
+      });
     }
   })
 }
@@ -275,6 +280,10 @@ const searchPub = (name) => {
           informatioPub(doc.data())
         });
       })
+      .catch(function(error) {
+        console.log(error)
+       alert('Algo salio mal, intentalo más tarde!')
+      });
     }
   })
 }

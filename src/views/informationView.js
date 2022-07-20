@@ -47,7 +47,8 @@ function informationView ()  {
      editPublication.addEventListener('click', () => {
       const name = element.querySelector('.pet-name')
       console.log('clicked')
-      window.location.hash = '#/edit/' + name.innerText
+      sessionStorage.setItem("petName", name.innerText)
+      window.location.hash = '#/edit'
     })
   
     return element;

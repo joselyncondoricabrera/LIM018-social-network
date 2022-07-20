@@ -96,7 +96,7 @@ function editPublication ()  {
     const question2 = document.querySelectorAll('input[name="question2__options"]');
     
     const editData = () => {
-        const data = window.location.hash.substring(7);
+        const data = sessionStorage.getItem("petName")
         const option1 = selectedOption(question1);
         const option2 = selectedOption(question2);
         const petImg = element.querySelector('.question3__img').files[0]
