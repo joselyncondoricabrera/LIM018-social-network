@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
 import { 
-  getAuth, 
+  getAuth,
+  signOut,
   onAuthStateChanged, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -62,8 +63,13 @@ const sendDataLogin = (mail, password) => {
     signInWithEmailAndPassword(auth, mail, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      alert('inicio de sesión exitoso')
-      window.location.hash = '#/home';
+      if(user.emailVerified){
+        alert('inicio de sesión exitoso')
+        window.location.hash = '#/home';
+      } else {
+        alert('Tu cuenta no esta verificada, por favor verificala y luego inicia sesión')
+        signOut(auth)
+      }
       resetForm('form', document)
     })
     .catch((error) => {
