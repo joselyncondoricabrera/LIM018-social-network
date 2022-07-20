@@ -58,25 +58,21 @@ const saveData = () => {
 logInButton.addEventListener('click', saveData);
 
 const sendDataLogin = (mail, password) => {
-    if( mail && password != false) {
-       if(auth.currentUser.emailVerified){
-        signInWithEmailAndPassword(auth, mail, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          alert('inicio de sesión exitoso')
-          window.location.hash = '#/home';
-          resetForm('form', document)
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage, errorCode)
-          resetForm('form', document)
-        });
-      } else {
-        alert('tu cuenta no está verificada')
-      }
-    }
+  if( mail && password != false) {
+    signInWithEmailAndPassword(auth, mail, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert('inicio de sesión exitoso')
+      window.location.hash = '#/home';
+      resetForm('form', document)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage, errorCode)
+      resetForm('form', document)
+    });
+  }
 }
 
 // autenticación con google
