@@ -7,5 +7,11 @@ export default function changeView (route) {
         case '#/home':  {return components.home()};
         case '#/newPublication': {return components.publication()};
         case '#/information': {return components.information()};
+        case '#/edit': {return components.edit()};
     }
 }
+/*const passValue = (value) => {
+    const url = '#/edit' + value;
+}*/
+
+//export {changeView}

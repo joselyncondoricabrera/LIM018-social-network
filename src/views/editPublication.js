@@ -1,16 +1,17 @@
+import { dtaPublication } from "../lib/firebase.js";
 import {selectedOption} from '../lib/index.js';
-import {createPublicationF} from '../lib/firebase.js'
 
-function newPublication ()  {
-    const publication = `
+
+function editPublication ()  {
+    const edit = `
     <main class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
                 <img src='./icons/back.png'>
             </button>
-            <h1 class="title">Crear publicación</h1>
+            <h1 class="title">Editar publicación</h1>
         </div>
-        <form class="form__new-publication">
+        <form class="form__edit-publication">
             <div>
                 <p>Selecciona el tipo de tu mascota</p>
                 <div class="options-group">
@@ -71,11 +72,10 @@ function newPublication ()  {
                 <p class="question">Descripción de la mascota</p>
                 <textarea class="question6__description" placeholder="Escribe con amor..."></textarea>
             </div>
-            
-            <button type="button" class="create-publication">Crear publicación</button>
+
+            <button type="button" class="edit-publication">Actualizar publicación</button>
         </form>
     </main>
-
 
     <footer>
         <div class="container__footer-info">
@@ -90,28 +90,29 @@ function newPublication ()  {
     `
 
     const element = document.querySelector('body');
-    element.innerHTML = publication;
+    element.innerHTML = edit;
 
     const question1 = document.querySelectorAll('input[name="question1__options"]');
     const question2 = document.querySelectorAll('input[name="question2__options"]');
-
-    const publicationData = () => {
+    
+    const editData = () => {
+        //
         const option1 = selectedOption(question1);
         const option2 = selectedOption(question2);
         const petImg = element.querySelector('.question3__img').files[0]
         const petName = element.querySelector('.question4__petname').value;
         const petAge = element.querySelector('.question5__petAge').value;
         const description = element.querySelector('.question6__description').value;
-        createPublicationF(option1, option2, petImg, petName, petAge, description)
+        dtaPublication(option1, option2, petImg, petName, petAge, description)
     }
-   
-   const createPublication = element.querySelector('.create-publication');
+
+    const editPublication = element.querySelector('.edit-publication');
 
     
-   createPublication.addEventListener('click', publicationData )
-   const backHomeButton = element.querySelector('.button-back')
+    editPublication.addEventListener('click', editData )
+    //const backHomeButton = element.querySelector('.button-back')
 
-   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
-   return element;
+
+    return element;
 }
-export { newPublication };
+export { editPublication };
