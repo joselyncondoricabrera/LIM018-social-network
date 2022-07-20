@@ -16,6 +16,7 @@ import {
   getDoc,
   updateDoc,
   collection,
+  collectionGroup,
   addDoc,
   getDocs,
   onSnapshot,
@@ -167,9 +168,10 @@ const createPublicationF = (type, sex, img, name, age, description) => {
 
 // listar publicaciones
 const listPublications = (document) => {
+  //onAuthStateChanged -> para obtener el usuario con sesión activa  user.uid
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const publications =  collection(db, "users", user.uid, "publications");
+      const publications =  collectionGroup(db,"publications");
      getDocs(publications)
       .then(function(publications) {
         publications.forEach(publication => {
@@ -251,10 +253,12 @@ const searchPub = (name) => {
   window.location.hash = '#/information';
   onAuthStateChanged(auth, user => {
     if(user){
-      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", name));
+      const publications = query(collectionGroup(db,"publications"), where("petName", "==", name));
+      console.log(publications);
       getDocs(publications)
       .then(function(publications){
         publications.forEach((doc) => {
+          console.log(doc.data());
           informatioPub(doc.data())
         });
       })

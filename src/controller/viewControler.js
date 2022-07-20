@@ -1,7 +1,7 @@
 import {components} from '../views/components.js';
 
 //aquí recibimos la ruta
-function changeView (route) {
+export default function changeView (route) {
     switch (route) {
         case '#/signup': {return components.signup()};
         case '#/home':  {return components.home()};
@@ -10,8 +10,8 @@ function changeView (route) {
         case '#/edit': {return components.edit()};
     }
 }
-const passValue = (value) => {
+/*const passValue = (value) => {
     const url = '#/edit' + value;
-}
+}*/
 
-export {changeView}
+//export {changeView}
