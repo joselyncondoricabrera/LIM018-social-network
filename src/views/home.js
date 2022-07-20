@@ -50,6 +50,8 @@ function Home () {
     allPub.addEventListener('click', (e) => {
         e.preventDefault();
         if(e.target.classList.contains("card-name")){
+            console.log(e.target.innerText);
+            
             searchPub(e.target.innerText)
         } else{
             console.log('nada')
