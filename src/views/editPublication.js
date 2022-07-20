@@ -110,6 +110,8 @@ function editPublication ()  {
 
     
     editPublication.addEventListener('click', editData )
+    const backButton = element.querySelector('.button-back');
+    backButton.addEventListener('click', () => { window.location.hash ='#/home' })
     
     return element;
 }

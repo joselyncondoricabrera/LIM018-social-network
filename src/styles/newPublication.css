@@ -23,12 +23,12 @@
     line-height: 31px;
     padding: 11px 0 0;
   }
-  .form__new-publication {
+  .form__new-publication, .form__edit-publication {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 11px;
   }
-  .form__new-publication p {
+  .form__new-publication, .form__edit-publication p {
     text-align: left;
     font-family: 'SF Pro Rounded';
     font-style: normal;
@@ -91,10 +91,10 @@
     line-height: 21px;
     color: #6C757D;
   }
-  .question4__petname::placeholder, .question5__petAge::placeholder{
+  .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
     color: #ADB5BD;
   }
-  .question5__description{
+  .question6__description{
     width: 339px;
     height: 114px;
     background: #F7F7F8;
@@ -110,10 +110,7 @@
     color: #6C757D;
     padding:15px 0 0 15px;
   }
-  .question5__description::placeholder{
-    color: #ADB5BD;
-  }
-  .create-publication{
+  .create-publication, .edit-publication{
     width: 354px;
     height: 55px;   
     background: #C2F8CB;
@@ -124,7 +121,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-    margin-bottom: 50px;
+    margin: 22px 0 44px;
     color: #4F4A42;
   }
 }

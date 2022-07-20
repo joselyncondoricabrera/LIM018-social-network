@@ -222,24 +222,6 @@ const informatioPub = (pub) => {
   `
 }
 
-/* const updatePublication = (pub) => {
-  onAuthStateChanged(auth, user => {
-    if(user){
-      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
-      getDocs(publications)
-     /*  .then(function(publications){
-        //searchPub()
-        publications.forEach((doc) => {
-          updateDoc(doc, {
-            
-          });
-        });
-      })
-    }
-  })
-  console.log(pub)
-} */
-
 const updatePublication = (pub, type, sex, img, name, age, description) => {
   onAuthStateChanged(auth, user => {
     if(user){
@@ -247,14 +229,23 @@ const updatePublication = (pub, type, sex, img, name, age, description) => {
       getDocs(publications)
       .then(function(publications){
         publications.forEach((publication) => {
-          const publicationDoc = doc(db, "users", user.uid, "publications", publication.id);
-          updateDoc(publicationDoc, {
-            petType: type, 
-            petSex: sex , 
-            petImg: img.name, 
-            petName: name, 
-            petAge: age,
-            petDescription: description
+          const imgRef = ref(storage, img.name);
+          const metadata = {
+             contentType: img.type,
+          };
+          const uploadImg = uploadBytes(imgRef, img, metadata);
+          uploadImg
+          .then(snapshot => getDownloadURL(snapshot.ref))
+          .then( url => {
+            const publicationDoc = doc(db, "users", user.uid, "publications", publication.id);
+            updateDoc(publicationDoc, {
+              petType: type, 
+              petSex: sex , 
+              petImg: url, 
+              petName: name, 
+              petAge: age,
+              petDescription: description
+            })
           })
         });
         alert('La publicación fue actualizada!')
