@@ -1,4 +1,4 @@
-import {listPublications, searchPub} from '../lib/firebase.js'
+import {listPublications, searchPub, hiddenOptions} from '../lib/firebase.js'
 
 function Home () {
     const home = `
@@ -43,21 +43,18 @@ function Home () {
 
     addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication'; })
     const allPub = element.querySelector('.home-publications');
-    const publication = element.querySelectorAll('.publication-card')
     console.log(allPub)
     listPublications(allPub);
 
     allPub.addEventListener('click', (e) => {
         e.preventDefault();
         if(e.target.classList.contains("card-name")){
-            console.log(e.target.innerText);
-            
+            hiddenOptions(e.target.innerText)
             searchPub(e.target.innerText)
         } else{
             console.log('nada')
         }
     })
-    
 
     return element;
 }

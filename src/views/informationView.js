@@ -43,8 +43,8 @@ function informationView ()  {
 
     backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
     const editPublication = element.querySelector('.button-edit');
-
-     editPublication.addEventListener('click', () => {
+    
+    editPublication.addEventListener('click', () => {
       const name = element.querySelector('.pet-name')
       console.log('clicked')
       sessionStorage.setItem("petName", name.innerText)

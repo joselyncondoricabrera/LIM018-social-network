@@ -252,7 +252,7 @@ const updatePublication = (pub, type, sex, img, name, age, description) => {
       })
       .catch(function(error) {
         console.log(error)
-       alert('Algo salio mal, intentalo más tarde!')
+        alert('Algo salio mal, intentalo más tarde!')
       });
     }
   })
