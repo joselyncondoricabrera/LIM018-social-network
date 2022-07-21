@@ -5,25 +5,25 @@ function informationView ()  {
     <main class="infornation-view">
     <div class="information-header">
       <button class="button-back">
-          <img src='./icons/back.png'>
+          <img src='./imgs/back.png'>
       </button>
       <h1 class="pet-name"></h1>
       <div class="buttons-group">
         <button class="button-trash">
-            <img src='./icons/trash.png'>
+            <img src='./imgs/trash.png'>
         </button>
         <button class="button-edit">
-            <img src='./icons/edit.png'>
+            <img src='./imgs/edit.png'>
         </button>
       </div>
     </div>
       <div class="publication-information"></div>
       <div class="div-buttons">
            <button class="button-love">
-             <img src="./icons/love.png">
+             <img src="./imgs/love.png">
            </button>
            <button class="button-adopt">
-             <img src="./icons/logo-buttonAdopt.png">Adoptar
+             <img src="./imgs/logo-buttonAdopt.png">Adoptar
            </button>
       </div>
     </main>
@@ -34,7 +34,7 @@ function informationView ()  {
                 <p>diseño : @Joselyn Condori - @Diana Llerena</p>
                 <p>developers : @Joselyn Condori - @Diana Llerena </p>
             </div>
-            <img class="imageFooter" src="./icons/footer-logo.png"/>
+            <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
     `

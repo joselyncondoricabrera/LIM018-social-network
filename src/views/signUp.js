@@ -3,27 +3,27 @@ import {sendDataSignUp} from '../lib/firebase.js';
 
 function signUp () {
     const signup = `
-    <img class="background" src="./icons/mobile-createA.png" />
+    <img class="background" src="./imgs/mobile-createA.png" />
     <main class="main-form">
         <h1>Crear cuenta</h1>
         <p>Por favor llene los datos antes de continuar.</p>
         <form class="form">
             <div class="form-input" >
-                <img src="./icons/user.png"/>
+                <img src="./imgs/user.png"/>
                 <input class="username" name="username" type="text" placeholder="nombre de usuario" required>
             </div>
             <span class="form-alert correct-username">El nombre de usurio es válido</span>
             <span class="form-alert incorrect-username ">El nombre de usurio no es válido</span>
 
             <div class="form-input">
-                <img src="./icons/email.png"/>
+                <img src="./imgs/email.png"/>
                 <input class="email" type="email" placeholder="email" required>
             </div>
             <span class="form-alert correct-mail">El email es válido</span>
             <span class="form-alert incorrect-mail">El email no es válido</span>
 
             <div class="form-input">
-                <img src="./icons/key.png"/>
+                <img src="./imgs/key.png"/>
                 <input class="password" name="password" type="password" placeholder="contraseña" required>
             </div>
             <span class="form-alert correct-password">La contraseña es válida</span>

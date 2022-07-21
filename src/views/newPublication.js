@@ -6,7 +6,7 @@ function newPublication ()  {
     <main class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
-                <img src='./icons/back.png'>
+                <img src='./imgs/back.png'>
             </button>
             <h1 class="title">Crear publicación</h1>
         </div>
@@ -84,7 +84,7 @@ function newPublication ()  {
                 <p>diseño : @Joselyn Condori - @Diana Llerena</p>
                 <p>developers : @Joselyn Condori - @Diana Llerena </p>
             </div>
-            <img class="imageFooter" src="./icons/footer-logo.png"/>
+            <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
     `

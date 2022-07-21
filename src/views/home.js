@@ -4,10 +4,10 @@ function Home () {
     const home = `
     <main class="home">
         <div class="home-header">
-            <img class="imageLogo" src="./icons/hugme-logo.png"/>
+            <img class="imageLogo" src="./imgs/hugme-logo.png"/>
             <p class="header__username">username</p>
             <button class= "header__add-button">
-            <img class="imageAddButton" src="./icons/add.png">
+            <img class="imageAddButton" src="./imgs/add.png">
             </button>
         </div>
         
@@ -31,7 +31,7 @@ function Home () {
                 <p>diseño : @Joselyn Condori - @Diana Llerena</p>
                 <p>developers : @Joselyn Condori - @Diana Llerena </p>
             </div>
-            <img class="imageFooter" src="./icons/footer-logo.png"/>
+            <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
     `
