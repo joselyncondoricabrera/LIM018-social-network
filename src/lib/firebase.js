@@ -25,8 +25,6 @@ import {
   query, 
   where,
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-import { validateInput, resetForm} from './index.js'
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -44,50 +42,6 @@ const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
-
-// capturando elementos
-const logInButton = document.querySelector('.log-in');
-const continueWithGoogle = document.querySelector('.button-authentication');
-
-
-// autenticación con google
- const googleAuthtenticationButton = () => {
-  signInWithPopup(auth, provider) 
-  .then((result) => {
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    const user = result.user;
-
-    alert('inicio de sesión exitoso')
-   // const docRef = doc(db, "users", user.uid);
-
-    getDoc(docRef)
-    .then((doc) => {
-      if(doc.exists && doc.data() != undefined){
-        console.log('Document data:', doc.data())
-        window.location.hash = '#/home';
-      } 
-      else {
-        setDoc(doc(db, "users", user.uid), {
-          username: user.displayName,
-          email: user.email,
-        });
-        window.location.hash = '#/home';
-      }
-    })
-
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    console.log(errorMessage, email)
-  });
-}
-
-//continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
-
-
 
 //crear publicaión
 const createPublicationF = (type, sex, img, name, age, description) => {
@@ -268,8 +222,19 @@ const deletePublication =  (name)=>{
 // creando Usuario
 const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
 
+// sign in user
+const signInAuth = (mail, password) => signInWithEmailAndPassword(auth, mail, password);
+
+// sign in with google
+const googleAuth = () => signInWithPopup(auth, provider);
+
+// log out user
+const logOut = () => signOut(auth);
+
 // verificando si el email es valido
 const emailVerification = () => sendEmailVerification(auth.currentUser);
+
+
 
 /* Funciones firestore */
 
@@ -277,53 +242,41 @@ const emailVerification = () => sendEmailVerification(auth.currentUser);
 const saveUser = async (uid, username, mail) => {
   try {
     //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
-    await  setDoc(doc(db, "users", uid), {
+    await setDoc(doc(db, "users", uid), {
       username: username,
       email: mail,
     });
   } catch(e) { console.log(e) }
 }
 
-// iniciar sesión
-const saveData = () => {
-  const mail = document.querySelector('.login-email').value
-  const password = document.querySelector('.login-password').value
-  sendDataLogin(validateInput(mail, 'mailR', 'mail', document),
-  validateInput(password, 'passwordR', 'password', document))
-}
-
-//logInButton.addEventListener('click', saveData);
-
-const sendDataLogin = (mail, password) => {
-if( mail && password != false) {
-  signInWithEmailAndPassword(auth, mail, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    if(user.emailVerified){
-      alert('inicio de sesión exitoso')
-      window.location.hash = '#/home';
+// trayendo la data del user
+const getUserData = async (uid) => {
+  const docRef = doc(db, "users", uid)
+  try {
+    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
+   const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
     } else {
-      alert('Tu cuenta no esta verificada, por favor verificala y luego inicia sesión')
-      signOut(auth)
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
     }
-    resetForm('form', document)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage, errorCode)
-    resetForm('form', document)
-  });
+  } catch(e) { console.log(e) }
 }
-}
+
 
 export {
   createUser,
-  saveUser,
+  signInAuth,
+  googleAuth,
+  logOut,
   emailVerification,
+  saveUser,
+  getUserData,
   createPublicationF, 
   listPublications, 
   searchPub, 
   informatioPub, 
   updatePublication,
-  deletePublication};
+  deletePublication
+};
