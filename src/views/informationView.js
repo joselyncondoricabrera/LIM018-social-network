@@ -1,3 +1,5 @@
+import {deletePublication} from '../lib/firebase.js'
+
 function informationView ()  {
     const information = `
     <main class="infornation-view">
@@ -39,7 +41,14 @@ function informationView ()  {
 
     const element = document.querySelector('body');
     element.innerHTML = information;
-    const backHomeButton = element.querySelector('.button-back')
+    const backHomeButton = element.querySelector('.button-back');
+
+    const trashPublicationButton= element.querySelector('.button-trash')
+    trashPublicationButton.addEventListener('click', () =>{
+      alert('elimando publicacion');
+      const name = element.querySelector('.pet-name').innerHTML;
+      deletePublication(name);
+    });
 
     backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
     const editPublication = element.querySelector('.button-edit');
