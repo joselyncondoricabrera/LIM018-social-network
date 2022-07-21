@@ -1,4 +1,4 @@
-import {listPublications, searchPub, hiddenOptions} from '../lib/firebase.js'
+import {listPublications, searchPub } from '../lib/firebase.js'
 
 function Home () {
     const home = `
@@ -49,7 +49,6 @@ function Home () {
     allPub.addEventListener('click', (e) => {
         e.preventDefault();
         if(e.target.classList.contains("card-name")){
-            hiddenOptions(e.target.innerText)
             searchPub(e.target.innerText)
         } else{
             console.log('nada')
