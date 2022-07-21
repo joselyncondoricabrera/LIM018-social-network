@@ -16,6 +16,7 @@ import {
   setDoc,
   getDoc,
   updateDoc,
+  deleteDoc,
   collection,
   collectionGroup,
   addDoc,
@@ -25,6 +26,7 @@ import {
   where,
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import { validateInput, resetForm} from './index.js'
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -279,4 +281,64 @@ const searchPub = (name) => {
   })
 }
 
-export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, updatePublication};
+const deletePublication =  (name)=>{
+  console.log('funcion activo');
+  console.log(name);
+  //const pub = query(collectionGroup(db,"publications"), where("petName", "==", name));
+ // deleteDoc(doc(db, "publications", "UqNB2RVSigKnEOGBH5gb"));
+ 
+ /* db.collectionGroup("publications").doc("UqNB2RVSigKnEOGBH5gb").delete().then(() => {
+    console.log("Documento exitosamente eliminado");
+}).catch((error) => {
+    console.error("Error al eliminar el documento: ", error);
+});*/
+
+
+// elimina un documento de la coleccion  
+//var ref = doc(db,"users","WMSNqO6vzDMiyTqtjfp6wLF8KCx2");
+
+//var ref = doc(db,"users","WMSNqO6vzDMiyTqtjfp6wLF8KCx2");
+
+onAuthStateChanged( auth, user => {
+  if(user){
+    const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
+    consulta
+    .then(
+      function(consulta){
+        consulta.forEach( publication  => {
+          
+          console.log(publication.id,"=>",publication.data());
+          var ref = doc(db,"users",user.uid,"publications",publication.id);
+          deleteDoc(ref)
+          .then(()=>{
+             alert('se eliminó correctamente el documento');
+          })
+          .catch((e)=>{
+            alert('problemas para eliminar'); 
+          })
+
+        }
+
+        )
+      }
+
+    )
+    .catch((e)=>{
+      alert("no se puede eliminar esta publicación, es de otro usuario");
+    }
+      
+    );
+    }
+  
+
+})
+
+
+
+
+
+
+
+}
+
+export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, updatePublication,deletePublication};
