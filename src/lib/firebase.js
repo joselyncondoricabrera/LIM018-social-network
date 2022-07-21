@@ -50,39 +50,6 @@ const logInButton = document.querySelector('.log-in');
 const continueWithGoogle = document.querySelector('.button-authentication');
 
 
-// iniciar sesión
-const saveData = () => {
-    const mail = document.querySelector('.login-email').value
-    const password = document.querySelector('.login-password').value
-    sendDataLogin(validateInput(mail, 'mailR', 'mail', document),
-    validateInput(password, 'passwordR', 'password', document))
-}
-
-logInButton.addEventListener('click', saveData);
-
-const sendDataLogin = (mail, password) => {
-  if( mail && password != false) {
-    signInWithEmailAndPassword(auth, mail, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      if(user.emailVerified){
-        alert('inicio de sesión exitoso')
-        window.location.hash = '#/home';
-      } else {
-        alert('Tu cuenta no esta verificada, por favor verificala y luego inicia sesión')
-        signOut(auth)
-      }
-      resetForm('form', document)
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage, errorCode)
-      resetForm('form', document)
-    });
-  }
-}
-
 // autenticación con google
  const googleAuthtenticationButton = () => {
   signInWithPopup(auth, provider) 
@@ -118,31 +85,9 @@ const sendDataLogin = (mail, password) => {
   });
 }
 
-continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
+//continueWithGoogle.addEventListener('click', googleAuthtenticationButton );
 
 
-// función para crear usuario 
-const sendDataSignUp = (username, mail, password, document) => {
-  if( username && mail && password != false ){
- createUserWithEmailAndPassword(auth, mail, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    sendEmailVerification(user)
-    setDoc(doc(db, "users", user.uid), {
-      username: username,
-      email: mail,
-      password: password,
-    });
-    resetForm('form', document)
-    console.log('Successfully created new user:', user.emailVerified);
-    window.location.hash = ''
-  })
-  .catch((error) => {
-    console.log('Error creating new user:', error);
-    resetForm('form', document)
-  });
-  }
-}
 
 //crear publicaión
 const createPublicationF = (type, sex, img, name, age, description) => {
@@ -284,61 +229,101 @@ const searchPub = (name) => {
 const deletePublication =  (name)=>{
   console.log('funcion activo');
   console.log(name);
-  //const pub = query(collectionGroup(db,"publications"), where("petName", "==", name));
- // deleteDoc(doc(db, "publications", "UqNB2RVSigKnEOGBH5gb"));
- 
- /* db.collectionGroup("publications").doc("UqNB2RVSigKnEOGBH5gb").delete().then(() => {
-    console.log("Documento exitosamente eliminado");
-}).catch((error) => {
-    console.error("Error al eliminar el documento: ", error);
-});*/
+  
+  onAuthStateChanged( auth, user => {
+    if(user){
+      const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
+      consulta
+      .then(
+        function(consulta){
+          consulta.forEach( publication  => {
+            
+            console.log(publication.id,"=>",publication.data());
+            var ref = doc(db,"users",user.uid,"publications",publication.id);
+            deleteDoc(ref)
+            .then(()=>{
+              alert('se eliminó correctamente el documento');
+            })
+            .catch((e)=>{
+              alert('problemas para eliminar'); 
+            })
 
+          }
 
-// elimina un documento de la coleccion  
-//var ref = doc(db,"users","WMSNqO6vzDMiyTqtjfp6wLF8KCx2");
-
-//var ref = doc(db,"users","WMSNqO6vzDMiyTqtjfp6wLF8KCx2");
-
-onAuthStateChanged( auth, user => {
-  if(user){
-    const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
-    consulta
-    .then(
-      function(consulta){
-        consulta.forEach( publication  => {
-          
-          console.log(publication.id,"=>",publication.data());
-          var ref = doc(db,"users",user.uid,"publications",publication.id);
-          deleteDoc(ref)
-          .then(()=>{
-             alert('se eliminó correctamente el documento');
-          })
-          .catch((e)=>{
-            alert('problemas para eliminar'); 
-          })
-
+          )
         }
 
-        )
+      )
+      .catch((e)=>{
+        alert("no se puede eliminar esta publicación, es de otro usuario");
       }
-
-    )
-    .catch((e)=>{
-      alert("no se puede eliminar esta publicación, es de otro usuario");
-    }
-      
-    );
-    }
-  
-
-})
-
-
-
-
-
-
-
+        
+      );
+      }
+  })
 }
 
-export {sendDataSignUp, createPublicationF, listPublications, searchPub, informatioPub, updatePublication,deletePublication};
+/* Funciones auth (para crear cuenta e iniciar sesión) */
+
+// creando Usuario
+const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
+
+// verificando si el email es valido
+const emailVerification = () => sendEmailVerification(auth.currentUser);
+
+/* Funciones firestore */
+
+// guardando datos del usuario creado en Firestore
+const saveUser = async (uid, username, mail) => {
+  try {
+    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
+    await  setDoc(doc(db, "users", uid), {
+      username: username,
+      email: mail,
+    });
+  } catch(e) { console.log(e) }
+}
+
+// iniciar sesión
+const saveData = () => {
+  const mail = document.querySelector('.login-email').value
+  const password = document.querySelector('.login-password').value
+  sendDataLogin(validateInput(mail, 'mailR', 'mail', document),
+  validateInput(password, 'passwordR', 'password', document))
+}
+
+//logInButton.addEventListener('click', saveData);
+
+const sendDataLogin = (mail, password) => {
+if( mail && password != false) {
+  signInWithEmailAndPassword(auth, mail, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    if(user.emailVerified){
+      alert('inicio de sesión exitoso')
+      window.location.hash = '#/home';
+    } else {
+      alert('Tu cuenta no esta verificada, por favor verificala y luego inicia sesión')
+      signOut(auth)
+    }
+    resetForm('form', document)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage, errorCode)
+    resetForm('form', document)
+  });
+}
+}
+
+export {
+  createUser,
+  saveUser,
+  emailVerification,
+  createPublicationF, 
+  listPublications, 
+  searchPub, 
+  informatioPub, 
+  updatePublication,
+  deletePublication};

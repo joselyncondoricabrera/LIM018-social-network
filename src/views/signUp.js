@@ -1,5 +1,5 @@
-import {validateInput} from '../lib/index.js';
-import {sendDataSignUp} from '../lib/firebase.js';
+import { validateInput, resetForm } from '../lib/index.js';
+import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
 
 function signUp () {
     const signup = `
@@ -42,12 +42,38 @@ function signUp () {
         const username = element.querySelector('.username').value;
         const mail = element.querySelector('.email').value;
         const password = element.querySelector('.password').value;
-        sendDataSignUp(validateInput(username, 'userR', 'username', element), 
+        registerUser(validateInput(username, 'userR', 'username', element), 
         validateInput(mail, 'mailR', 'mail', element), 
-        validateInput(password, 'passwordR', 'password', element), element);
+        validateInput(password, 'passwordR', 'password', element));
     }
 
     element.querySelector('.create-account').addEventListener('click', saveData )
+
+    const sendVerifactionEmail = () => {
+        emailVerification()
+        .then((email) => { alert('Se ha enviado un email de verificación a tu correo')})
+        .catch((error) => { alert('Ha ocurrido un error, intentelo más tarde'), console.log(error) })
+    }
+
+    //función para crear usuario
+    const registerUser = (username, mail, password) => {
+        if( username && mail && password != false ){
+            createUser(mail, password)
+            .then((userCredential) => {
+                const user = userCredential.user.uid
+                alert('Usuario creado con exito')
+                sendVerifactionEmail()
+                saveUser(user, username, mail, password)
+                resetForm('form', element)
+                window.location.hash = ''
+            })
+            .catch(error => {
+                resetForm('form', element)
+                alert('Ha ocurrido un error, intenta registrarte más tarde')
+                console.log(error)
+            })
+        }
+    }
 
     return element;
 }
