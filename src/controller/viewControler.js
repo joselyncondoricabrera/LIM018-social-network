@@ -3,7 +3,7 @@ import {components} from '../views/components.js';
 //aquí recibimos la ruta
 export default function changeView (route) {
     switch (route) {
-        case '' : {{return components.login()};}
+        case '' : {{return components.login();}}
         case '#/signup': {return components.signup()};
         case '#/home':  {return components.home()};
         case '#/newPublication': {return components.publication()};

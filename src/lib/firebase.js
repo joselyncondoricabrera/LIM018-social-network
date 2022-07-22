@@ -47,7 +47,7 @@ const storage = getStorage(app);
 
 
 // listar publicaciones
-const listPublications = (document) => {
+/*const listPublications = (document) => {
   //onAuthStateChanged -> para obtener el usuario con sesión activa  user.uid
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -157,7 +157,7 @@ const searchPub = (name) => {
   })
 }
 
-const deletePublication =  (name)=>{
+/*const deletePublication =  (name)=>{
   console.log('funcion activo');
   console.log(name);
   
@@ -167,9 +167,9 @@ const deletePublication =  (name)=>{
       consulta
       .then(
         function(consulta){
-          consulta.forEach( publication  => {
+            consulta.forEach( publication  => {
             
-            console.log(publication.id,"=>",publication.data());
+          //  console.log(publication.id,"=>",publication.data());
             var ref = doc(db,"users",user.uid,"publications",publication.id);
             deleteDoc(ref)
             .then(()=>{
@@ -192,7 +192,35 @@ const deletePublication =  (name)=>{
       );
       }
   })
-}
+}*/
+
+/*const deletePublication = async (name) =>{
+  onAuthStateChanged(auth, user =>{
+    if(user){
+      console.log("El usuario está conectado");
+      const queryByName=query((collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
+      const docSnap = await  getDocs(queryByName);
+      docSnap.forEach(publication =>{
+        const ref = doc(db,"users",user.uid,"publications",publication.id);
+        deleteDoc(ref)
+      })
+
+    }
+    else{
+      console.log("El usuario no está conectado");
+    }
+
+  });
+  
+}*/
+
+
+
+
+
+
+
+
 
 /* Funciones auth (para crear cuenta e iniciar sesión) */
 
@@ -269,6 +297,9 @@ const uploadImg = async (img) => {
   catch(e) { console.log(e) }
 }
 
+//eliminar publicacion de un usuario
+
+
 
 
 // descargar imagen
@@ -307,10 +338,11 @@ export {
   emailVerification,
   saveUser,
   getUserData,
-  createPublication, 
+  createPublication,
+  uploadImg, 
   listPublications, 
   searchPub, 
   informatioPub, 
   updatePublication,
-  deletePublication
+  //deletePublication
 };

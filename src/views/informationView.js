@@ -44,11 +44,27 @@ function informationView ()  {
     const backHomeButton = element.querySelector('.button-back');
 
     const trashPublicationButton= element.querySelector('.button-trash')
-    trashPublicationButton.addEventListener('click', () =>{
+    /*trashPublicationButton.addEventListener('click', () =>{
       alert('elimando publicacion');
       const name = element.querySelector('.pet-name').innerHTML;
       deletePublication(name);
+    });*/
+    trashPublicationButton.addEventListener('click',()=>{
+      alert('boton eliminar funcionando');
+      const name = element.querySelector('.pet-name').innerHTML;
+      deletePublication(name)
+      .then(()=>{
+        alert('Se eliminó correctamente la publicación ');
+
+      })
+      .catch(()=>{
+        alert('No se eliminó la publicación');
+
+      })
+
+
     });
+
 
     backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
     const editPublication = element.querySelector('.button-edit');
