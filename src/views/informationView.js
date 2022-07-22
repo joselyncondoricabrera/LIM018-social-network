@@ -59,7 +59,7 @@ function informationView() {
               pub.forEach((publication) => {
                 // console.log(publication.id);
                 deletePublication(user.uid, publication.id);
-                alert('La publicación se ha eliminado con éxito');/* eslint-disable no-alert */
+                alert('La publicación se ha eliminado con éxito');
 
                 window.location.hash = '#/home';
                 // window.location.reload();
