@@ -45,82 +45,6 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
-
-const updatePublication = (pub, type, sex, img, name, age, description) => {
-  onAuthStateChanged(auth, user => {
-    if(user){
-      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
-      getDocs(publications)
-      .then(function(publications){
-        publications.forEach((publication) => {
-          const imgRef = ref(storage, img.name);
-          const metadata = {
-             contentType: img.type,
-          };
-          const uploadImg = uploadBytes(imgRef, img, metadata);
-          uploadImg
-          .then(snapshot => getDownloadURL(snapshot.ref))
-          .then( url => {
-            const publicationDoc = doc(db, "users", user.uid, "publications", publication.id);
-            updateDoc(publicationDoc, {
-              petType: type, 
-              petSex: sex , 
-              petImg: url, 
-              petName: name, 
-              petAge: age,
-              petDescription: description
-            })
-          })
-        });
-        alert('La publicación fue actualizada!')
-      })
-      .catch(function(error) {
-        console.log(error)
-        alert('Algo salio mal, intentalo más tarde!')
-      });
-    }
-  })
-}
-
-
-
-const deletePublication =  (name)=>{
-  console.log('funcion activo');
-  console.log(name);
-  
-  onAuthStateChanged( auth, user => {
-    if(user){
-      const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
-      consulta
-      .then(
-        function(consulta){
-          consulta.forEach( publication  => {
-            
-            console.log(publication.id,"=>",publication.data());
-            var ref = doc(db,"users",user.uid,"publications",publication.id);
-            deleteDoc(ref)
-            .then(()=>{
-              alert('se eliminó correctamente el documento');
-            })
-            .catch((e)=>{
-              alert('problemas para eliminar'); 
-            })
-
-          }
-
-          )
-        }
-
-      )
-      .catch((e)=>{
-        alert("no se puede eliminar esta publicación, es de otro usuario");
-      }
-        
-      );
-      }
-  })
-}
-
 /* Funciones auth (para crear cuenta e iniciar sesión) */
 
 // creando Usuario
@@ -214,32 +138,64 @@ const clickPublication = async (name) => {
   } catch(e) { console.log(e) }
 }
 
-
-/* const informatioPub = (pub) => {
-  const a = document.querySelector('.publication-information');
-  const b = document.querySelector('.pet-name');
-  b.innerHTML = `${pub.petName}`
-  a.innerHTML = `
-      <img src=${pub.petImg}>
-      <div class="information-content">
-        <h1>Acerca de:</h1>
-        <div class="text-caracter-pet">
-          <p>Tipo de mascota:</p>
-          <p>${pub.petType}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Sexo de la mascota:</p>
-          <p>${pub.petSex}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Edad de la mascota en meses:</p>
-          <p>${pub.petAge}</p>
-        </div>
-      </div>
-      <p class="description">${pub.petDescription}</p>
-  `
+const publicationsOfCurrentUser = async (pub) => {
+  try {
+    const user = auth.currentUser.uid
+    const publications = query(collection(db, "users", user, "publications"), where("petName", "==", pub));
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
 }
- */
+
+const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+  try {
+    const publication = doc(db, "users", user, "publications", pub);
+    await updateDoc(publication, {
+      petType: type, 
+      petSex: sex , 
+      petImg: img, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    });
+  } catch(e) { console.log(e) }
+}
+
+const deletePublication =  (name)=>{
+  console.log('funcion activo');
+  console.log(name);
+  
+  onAuthStateChanged( auth, user => {
+    if(user){
+      const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
+      consulta
+      .then(
+        function(consulta){
+          consulta.forEach( publication  => {
+            
+            console.log(publication.id,"=>",publication.data());
+            var ref = doc(db,"users",user.uid,"publications",publication.id);
+            deleteDoc(ref)
+            .then(()=>{
+              alert('se eliminó correctamente el documento');
+            })
+            .catch((e)=>{
+              alert('problemas para eliminar'); 
+            })
+
+          }
+
+          )
+        }
+
+      )
+      .catch((e)=>{
+        alert("no se puede eliminar esta publicación, es de otro usuario");
+      }
+        
+      );
+      }
+  })
+}
 
 export {
   userSatate,
@@ -255,5 +211,6 @@ export {
   showPublications, 
   clickPublication, 
   updatePublication,
-  deletePublication
+  deletePublication,
+  publicationsOfCurrentUser,
 };

@@ -101,6 +101,8 @@ function Home () {
         } else{
             console.log('nada')
         }
+        const name = element.querySelector('.card-name');
+        sessionStorage.setItem("petName", name.innerText);
     })
 
     return element;

@@ -1,4 +1,4 @@
-import {deletePublication} from '../lib/firebase.js'
+//import { userSatate, publicationsOfCurrentUser, getDocUser } from '../lib/firebase.js'
 
 function informationView ()  {
     const information = `
@@ -42,24 +42,53 @@ function informationView ()  {
     const element = document.querySelector('body');
     element.innerHTML = information;
     const backHomeButton = element.querySelector('.button-back');
-
-    const trashPublicationButton= element.querySelector('.button-trash')
+    const name = element.querySelector('.pet-name');
+    console.log(name)
+   /*  const trashPublicationButton= element.querySelector('.button-trash')
     trashPublicationButton.addEventListener('click', () =>{
       alert('elimando publicacion');
       const name = element.querySelector('.pet-name').innerHTML;
       deletePublication(name);
     });
-
+ */
     backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
     const editPublication = element.querySelector('.button-edit');
-    
+   /*  const belongToUser = () => {
+      userSatate((user) => {
+        if(user){
+          const name = sessionStorage.getItem("petName")
+          publicationsOfCurrentUser(name)
+          .then(function(publications){
+            publications.forEach((pub) => {
+              console.log(pub)
+              /* getDocUser(pub.id)
+              .then((doc) => {
+                console.log(doc)
+              }) */
+              /* const dataUserId = pub._userDataWriter.firestore._authCredentials.currentUser.uid
+              console.log( dataUserId != userId)
+              console.log(dataUserId === userId)
+              if (dataUserId === userId){
+                console.log('nada')
+              } else {
+                const options = element.querySelector('.buttons-group');
+                options.style.display = 'none';
+              }
+              //console.log( dataUserId === userId)
+            })
+          })
+        }
+      })
+    }
+    belongToUser(); */
+
     editPublication.addEventListener('click', () => {
       const name = element.querySelector('.pet-name')
-      console.log('clicked')
-      sessionStorage.setItem("petName", name.innerText)
+      console.log(name)
+      sessionStorage.setItem("petName", name.innerText);
       window.location.hash = '#/edit'
     })
-  
+    
     return element;
 }
 export { informationView };
