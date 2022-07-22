@@ -115,3 +115,30 @@ function newPublication ()  {
    return element;
 }
 export { newPublication };
+
+/* //crear publicaión
+const createPublicationF = (type, sex, img, name, age, description) => {
+  const user = auth.currentUser.uid
+  const imgRef = ref(storage, img.name);
+  const metadata = {
+    contentType: img.type,
+  };
+
+  // subir imagen
+  const uploadImg = uploadBytes(imgRef, img, metadata);
+  uploadImg
+  .then(snapshot => getDownloadURL(snapshot.ref))
+  .then( url => {
+    console.log(url)
+    const pubCollection = collection(db, "users", user, "publications");
+    addDoc(pubCollection, { 
+      petType: type, 
+      petSex: sex , 
+      petImg: url, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    }) 
+  })
+}
+ */

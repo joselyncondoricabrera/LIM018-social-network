@@ -9,7 +9,9 @@ import {
   GoogleAuthProvider, 
   signInWithPopup, 
   sendEmailVerification
-} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+} 
+from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
+
 import { 
   getFirestore,
   doc,
@@ -21,10 +23,10 @@ import {
   collectionGroup,
   addDoc,
   getDocs,
-  onSnapshot,
   query, 
   where,
-} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+} 
+from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0",
@@ -43,31 +45,6 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
-//crear publicaión
-const createPublicationF = (type, sex, img, name, age, description) => {
-  const user = auth.currentUser.uid
-  const imgRef = ref(storage, img.name);
-  const metadata = {
-    contentType: img.type,
-  };
-
-  // subir imagen
-  const uploadImg = uploadBytes(imgRef, img, metadata);
-  uploadImg
-  .then(snapshot => getDownloadURL(snapshot.ref))
-  .then( url => {
-    console.log(url)
-    const pubCollection = collection(db, "users", user, "publications");
-    addDoc(pubCollection, { 
-      petType: type, 
-      petSex: sex , 
-      petImg: url, 
-      petName: name, 
-      petAge: age,
-      petDescription: description
-    }) 
-  })
-}
 
 // listar publicaciones
 const listPublications = (document) => {
@@ -264,7 +241,64 @@ const getUserData = async (uid) => {
   } catch(e) { console.log(e) }
 }
 
+// crear publicación
+const createPublication = async (type, sex, img, name, age, description, uid) => {
+  try {
+    await addDoc(collection(db, "users", uid, "publications"), {
+      petType: type, 
+      petSex: sex , 
+      petImg: img, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    });
+  } catch(e) { console.log(e) }
+}
 
+// subir y descargar imagen
+const uploadImg = async (img) => {
+  try {
+    const imgRef = ref(storage, img.name);
+    const metadata = {
+      contentType: img.type,
+    };
+
+    const uploadTask = await uploadBytes(imgRef, img, metadata);
+    const downloadTask = await getDownloadURL();
+  }
+  catch(e) { console.log(e) }
+}
+
+
+
+// descargar imagen
+
+/* //crear publicaión
+const createPublicationF = (type, sex, img, name, age, description) => {
+  const user = auth.currentUser.uid
+  const imgRef = ref(storage, img.name);
+  const metadata = {
+    contentType: img.type,
+  };
+
+  // subir imagen
+  const uploadImg = uploadBytes(imgRef, img, metadata);
+  uploadImg
+  .then(snapshot => getDownloadURL(snapshot.ref))
+  .then( url => {
+    console.log(url)
+    const pubCollection = collection(db, "users", user, "publications");
+    addDoc(pubCollection, { 
+      petType: type, 
+      petSex: sex , 
+      petImg: url, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    }) 
+  })
+}
+ */
 export {
   createUser,
   signInAuth,
@@ -273,7 +307,7 @@ export {
   emailVerification,
   saveUser,
   getUserData,
-  createPublicationF, 
+  createPublication, 
   listPublications, 
   searchPub, 
   informatioPub, 

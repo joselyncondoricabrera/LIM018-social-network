@@ -1,4 +1,4 @@
-import {listPublications, searchPub, deletePublication} from '../lib/firebase.js'
+import {listPublications, searchPub} from '../lib/firebase.js'
 
 function Home () {
     const home = `
@@ -52,8 +52,6 @@ function Home () {
         if(e.target.classList.contains("card-name")){
           
             searchPub(e.target.innerText);
-           // deletePublication(e.target.innerText);
-
         } else{
             console.log('nada')
         }
