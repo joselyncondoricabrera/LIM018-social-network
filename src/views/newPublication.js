@@ -1,8 +1,8 @@
-import {selectedOption, resetForm} from '../lib/index.js';
-import {uploadImg, createPublication} from '../lib/firebase.js'
+import { selectedOption, resetForm } from '../lib/index.js';
+import { uploadImg, createPublication } from '../lib/firebase.js';
 
-function newPublication ()  {
-    const publication = `
+function newPublication() {
+  const publication = `
     <main class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
@@ -87,46 +87,45 @@ function newPublication ()  {
             <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
-    `
+    `;
 
-    const element = document.querySelector('body');
-    element.innerHTML = publication;
+  const element = document.querySelector('body');
+  element.innerHTML = publication;
 
-    const backHomeButton = element.querySelector('.button-back')
-    backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
+  const backHomeButton = element.querySelector('.button-back');
+  backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
 
-    const question1 = document.querySelectorAll('input[name="question1__options"]');
-    const question2 = document.querySelectorAll('input[name="question2__options"]');
+  const question1 = document.querySelectorAll('input[name="question1__options"]');
+  const question2 = document.querySelectorAll('input[name="question2__options"]');
 
-    const publicationData = () => {
-        const option1 = selectedOption(question1);
-        const option2 = selectedOption(question2);
-        const petImg = element.querySelector('.question3__img').files[0]
-        const petName = element.querySelector('.question4__petname').value;
-        const petAge = element.querySelector('.question5__petAge').value;
-        const description = element.querySelector('.question6__description').value;
-        newPub(option1, option2, petImg, petName, petAge, description)
-    }
-   
-   const createPublicationButton = element.querySelector('.create-publication');
+  const publicationData = () => {
+    const option1 = selectedOption(question1);
+    const option2 = selectedOption(question2);
+    const petImg = element.querySelector('.question3__img').files[0];
+    const petName = element.querySelector('.question4__petname').value;
+    const petAge = element.querySelector('.question5__petAge').value;
+    const description = element.querySelector('.question6__description').value;
+    newPub(option1, option2, petImg, petName, petAge, description);
+  };
 
-    
-   createPublicationButton.addEventListener('click', publicationData )
+  const createPublicationButton = element.querySelector('.create-publication');
 
-   const newPub = (type, sex, img, name, age, description) => {
-        uploadImg(img)
-        .then((url) => {
-            createPublication(type, sex, url, name, age, description)
-            alert('La publicaión se ha creado con exito')
-            resetForm('form__new-publication', element) 
-        })
-        .catch((error) => {
-            alert('Ha ocurrido un error, intenta registrarte más tarde')
-            resetForm('form__new-publication', element)
-            console.log(error.code, error.message)
-        })
-   }
+  createPublicationButton.addEventListener('click', publicationData);
 
-   return element;
+  const newPub = (type, sex, img, name, age, description) => {
+    uploadImg(img)
+      .then((url) => {
+        createPublication(type, sex, url, name, age, description);
+        alert('La publicaión se ha creado con exito');
+        resetForm('form__new-publication', element);
+      })
+      .catch((error) => {
+        alert('Ha ocurrido un error, intenta registrarte más tarde');
+        resetForm('form__new-publication', element);
+        console.log(error.code, error.message);
+      });
+  };
+
+  return element;
 }
 export { newPublication };
