@@ -46,60 +46,6 @@ const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
 
-// listar publicaciones
-const listPublications = (document) => {
-  //onAuthStateChanged -> para obtener el usuario con sesión activa  user.uid
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const publications =  collectionGroup(db,"publications");
-     getDocs(publications)
-      .then(function(publications) {
-        publications.forEach(publication => {
-          const pub = publication.data()
-          document.innerHTML += `
-          <div class="card publication-card">
-            <img class="card-img" src=${pub.petImg}/>
-            <div class="card card-info">
-              <p class="card-name">${pub.petName}</p>
-            </div>
-          </div>
-          `
-        });
-      })
-      .catch(function(error) {
-         alert('Algo salio mal, intentalo más tarde!')
-      });
-    }else {
-      console.log('no existe')
-    }
-  });
-}
-
-const informatioPub = (pub) => {
-  const a = document.querySelector('.publication-information');
-  const b = document.querySelector('.pet-name');
-  b.innerHTML = `${pub.petName}`
-  a.innerHTML = `
-      <img src=${pub.petImg}>
-      <div class="information-content">
-        <h1>Acerca de:</h1>
-        <div class="text-caracter-pet">
-          <p>Tipo de mascota:</p>
-          <p>${pub.petType}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Sexo de la mascota:</p>
-          <p>${pub.petSex}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Edad de la mascota en meses:</p>
-          <p>${pub.petAge}</p>
-        </div>
-      </div>
-      <p class="description">${pub.petDescription}</p>
-  `
-}
-
 const updatePublication = (pub, type, sex, img, name, age, description) => {
   onAuthStateChanged(auth, user => {
     if(user){
@@ -136,26 +82,7 @@ const updatePublication = (pub, type, sex, img, name, age, description) => {
   })
 }
 
-const searchPub = (name) => {
-  window.location.hash = '#/information';
-  onAuthStateChanged(auth, user => {
-    if(user){
-      const publications = query(collectionGroup(db,"publications"), where("petName", "==", name));
-      console.log(publications);
-      getDocs(publications)
-      .then(function(publications){
-        publications.forEach((doc) => {
-          console.log(doc.data());
-          informatioPub(doc.data())
-        });
-      })
-      .catch(function(error) {
-        console.log(error)
-       alert('Algo salio mal, intentalo más tarde!')
-      });
-    }
-  })
-}
+
 
 const deletePublication =  (name)=>{
   console.log('funcion activo');
@@ -268,40 +195,52 @@ const uploadImg = async (img) => {
     const uploadTask = await uploadBytes(imgRef, img, metadata);
     console.log(await getDownloadURL(uploadTask.ref))
     return await getDownloadURL(uploadTask.ref);
-  }
-  catch(e) { console.log(e) }
+  } catch(e) { console.log(e) }
+}
+
+// listar publicaciones
+const showPublications = async () => {
+  try {
+    const publications = collectionGroup(db,"publications");
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
+}
+
+// publicaión tocada
+const clickPublication = async (name) => {
+  try {
+    const publications = query(collectionGroup(db,"publications"), where("petName", "==", name));
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
 }
 
 
-
-// descargar imagen
-
-/* //crear publicaión
-const createPublicationF = (type, sex, img, name, age, description) => {
-  const user = auth.currentUser.uid
-  const imgRef = ref(storage, img.name);
-  const metadata = {
-    contentType: img.type,
-  };
-
-  // subir imagen
-  const uploadImg = uploadBytes(imgRef, img, metadata);
-  uploadImg
-  .then(snapshot => getDownloadURL(snapshot.ref))
-  .then( url => {
-    console.log(url)
-    const pubCollection = collection(db, "users", user, "publications");
-    addDoc(pubCollection, { 
-      petType: type, 
-      petSex: sex , 
-      petImg: url, 
-      petName: name, 
-      petAge: age,
-      petDescription: description
-    }) 
-  })
+/* const informatioPub = (pub) => {
+  const a = document.querySelector('.publication-information');
+  const b = document.querySelector('.pet-name');
+  b.innerHTML = `${pub.petName}`
+  a.innerHTML = `
+      <img src=${pub.petImg}>
+      <div class="information-content">
+        <h1>Acerca de:</h1>
+        <div class="text-caracter-pet">
+          <p>Tipo de mascota:</p>
+          <p>${pub.petType}</p>
+        </div>
+        <div class="text-caracter-pet">
+          <p>Sexo de la mascota:</p>
+          <p>${pub.petSex}</p>
+        </div>
+        <div class="text-caracter-pet">
+          <p>Edad de la mascota en meses:</p>
+          <p>${pub.petAge}</p>
+        </div>
+      </div>
+      <p class="description">${pub.petDescription}</p>
+  `
 }
  */
+
 export {
   userSatate,
   createUser,
@@ -313,9 +252,8 @@ export {
   getUserData,
   createPublication,
   uploadImg,
-  listPublications, 
-  searchPub, 
-  informatioPub, 
+  showPublications, 
+  clickPublication, 
   updatePublication,
   deletePublication
 };

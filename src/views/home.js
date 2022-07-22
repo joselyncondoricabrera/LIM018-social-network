@@ -1,4 +1,4 @@
-import {listPublications, searchPub} from '../lib/firebase.js'
+import {showPublications, clickPublication} from '../lib/firebase.js'
 
 function Home () {
     const home = `
@@ -45,13 +45,59 @@ function Home () {
     const allPub = element.querySelector('.home-publications');
     console.log(allPub)
 
-    listPublications(allPub);
+   const listPublications = () => {
+        showPublications()
+        .then(function(publications) {
+            publications.forEach(pub => {
+                allPub.innerHTML += `
+                    <div class="card publication-card">
+                    <img class="card-img" src=${pub.data().petImg}/>
+                    <div class="card card-info">
+                        <p class="card-name">${pub.data().petName}</p>
+                    </div>
+                    </div>
+                `
+            });
+        })
+        .catch((error) => {
+            alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde')
+            console.log(error.code, error.message)
+        })
+   }
+
+   listPublications();
 
     allPub.addEventListener('click', (e) => {
         e.preventDefault();
         if(e.target.classList.contains("card-name")){
-          
-            searchPub(e.target.innerText);
+            window.location.hash = '#/information'
+            clickPublication(e.target.innerText)
+            .then(function(publications) {
+                publications.forEach( pub => {
+                    const namePub = document.querySelector('.pet-name');
+                    const infoPub = document.querySelector('.publication-information');
+                    namePub.innerHTML = `${pub.data().petName}`
+                    infoPub.innerHTML = `
+                        <img src=${pub.data().petImg}>
+                        <div class="information-content">
+                            <h1>Acerca de:</h1>
+                            <div class="text-caracter-pet">
+                            <p>Tipo de mascota:</p>
+                            <p>${pub.data().petType}</p>
+                            </div>
+                            <div class="text-caracter-pet">
+                            <p>Sexo de la mascota:</p>
+                            <p>${pub.data().petSex}</p>
+                            </div>
+                            <div class="text-caracter-pet">
+                            <p>Edad de la mascota en meses:</p>
+                            <p>${pub.data().petAge}</p>
+                            </div>
+                        </div>
+                        <p class="description">${pub.data().petDescription}</p>
+                    `
+                })
+            })
         } else{
             console.log('nada')
         }
