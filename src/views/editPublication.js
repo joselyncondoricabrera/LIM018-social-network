@@ -1,5 +1,5 @@
-import { updatePublication } from "../lib/firebase.js";
-import {selectedOption} from '../lib/index.js';
+import { userSatate, publicationsOfCurrentUser, uploadImg, updatePublication } from "../lib/firebase.js";
+import { selectedOption, resetForm } from '../lib/index.js';
 
 
 function editPublication ()  {
@@ -103,7 +103,7 @@ function editPublication ()  {
         const petName = element.querySelector('.question4__petname').value;
         const petAge = element.querySelector('.question5__petAge').value;
         const description = element.querySelector('.question6__description').value;
-        updatePublication(data, option1, option2, petImg, petName, petAge, description)
+        toUpdatePub(data, option1, option2, petImg, petName, petAge, description)
     }
 
     const editPublication = element.querySelector('.edit-publication');
@@ -112,7 +112,34 @@ function editPublication ()  {
     editPublication.addEventListener('click', editData )
     const backButton = element.querySelector('.button-back');
     backButton.addEventListener('click', () => { window.location.hash ='#/home' })
-    
+
+    const toUpdatePub = (data, type, sex, petImg, petName, petAge, description) => {
+        userSatate((user) => {
+            if(user){
+                publicationsOfCurrentUser(data)
+                .then(function(publications){
+                    publications.forEach((publication) => {
+                        uploadImg(petImg)
+                        .then((url) => {
+                            updatePublication(publication.id, user.uid, type, sex, url, petName, petAge, description)
+                            alert('La publicación se ha actualizado con exito.')
+                            resetForm('form__edit-publication', element)
+                        })
+                        .catch((error) => {
+                            alert('Ha ocurrido un error, intenta registrarte más tarde')
+                            resetForm('form__edit-publication', element)
+                            console.log(error.code, error.message)
+                        })
+                    })
+                })
+                .catch((error) => {
+                    alert('Ha ocurrido un error, intenta registrarte más tarde')
+                    console.log(error.code, error.message)
+                })
+            }
+        })
+    }
+
     return element;
 }
 export { editPublication };

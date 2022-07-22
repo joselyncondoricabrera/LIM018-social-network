@@ -45,116 +45,119 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
+/* Funciones auth (para crear cuenta e iniciar sesión) */
+
+// creando Usuario
+const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
+
+// sign in user
+const signInAuth = (mail, password) => signInWithEmailAndPassword(auth, mail, password);
+
+// sign in with google
+const googleAuth = () => signInWithPopup(auth, provider);
+
+// log out user
+const logOut = () => signOut(auth);
+
+// verificando si el email es valido
+const emailVerification = () => sendEmailVerification(auth.currentUser);
+
+// state user 
+const userSatate = (state) => onAuthStateChanged(auth, state)
+
+/* Funciones firestore */
+
+// guardando datos del usuario creado en Firestore
+const saveUser = async (uid, username, mail) => {
+  try {
+    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
+    await setDoc(doc(db, "users", uid), {
+      username: username,
+      email: mail,
+    });
+  } catch(e) { console.log(e) }
+}
+
+// trayendo la data del user
+const getUserData = async (uid) => {
+  const docRef = doc(db, "users", uid)
+  try {
+    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
+   const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  } catch(e) { console.log(e) }
+}
+
+// crear publicación
+const createPublication = async (type, sex, img, name, age, description) => {
+  try {
+    const user = auth.currentUser.uid
+    const pubCollection = collection(db, "users", user, "publications");
+    await addDoc(pubCollection, {
+      petType: type, 
+      petSex: sex , 
+      petImg: img, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    });
+  } catch(e) { console.log(e) }
+}
+
+// subir y descargar imagen
+const uploadImg = async (img) => {
+  const imgRef = ref(storage, img.name);
+  const metadata = {
+    contentType: img.type,
+  };
+  try {
+    const uploadTask = await uploadBytes(imgRef, img, metadata);
+    console.log(await getDownloadURL(uploadTask.ref))
+    return await getDownloadURL(uploadTask.ref);
+  } catch(e) { console.log(e) }
+}
 
 // listar publicaciones
-/*const listPublications = (document) => {
-  //onAuthStateChanged -> para obtener el usuario con sesión activa  user.uid
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const publications =  collectionGroup(db,"publications");
-     getDocs(publications)
-      .then(function(publications) {
-        publications.forEach(publication => {
-          const pub = publication.data()
-          document.innerHTML += `
-          <div class="card publication-card">
-            <img class="card-img" src=${pub.petImg}/>
-            <div class="card card-info">
-              <p class="card-name">${pub.petName}</p>
-            </div>
-          </div>
-          `
-        });
-      })
-      .catch(function(error) {
-         alert('Algo salio mal, intentalo más tarde!')
-      });
-    }else {
-      console.log('no existe')
-    }
-  });
+const showPublications = async () => {
+  try {
+    const publications = collectionGroup(db,"publications");
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
 }
 
-const informatioPub = (pub) => {
-  const a = document.querySelector('.publication-information');
-  const b = document.querySelector('.pet-name');
-  b.innerHTML = `${pub.petName}`
-  a.innerHTML = `
-      <img src=${pub.petImg}>
-      <div class="information-content">
-        <h1>Acerca de:</h1>
-        <div class="text-caracter-pet">
-          <p>Tipo de mascota:</p>
-          <p>${pub.petType}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Sexo de la mascota:</p>
-          <p>${pub.petSex}</p>
-        </div>
-        <div class="text-caracter-pet">
-          <p>Edad de la mascota en meses:</p>
-          <p>${pub.petAge}</p>
-        </div>
-      </div>
-      <p class="description">${pub.petDescription}</p>
-  `
+// publicaión tocada
+const clickPublication = async (name) => {
+  try {
+    const publications = query(collectionGroup(db,"publications"), where("petName", "==", name));
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
 }
 
-const updatePublication = (pub, type, sex, img, name, age, description) => {
-  onAuthStateChanged(auth, user => {
-    if(user){
-      const publications = query(collection(db, "users", user.uid, "publications"), where("petName", "==", pub));
-      getDocs(publications)
-      .then(function(publications){
-        publications.forEach((publication) => {
-          const imgRef = ref(storage, img.name);
-          const metadata = {
-             contentType: img.type,
-          };
-          const uploadImg = uploadBytes(imgRef, img, metadata);
-          uploadImg
-          .then(snapshot => getDownloadURL(snapshot.ref))
-          .then( url => {
-            const publicationDoc = doc(db, "users", user.uid, "publications", publication.id);
-            updateDoc(publicationDoc, {
-              petType: type, 
-              petSex: sex , 
-              petImg: url, 
-              petName: name, 
-              petAge: age,
-              petDescription: description
-            })
-          })
-        });
-        alert('La publicación fue actualizada!')
-      })
-      .catch(function(error) {
-        console.log(error)
-        alert('Algo salio mal, intentalo más tarde!')
-      });
-    }
-  })
+const publicationsOfCurrentUser = async (pub) => {
+  try {
+    const user = auth.currentUser.uid
+    const publications = query(collection(db, "users", user, "publications"), where("petName", "==", pub));
+    return  await getDocs(publications)
+  } catch(e) { console.log(e) }
 }
 
-const searchPub = (name) => {
-  window.location.hash = '#/information';
-  onAuthStateChanged(auth, user => {
-    if(user){
-      const publications = query(collectionGroup(db,"publications"), where("petName", "==", name));
-      console.log(publications);
-      getDocs(publications)
-      .then(function(publications){
-        publications.forEach((doc) => {
-          console.log(doc.data());
-          informatioPub(doc.data())
-        });
-      })
-      .catch(function(error) {
-        console.log(error)
-       alert('Algo salio mal, intentalo más tarde!')
-      });
-    }
-  })
+const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+  try {
+    const publication = doc(db, "users", user, "publications", pub);
+    await updateDoc(publication, {
+      petType: type, 
+      petSex: sex , 
+      petImg: img, 
+      petName: name, 
+      petAge: age,
+      petDescription: description
+    });
+  } catch(e) { console.log(e) }
 }
 
 /*const deletePublication =  (name)=>{
@@ -222,115 +225,8 @@ const searchPub = (name) => {
 
 
 
-/* Funciones auth (para crear cuenta e iniciar sesión) */
-
-// creando Usuario
-const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
-
-// sign in user
-const signInAuth = (mail, password) => signInWithEmailAndPassword(auth, mail, password);
-
-// sign in with google
-const googleAuth = () => signInWithPopup(auth, provider);
-
-// log out user
-const logOut = () => signOut(auth);
-
-// verificando si el email es valido
-const emailVerification = () => sendEmailVerification(auth.currentUser);
-
-
-
-/* Funciones firestore */
-
-// guardando datos del usuario creado en Firestore
-const saveUser = async (uid, username, mail) => {
-  try {
-    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
-    await setDoc(doc(db, "users", uid), {
-      username: username,
-      email: mail,
-    });
-  } catch(e) { console.log(e) }
-}
-
-// trayendo la data del user
-const getUserData = async (uid) => {
-  const docRef = doc(db, "users", uid)
-  try {
-    //con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
-   const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  } catch(e) { console.log(e) }
-}
-
-// crear publicación
-const createPublication = async (type, sex, img, name, age, description, uid) => {
-  try {
-    await addDoc(collection(db, "users", uid, "publications"), {
-      petType: type, 
-      petSex: sex , 
-      petImg: img, 
-      petName: name, 
-      petAge: age,
-      petDescription: description
-    });
-  } catch(e) { console.log(e) }
-}
-
-// subir y descargar imagen
-const uploadImg = async (img) => {
-  try {
-    const imgRef = ref(storage, img.name);
-    const metadata = {
-      contentType: img.type,
-    };
-
-    const uploadTask = await uploadBytes(imgRef, img, metadata);
-    const downloadTask = await getDownloadURL();
-  }
-  catch(e) { console.log(e) }
-}
-
-//eliminar publicacion de un usuario
-
-
-
-
-// descargar imagen
-
-/* //crear publicaión
-const createPublicationF = (type, sex, img, name, age, description) => {
-  const user = auth.currentUser.uid
-  const imgRef = ref(storage, img.name);
-  const metadata = {
-    contentType: img.type,
-  };
-
-  // subir imagen
-  const uploadImg = uploadBytes(imgRef, img, metadata);
-  uploadImg
-  .then(snapshot => getDownloadURL(snapshot.ref))
-  .then( url => {
-    console.log(url)
-    const pubCollection = collection(db, "users", user, "publications");
-    addDoc(pubCollection, { 
-      petType: type, 
-      petSex: sex , 
-      petImg: url, 
-      petName: name, 
-      petAge: age,
-      petDescription: description
-    }) 
-  })
-}
- */
 export {
+  userSatate,
   createUser,
   signInAuth,
   googleAuth,
@@ -339,10 +235,10 @@ export {
   saveUser,
   getUserData,
   createPublication,
-  uploadImg, 
-  listPublications, 
-  searchPub, 
-  informatioPub, 
+  uploadImg,
+  showPublications, 
+  clickPublication, 
   updatePublication,
-  //deletePublication
+  //deletePublication,
+  publicationsOfCurrentUser,
 };
