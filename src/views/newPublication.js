@@ -1,5 +1,5 @@
-import {selectedOption} from '../lib/index.js';
-import {createPublicationF} from '../lib/firebase.js'
+import {selectedOption, resetForm} from '../lib/index.js';
+import {uploadImg, createPublication} from '../lib/firebase.js'
 
 function newPublication ()  {
     const publication = `
@@ -92,6 +92,9 @@ function newPublication ()  {
     const element = document.querySelector('body');
     element.innerHTML = publication;
 
+    const backHomeButton = element.querySelector('.button-back')
+    backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
+
     const question1 = document.querySelectorAll('input[name="question1__options"]');
     const question2 = document.querySelectorAll('input[name="question2__options"]');
 
@@ -102,43 +105,28 @@ function newPublication ()  {
         const petName = element.querySelector('.question4__petname').value;
         const petAge = element.querySelector('.question5__petAge').value;
         const description = element.querySelector('.question6__description').value;
-        createPublicationF(option1, option2, petImg, petName, petAge, description)
+        newPub(option1, option2, petImg, petName, petAge, description)
     }
    
-   const createPublication = element.querySelector('.create-publication');
+   const createPublicationButton = element.querySelector('.create-publication');
 
     
-   createPublication.addEventListener('click', publicationData )
-   const backHomeButton = element.querySelector('.button-back')
+   createPublicationButton.addEventListener('click', publicationData )
 
-   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
+   const newPub = (type, sex, img, name, age, description) => {
+        uploadImg(img)
+        .then((url) => {
+            createPublication(type, sex, url, name, age, description)
+            alert('La publicaión se ha creado con exito')
+            resetForm('form__new-publication', element) 
+        })
+        .catch((error) => {
+            alert('Ha ocurrido un error, intenta registrarte más tarde')
+            resetForm('form__new-publication', element)
+            console.log(error.code, error.message)
+        })
+   }
+
    return element;
 }
 export { newPublication };
-
-/* //crear publicaión
-const createPublicationF = (type, sex, img, name, age, description) => {
-  const user = auth.currentUser.uid
-  const imgRef = ref(storage, img.name);
-  const metadata = {
-    contentType: img.type,
-  };
-
-  // subir imagen
-  const uploadImg = uploadBytes(imgRef, img, metadata);
-  uploadImg
-  .then(snapshot => getDownloadURL(snapshot.ref))
-  .then( url => {
-    console.log(url)
-    const pubCollection = collection(db, "users", user, "publications");
-    addDoc(pubCollection, { 
-      petType: type, 
-      petSex: sex , 
-      petImg: url, 
-      petName: name, 
-      petAge: age,
-      petDescription: description
-    }) 
-  })
-}
- */

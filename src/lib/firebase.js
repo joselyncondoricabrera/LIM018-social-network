@@ -211,7 +211,8 @@ const logOut = () => signOut(auth);
 // verificando si el email es valido
 const emailVerification = () => sendEmailVerification(auth.currentUser);
 
-
+// state user 
+const userSatate = (state) => onAuthStateChanged(auth, state)
 
 /* Funciones firestore */
 
@@ -242,9 +243,11 @@ const getUserData = async (uid) => {
 }
 
 // crear publicación
-const createPublication = async (type, sex, img, name, age, description, uid) => {
+const createPublication = async (type, sex, img, name, age, description) => {
   try {
-    await addDoc(collection(db, "users", uid, "publications"), {
+    const user = auth.currentUser.uid
+    const pubCollection = collection(db, "users", user, "publications");
+    await addDoc(pubCollection, {
       petType: type, 
       petSex: sex , 
       petImg: img, 
@@ -257,14 +260,14 @@ const createPublication = async (type, sex, img, name, age, description, uid) =>
 
 // subir y descargar imagen
 const uploadImg = async (img) => {
+  const imgRef = ref(storage, img.name);
+  const metadata = {
+    contentType: img.type,
+  };
   try {
-    const imgRef = ref(storage, img.name);
-    const metadata = {
-      contentType: img.type,
-    };
-
     const uploadTask = await uploadBytes(imgRef, img, metadata);
-    const downloadTask = await getDownloadURL();
+    console.log(await getDownloadURL(uploadTask.ref))
+    return await getDownloadURL(uploadTask.ref);
   }
   catch(e) { console.log(e) }
 }
@@ -300,6 +303,7 @@ const createPublicationF = (type, sex, img, name, age, description) => {
 }
  */
 export {
+  userSatate,
   createUser,
   signInAuth,
   googleAuth,
@@ -307,7 +311,8 @@ export {
   emailVerification,
   saveUser,
   getUserData,
-  createPublication, 
+  createPublication,
+  uploadImg,
   listPublications, 
   searchPub, 
   informatioPub, 
