@@ -1,7 +1,8 @@
-import {showPublications, clickPublication} from '../lib/firebase.js'
+/* eslint-disable no-alert, no-unused-vars */
+import { showPublications, clickPublication } from '../lib/firebase.js';
 
-function Home () {
-    const home = `
+function Home() {
+  const home = `
     <main class="home">
         <div class="home-header">
             <img class="imageLogo" src="./imgs/hugme-logo.png"/>
@@ -34,50 +35,49 @@ function Home () {
             <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
-    `
+    `;
 
-    const element = document.querySelector('body');
-    element.innerHTML = home;
+  const element = document.querySelector('body');
+  element.innerHTML = home;
 
-    const addPublicationButton = element.querySelector('.header__add-button')
+  const addPublicationButton = element.querySelector('.header__add-button');
 
-    addPublicationButton.addEventListener('click', ()=> { window.location.hash = '#/newPublication'; })
-    const allPub = element.querySelector('.home-publications');
-    console.log(allPub)
+  addPublicationButton.addEventListener('click', () => { window.location.hash = '#/newPublication'; });
+  const allPub = element.querySelector('.home-publications');
 
-   const listPublications = () => {
-        showPublications()
-        .then(function(publications) {
-            publications.forEach(pub => {
-                allPub.innerHTML += `
+  const listPublications = () => {
+    showPublications()
+      .then((publications) => {
+        publications.forEach((pub) => {
+          allPub.innerHTML += `
                     <div class="card publication-card">
                     <img class="card-img" src=${pub.data().petImg}/>
                     <div class="card card-info">
                         <p class="card-name">${pub.data().petName}</p>
                     </div>
                     </div>
-                `
-            });
-        })
-        .catch((error) => {
-            alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde')
-            console.log(error.code, error.message)
-        })
-   }
+                `;
+        });
+      })
+      .catch((error) => {
+        alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde');
+        // console.log(error.code, error.message)
+      });
+  };
 
-   listPublications();
+  listPublications();
 
-    allPub.addEventListener('click', (e) => {
-        e.preventDefault();
-        if(e.target.classList.contains("card-name")){
-            window.location.hash = '#/information'
-            clickPublication(e.target.innerText)
-            .then(function(publications) {
-                publications.forEach( pub => {
-                    const namePub = document.querySelector('.pet-name');
-                    const infoPub = document.querySelector('.publication-information');
-                    namePub.innerHTML = `${pub.data().petName}`
-                    infoPub.innerHTML = `
+  allPub.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.classList.contains('card-name')) {
+      window.location.hash = '#/information';
+      clickPublication(e.target.innerText)
+        .then((publications) => {
+          publications.forEach((pub) => {
+            const namePub = document.querySelector('.pet-name');
+            const infoPub = document.querySelector('.publication-information');
+            namePub.innerHTML = `${pub.data().petName}`;
+            infoPub.innerHTML = `
                         <img src=${pub.data().petImg}>
                         <div class="information-content">
                             <h1>Acerca de:</h1>
@@ -95,17 +95,17 @@ function Home () {
                             </div>
                         </div>
                         <p class="description">${pub.data().petDescription}</p>
-                    `
-                })
-            })
-        } else{
-            console.log('nada')
-        }
-        const name = element.querySelector('.card-name');
-        sessionStorage.setItem("petName", name.innerText);
-    })
+                    `;
+          });
+        });
+    } else {
+      // console.log('nada')
+    }
+    const name = element.querySelector('.card-name');
+    sessionStorage.setItem('petName', name.innerText);
+  });
 
-    return element;
+  return element;
 }
 
 export { Home };
