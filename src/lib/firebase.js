@@ -1,4 +1,4 @@
-/* eslint-disable no-trailing-spaces, object-curly-newline, comma-dangle */
+/* eslint-disable no-trailing-spaces, object-curly-newline, comma-dangle, no-console */
 // eslint-disable-next-line import/no-unresolved
 /* import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
 

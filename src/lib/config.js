@@ -20,7 +20,6 @@ import {
   setDoc,
   getDoc,
   updateDoc,
-  // deleteDoc,
   collection,
   collectionGroup,
   addDoc,
@@ -48,6 +47,9 @@ const storage = getStorage(app);
 
 export { auth, db, provider, storage };
 
+// exportamos funciones storage
+export { ref, uploadBytes, getDownloadURL };
+
 // exportamos funciones auth
 export {
   signOut,
@@ -71,6 +73,3 @@ export {
   query,
   where,
 };
-
-// exportamos funciones storage
-export { ref, uploadBytes, getDownloadURL };
