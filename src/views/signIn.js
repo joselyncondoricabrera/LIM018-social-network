@@ -1,8 +1,10 @@
 import { validateInput, resetForm } from '../lib/index.js';
-import { signInAuth, logOut, googleAuth, saveUser, getUserData } from '../lib/firebase.js';
+import {
+  signInAuth, logOut, googleAuth, saveUser, getUserData,
+} from '../lib/firebase.js';
 
-function signIn () {
-    const login =  `
+function signIn() {
+  const login = `
     <img class="background" src="./imgs//mobile-logIn.png"/>
     <main class="main-form" >
       <h1>Iniciar sesión</h1>
@@ -33,69 +35,71 @@ function signIn () {
       </div>
       
     </main>
-    `
-    const element = document.querySelector('body');
-    element.innerHTML = login;
+    `;
+  const element = document.querySelector('body');
+  element.innerHTML = login;
 
-    const saveData = () => {
-        const mail = document.querySelector('.login-email').value
-        const password = document.querySelector('.login-password').value
-        logIn(validateInput(mail, 'mailR', 'mail', document),
-        validateInput(password, 'passwordR', 'password', document)) 
-    }
+  const saveData = () => {
+    const mail = document.querySelector('.login-email').value;
+    const password = document.querySelector('.login-password').value;
+    logIn(
+      validateInput(mail, 'mailR', 'mail', document),
+      validateInput(password, 'passwordR', 'password', document),
+    );
+  };
 
-    element.querySelector('.log-in').addEventListener('click', saveData);
+  element.querySelector('.log-in').addEventListener('click', saveData);
 
-    const logIn = (mail, password) => {
-        if( mail && password != false ) {
-            signInAuth(mail, password)
-            .then((userCredential) => {
-                const user = userCredential.user
-                if(user.emailVerified) {
-                    alert('inicio de sesión exitoso')
-                    window.location.hash = '#/home';
-                    resetForm('form', element)
-                } else {
-                    resetForm('form', element)
-                    logOut()
-                }
-            })
-            .catch((error) => {
-                resetForm('form', element)
-                alert('Ha ocurrido un error, intenta registrarte más tarde')
-                console.log(error.code, error.message)
-            })
-        }
-    }
-
-    const continueWithGoogle = () => {
-        googleAuth()
-        .then((result) => {
-            const user = result.user;
-            const uid = result.user.uid;
-            getUserData(uid)
-            .then((doc) => {
-                if(doc != undefined){
-                    console.log('Document data:', doc.data())
-                    alert('Inicio de sesión exitoso')
-                    window.location.hash = '#/home';
-                } else {
-                    saveUser(user.uid, user.displayName, user.email)
-                    alert('Bienvenido')
-                    window.location.hash = '#/home';
-                }
-            })
+  const logIn = (mail, password) => {
+    if (mail && password != false) {
+      signInAuth(mail, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          if (user.emailVerified) {
+            alert('inicio de sesión exitoso');
+            window.location.hash = '#/home';
+            resetForm('form', element);
+          } else {
+            resetForm('form', element);
+            logOut();
+          }
         })
         .catch((error) => {
-            resetForm('form', element)
-            alert('Ha ocurrido un error, intenta registrarte más tarde')
-            console.log(error.code, error.message)
-        })
+          resetForm('form', element);
+          alert('Ha ocurrido un error, intenta registrarte más tarde');
+          console.log(error.code, error.message);
+        });
     }
+  };
 
-    element.querySelector('.button-authentication').addEventListener('click', continueWithGoogle );
+  const continueWithGoogle = () => {
+    googleAuth()
+      .then((result) => {
+        const user = result.user;
+        const uid = result.user.uid;
+        getUserData(uid)
+          .then((doc) => {
+            if (doc != undefined) {
+              console.log('Document data:', doc.data());
+              alert('Inicio de sesión exitoso');
+              window.location.hash = '#/home';
+            } else {
+              saveUser(user.uid, user.displayName, user.email);
+              alert('Bienvenido');
+              window.location.hash = '#/home';
+            }
+          });
+      })
+      .catch((error) => {
+        resetForm('form', element);
+        alert('Ha ocurrido un error, intenta registrarte más tarde');
+        console.log(error.code, error.message);
+      });
+  };
 
-    return element;
+  element.querySelector('.button-authentication').addEventListener('click', continueWithGoogle);
+
+  return element;
 }
 
 export { signIn };

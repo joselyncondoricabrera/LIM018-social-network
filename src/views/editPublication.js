@@ -1,9 +1,10 @@
-import { userSatate, publicationsOfCurrentUser, uploadImg, updatePublication } from "../lib/firebase.js";
+import {
+  userSatate, publicationsOfCurrentUser, uploadImg, updatePublication,
+} from '../lib/firebase.js';
 import { selectedOption, resetForm } from '../lib/index.js';
 
-
-function editPublication ()  {
-    const edit = `
+function editPublication() {
+  const edit = `
     <main class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
@@ -87,59 +88,58 @@ function editPublication ()  {
             <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
-    `
+    `;
 
-    const element = document.querySelector('body');
-    element.innerHTML = edit;
+  const element = document.querySelector('body');
+  element.innerHTML = edit;
 
-    const question1 = document.querySelectorAll('input[name="question1__options"]');
-    const question2 = document.querySelectorAll('input[name="question2__options"]');
-    
-    const editData = () => {
-        const data = sessionStorage.getItem("petName")
-        const option1 = selectedOption(question1);
-        const option2 = selectedOption(question2);
-        const petImg = element.querySelector('.question3__img').files[0]
-        const petName = element.querySelector('.question4__petname').value;
-        const petAge = element.querySelector('.question5__petAge').value;
-        const description = element.querySelector('.question6__description').value;
-        toUpdatePub(data, option1, option2, petImg, petName, petAge, description)
-    }
+  const question1 = document.querySelectorAll('input[name="question1__options"]');
+  const question2 = document.querySelectorAll('input[name="question2__options"]');
 
-    const editPublication = element.querySelector('.edit-publication');
+  const editData = () => {
+    const data = sessionStorage.getItem('petName');
+    const option1 = selectedOption(question1);
+    const option2 = selectedOption(question2);
+    const petImg = element.querySelector('.question3__img').files[0];
+    const petName = element.querySelector('.question4__petname').value;
+    const petAge = element.querySelector('.question5__petAge').value;
+    const description = element.querySelector('.question6__description').value;
+    toUpdatePub(data, option1, option2, petImg, petName, petAge, description);
+  };
 
-    
-    editPublication.addEventListener('click', editData )
-    const backButton = element.querySelector('.button-back');
-    backButton.addEventListener('click', () => { window.location.hash ='#/home' })
+  const editPublication = element.querySelector('.edit-publication');
 
-    const toUpdatePub = (data, type, sex, petImg, petName, petAge, description) => {
-        userSatate((user) => {
-            if(user){
-                publicationsOfCurrentUser(data)
-                .then(function(publications){
-                    publications.forEach((publication) => {
-                        uploadImg(petImg)
-                        .then((url) => {
-                            updatePublication(publication.id, user.uid, type, sex, url, petName, petAge, description)
-                            alert('La publicación se ha actualizado con exito.')
-                            resetForm('form__edit-publication', element)
-                        })
-                        .catch((error) => {
-                            alert('Ha ocurrido un error, intenta registrarte más tarde')
-                            resetForm('form__edit-publication', element)
-                            console.log(error.code, error.message)
-                        })
-                    })
+  editPublication.addEventListener('click', editData);
+  const backButton = element.querySelector('.button-back');
+  backButton.addEventListener('click', () => { window.location.hash = '#/home'; });
+
+  const toUpdatePub = (data, type, sex, petImg, petName, petAge, description) => {
+    userSatate((user) => {
+      if (user) {
+        publicationsOfCurrentUser(data)
+          .then((publications) => {
+            publications.forEach((publication) => {
+              uploadImg(petImg)
+                .then((url) => {
+                  updatePublication(publication.id, user.uid, type, sex, url, petName, petAge, description);
+                  alert('La publicación se ha actualizado con exito.');
+                  resetForm('form__edit-publication', element);
                 })
                 .catch((error) => {
-                    alert('Ha ocurrido un error, intenta registrarte más tarde')
-                    console.log(error.code, error.message)
-                })
-            }
-        })
-    }
+                  alert('Ha ocurrido un error, intenta registrarte más tarde');
+                  resetForm('form__edit-publication', element);
+                  console.log(error.code, error.message);
+                });
+            });
+          })
+          .catch((error) => {
+            alert('Ha ocurrido un error, intenta registrarte más tarde');
+            console.log(error.code, error.message);
+          });
+      }
+    });
+  };
 
-    return element;
+  return element;
 }
 export { editPublication };

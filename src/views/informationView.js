@@ -1,7 +1,8 @@
-//import { userSatate, publicationsOfCurrentUser, getDocUser } from '../lib/firebase.js'
+/* eslint-disable no-alert */
+import { userSatate, publicationsOfCurrentUser, deletePublication } from '../lib/firebase.js';
 
-function informationView ()  {
-    const information = `
+function informationView() {
+  const information = `
     <main class="infornation-view">
     <div class="information-header">
       <button class="button-back">
@@ -37,23 +38,46 @@ function informationView ()  {
             <img class="imageFooter" src="./imgs/footer-logo.png"/>
         </div>
     </footer>
-    `
+    `;
 
-    const element = document.querySelector('body');
-    element.innerHTML = information;
-    const backHomeButton = element.querySelector('.button-back');
-    const name = element.querySelector('.pet-name');
-    console.log(name)
-   /*  const trashPublicationButton= element.querySelector('.button-trash')
-    trashPublicationButton.addEventListener('click', () =>{
-      alert('elimando publicacion');
-      const name = element.querySelector('.pet-name').innerHTML;
-      deletePublication(name);
+  const element = document.querySelector('body');
+  element.innerHTML = information;
+  const backHomeButton = element.querySelector('.button-back');
+
+  const trashPublicationButton = element.querySelector('.button-trash');
+
+  trashPublicationButton.addEventListener('click', () => {
+    // const data = sessionStorage.getItem('petName');
+    const namePet = element.querySelector('.pet-name').innerHTML;
+    // console.log(data);
+
+    userSatate((user) => {
+      if (user) {
+        publicationsOfCurrentUser(namePet)
+          .then(
+            (pub) => {
+              pub.forEach((publication) => {
+                // console.log(publication.id);
+                deletePublication(user.uid, publication.id);
+                alert('La publicación se ha eliminado con éxito');
+
+                window.location.hash = '#/home';
+                // window.location.reload();
+              });
+            },
+          )
+          .catch(() => {
+            alert('Ah ocurrido un error!');
+          });
+      } else {
+        alert('el usuario no está en sesión');
+      }
     });
- */
-    backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; })
-    const editPublication = element.querySelector('.button-edit');
-   /*  const belongToUser = () => {
+  });
+
+  backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
+  const editPublication = element.querySelector('.button-edit');
+  /*  const belongToUser = () => {
       userSatate((user) => {
         if(user){
           const name = sessionStorage.getItem("petName")
@@ -65,7 +89,7 @@ function informationView ()  {
               .then((doc) => {
                 console.log(doc)
               }) */
-              /* const dataUserId = pub._userDataWriter.firestore._authCredentials.currentUser.uid
+  /* const dataUserId = pub._userDataWriter.firestore._authCredentials.currentUser.uid
               console.log( dataUserId != userId)
               console.log(dataUserId === userId)
               if (dataUserId === userId){
@@ -82,13 +106,13 @@ function informationView ()  {
     }
     belongToUser(); */
 
-    editPublication.addEventListener('click', () => {
-      const name = element.querySelector('.pet-name')
-      console.log(name)
-      sessionStorage.setItem("petName", name.innerText);
-      window.location.hash = '#/edit'
-    })
-    
-    return element;
+  editPublication.addEventListener('click', () => {
+    const name = element.querySelector('.pet-name');
+    // console.log(name);
+    sessionStorage.setItem('petName', name.innerText);
+    window.location.hash = '#/edit';
+  });
+
+  return element;
 }
 export { informationView };
