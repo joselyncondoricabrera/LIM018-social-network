@@ -1,4 +1,5 @@
-// import { userSatate, publicationsOfCurrentUser, getDocUser } from '../lib/firebase.js'
+/* eslint-disable no-alert */
+import { userSatate, publicationsOfCurrentUser, deletePublication } from '../lib/firebase.js';
 
 function informationView() {
   const information = `
@@ -42,11 +43,44 @@ function informationView() {
   const element = document.querySelector('body');
   element.innerHTML = information;
   const backHomeButton = element.querySelector('.button-back');
+
+  const trashPublicationButton = element.querySelector('.button-trash');
+
+  trashPublicationButton.addEventListener('click', () => {
+    // const data = sessionStorage.getItem('petName');
+    const namePet = element.querySelector('.pet-name').innerHTML;
+    // console.log(data);
+
+    userSatate((user) => {
+      if (user) {
+        publicationsOfCurrentUser(namePet)
+          .then(
+            (pub) => {
+              pub.forEach((publication) => {
+                // console.log(publication.id);
+                deletePublication(user.uid, publication.id);
+                alert('La publicación se ha eliminado con éxito');
+
+                window.location.hash = '#/home';
+                // window.location.reload();
+              });
+            },
+          )
+          .catch(() => {
+            alert('Ah ocurrido un error!');
+          });
+      } else {
+        alert('el usuario no está en sesión');
+      }
+    });
+  });
+
   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
   const editPublication = element.querySelector('.button-edit');
 
   editPublication.addEventListener('click', () => {
     const name = element.querySelector('.pet-name');
+    // console.log(name);
     sessionStorage.setItem('petName', name.innerText);
     window.location.hash = '#/edit';
   });
