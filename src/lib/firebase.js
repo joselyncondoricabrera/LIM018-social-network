@@ -69,6 +69,7 @@ import {
   setDoc,
   getDoc,
   updateDoc,
+  deleteDoc,
   collection,
   collectionGroup,
   addDoc,
@@ -212,6 +213,12 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
   }
 };
 
+const deletePublication = async (userUid, idPublication) => {
+  try {
+    await deleteDoc(doc(db, 'users', userUid, 'publications', idPublication));
+  } catch (e) { console.log(e); }
+};
+
 export {
   userSatate,
   createUser,
@@ -227,4 +234,5 @@ export {
   clickPublication,
   updatePublication,
   publicationsOfCurrentUser,
+  deletePublication
 };

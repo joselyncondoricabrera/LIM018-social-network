@@ -1,9 +1,14 @@
 /* estilos para mobile */
+
+body {
+   margin: 0;
+   padding: 0;
+}
+
 @media (max-width: 390px) {
    .background {
       position: absolute;
       top: 0;
-      background-color: #343A40;
    }
    .main-form {
       display: flex;
