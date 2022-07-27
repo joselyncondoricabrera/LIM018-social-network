@@ -1,5 +1,6 @@
-
-import { showPublications, clickPublication, publicationByTypePet } from '../lib/firebase.js';
+/* eslint-disable no-alert, no-unused-vars */
+import {showPublications } from '../lib/firebase_utils.js';
+import { clickPublication,  publicationByTypePet } from '../lib/firebase.js';
 
 function Home() {
   const home = `
