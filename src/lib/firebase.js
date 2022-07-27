@@ -41,7 +41,7 @@ const firebaseConfig = {
   measurementId: 'G-4CWFF7HQ9L',
 };
 
-// Initialize Firebase
+//Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
@@ -166,6 +166,14 @@ const publicationsOfCurrentUser = async (pub) => {
   }
 };
 
+const publicationByTypePet = async (type) => {
+  try{
+    const publications = query(collectionGroup(db, 'publications'), where('petType', '==', type));
+    return await getDocs(publications);
+  } catch (e){ console.log(e);}
+
+};
+
 const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
     const publication = doc(db, 'users', user, 'publications', pub);
@@ -203,6 +211,7 @@ export {
   clickPublication,
   updatePublication,
   publicationsOfCurrentUser,
+  publicationByTypePet,
   deletePublication
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-alert, no-unused-vars */
 import {showPublications } from '../lib/firebase_utils.js';
-import { clickPublication } from '../lib/firebase.js';
+import { clickPublication,  publicationByTypePet } from '../lib/firebase.js';
 
 function Home() {
   const home = `
@@ -15,14 +15,14 @@ function Home() {
         
         <h1 class="home__subtitle">Encuentra un nuevo <br> amigo</h1>
 
-        <input class="home__input-search" type="text" placeholder="Buscar"/>
+        <input class="home__input-search" type="text" placeholder="Buscar">
 
         <div class="home__container-buttons">
-            <button class="button-option">Todo</button>
-            <button class="button-option">Perro</button>
-            <button class="button-option">Gato</button>
-            <button class="button-option">Roedor</button>
-            <button class="button-option">Ave</button>
+            <button class="button-option all">Todo</button>
+            <button class="button-option dog">Perro</button>
+            <button class="button-option cat">Gato</button>
+            <button class="button-option rodent">Roedor</button>
+            <button class="button-option bird">Ave</button>
         </div>
         <section class="home-publications"></section>
     </main>
@@ -105,6 +105,108 @@ function Home() {
     const name = element.querySelector('.card-name');
     sessionStorage.setItem('petName', name.innerText);
   });
+
+  //input buscar mascota por nombre 
+  const inputName = element.querySelector('.home__input-search');
+  inputName.addEventListener('input' , (e) => {
+   
+    let numberData=0;
+   // alert(e.target.value);
+    allPub.innerHTML='';
+    showPublications()
+    .then( (publication)=>{
+      publication.forEach((pub)=>{        
+        for(let i=0; i<pub.data().petName.length;i++){
+          let segmentWord = pub.data().petName.substring(0,i+1);
+          if(e.target.value.toLowerCase() == segmentWord.toLowerCase()){
+            numberData = numberData + 1;
+             console.log(pub.data().petName);
+ 
+             allPub.innerHTML += `
+                    <div class="card publication-card">
+                    <img class="card-img" src=${pub.data().petImg}/>
+                    <div class="card card-info">
+                        <p class="card-name">${pub.data().petName}</p>
+                    </div>
+                    </div>
+                `;
+            if(e.target.value.toLowerCase() != segmentWord.toLowerCase()){
+              console.log('error');
+
+            }
+          }
+         /* else{
+            condition = false;
+              //allPub.innerHTML = '';
+              allPub.innerHTML+='No se ha encontrado ningún resultado';
+            //console.log(e.target.value.toLowerCase() != segmentWord.toLowerCase());
+           // alert('No se ha encontrado ningún resultado!.. Pruebe con otro nombre de mascota');
+          }*/
+        }
+      });
+      if(numberData===0){
+        allPub.innerHTML = 'No se ha encontrado ningún resultado';
+      }
+    })
+    .catch((error)=>{
+      alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde');
+      console.log(error.code, error.message);
+    })
+
+
+  });
+
+  //boton petType ->perro
+  const buttonOptionDog = element.querySelector('.dog');
+  buttonOptionDog.addEventListener('click', ()=>{
+    allPub.innerHTML='';
+    searchDataTypePet('perro');
+  });
+  //boton typePet->gato
+  const buttonOptionCat = element.querySelector('.cat');
+  buttonOptionCat.addEventListener('click', ()=>{
+    allPub.innerHTML='';
+    searchDataTypePet('gato');
+  });
+  //boton typePet -> roedor
+  const buttonOptionRodent = element.querySelector('.rodent');
+  buttonOptionRodent.addEventListener('click', ()=>{
+    allPub.innerHTML='';
+    searchDataTypePet('roedor');
+  });
+  //boton typePet -> aves
+  const buttonOptionBird = element.querySelector('.bird');
+  buttonOptionBird.addEventListener('click', ()=>{
+    allPub.innerHTML='';
+    searchDataTypePet('ave');
+  });
+  // boton typePet -> todos
+  const buttonAllTypePet = element.querySelector('.all');
+  buttonAllTypePet.addEventListener('click', () =>{
+    allPub.innerHTML='';
+    listPublications();
+  });
+  //función para traer data segun tipo de mascota
+  const searchDataTypePet = (type)=>{
+    publicationByTypePet(type)
+    .then( (publications)=>{
+        publications.forEach((pub) => {          
+          allPub.innerHTML += `
+                      <div class="card publication-card">
+                      <img class="card-img" src=${pub.data().petImg}/>
+                      <div class="card card-info">
+                          <p class="card-name">${pub.data().petName}</p>
+                      </div>
+                      </div>
+                  `;
+        });
+       })
+      .catch((error)=>{
+        alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde');
+        console.log(error.code, error.message);
+      });
+
+  }
 
   return element;
 }
