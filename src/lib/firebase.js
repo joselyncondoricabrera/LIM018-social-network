@@ -1,7 +1,12 @@
+/* eslint-disable no-trailing-spaces, object-curly-newline, comma-dangle, no-console */
+// eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+
 import {
   getStorage, ref, uploadBytes, getDownloadURL,
+
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js';
+
 import {
   getAuth,
   signOut,
@@ -11,8 +16,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendEmailVerification,
-}
-  from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+
+} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 import {
   getFirestore,
@@ -27,8 +32,8 @@ import {
   getDocs,
   query,
   where,
-}
-  from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+
+} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCqyNBMUmtAycnlkwGVANuZa7JyYw2Vtg0',
@@ -40,12 +45,13 @@ const firebaseConfig = {
   measurementId: 'G-4CWFF7HQ9L',
 };
 
-// Initialize Firebase
+//Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
-const storage = getStorage(app);
+const storage = getStorage(app); 
+
 
 /* Funciones auth (para crear cuenta e iniciar sesión) */
 
@@ -72,27 +78,29 @@ const userSatate = (state) => onAuthStateChanged(auth, state);
 // guardando datos del usuario creado en Firestore
 const saveUser = async (uid, username, mail) => {
   try {
-    // con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
-    await setDoc(doc(db, 'users', uid), {
+    // con setDoc establecemos el id de nuestro usuario,
+    // en este caso será el id que genera con auth de createUserWithEmailAndPassword
+    return await setDoc(doc(db, 'users', uid), {
       username,
       email: mail,
     });
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 // trayendo la data del user
 const getUserData = async (uid) => {
   const docRef = doc(db, 'users', uid);
   try {
-    // con setDoc establecemos el id de nuestro usuario, en este caso será el id que genera con auth de createUserWithEmailAndPassword
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log('No such document!');
-    }
-  } catch (e) { console.log(e); }
+    // con setDoc establecemos el id de nuestro usuario,
+    // en este caso será el id que genera con auth de createUserWithEmailAndPassword
+    return await getDoc(docRef);
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 // crear publicación
@@ -100,7 +108,7 @@ const createPublication = async (type, sex, img, name, age, description) => {
   try {
     const user = auth.currentUser.uid;
     const pubCollection = collection(db, 'users', user, 'publications');
-    await addDoc(pubCollection, {
+    return await addDoc(pubCollection, {
       petType: type,
       petSex: sex,
       petImg: img,
@@ -108,7 +116,10 @@ const createPublication = async (type, sex, img, name, age, description) => {
       petAge: age,
       petDescription: description,
     });
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 // subir y descargar imagen
@@ -119,9 +130,12 @@ const uploadImg = async (img) => {
   };
   try {
     const uploadTask = await uploadBytes(imgRef, img, metadata);
-    console.log(await getDownloadURL(uploadTask.ref));
+    // console.log(await getDownloadURL(uploadTask.ref));
     return await getDownloadURL(uploadTask.ref);
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 // listar publicaciones
@@ -129,7 +143,10 @@ const showPublications = async () => {
   try {
     const publications = collectionGroup(db, 'publications');
     return await getDocs(publications);
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 // publicaión tocada
@@ -137,7 +154,10 @@ const clickPublication = async (name) => {
   try {
     const publications = query(collectionGroup(db, 'publications'), where('petName', '==', name));
     return await getDocs(publications);
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 const publicationsOfCurrentUser = async (pub) => {
@@ -145,7 +165,10 @@ const publicationsOfCurrentUser = async (pub) => {
     const user = auth.currentUser.uid;
     const publications = query(collection(db, 'users', user, 'publications'), where('petName', '==', pub));
     return await getDocs(publications);
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
 
 const publicationByTypePet = async (type) => {
@@ -159,7 +182,7 @@ const publicationByTypePet = async (type) => {
 const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
     const publication = doc(db, 'users', user, 'publications', pub);
-    await updateDoc(publication, {
+    return await updateDoc(publication, {
       petType: type,
       petSex: sex,
       petImg: img,
@@ -167,47 +190,11 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
       petAge: age,
       petDescription: description,
     });
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
 };
-
-
-
-/* const deletePublication =  (name)=>{
-  console.log('funcion activo');
-  console.log(name);
-
-  onAuthStateChanged( auth, user => {
-    if(user){
-      const consulta = getDocs(query(collection(db,"users", user.uid , "publications"), where("petName", "==",name )));
-      consulta
-      .then(
-        function(consulta){
-            consulta.forEach( publication  => {
-
-          //  console.log(publication.id,"=>",publication.data());
-            var ref = doc(db,"users",user.uid,"publications",publication.id);
-            deleteDoc(ref)
-            .then(()=>{
-              alert('se eliminó correctamente el documento');
-            })
-            .catch((e)=>{
-              alert('problemas para eliminar');
-            })
-
-          }
-
-          )
-        }
-
-      )
-      .catch((e)=>{
-        alert("no se puede eliminar esta publicación, es de otro usuario");
-      }
-
-      );
-      }
-  })
-} */
 
 const deletePublication = async (userUid, idPublication) => {
   try {
@@ -229,7 +216,7 @@ export {
   showPublications,
   clickPublication,
   updatePublication,
-  deletePublication,
   publicationsOfCurrentUser,
-  publicationByTypePet
+  publicationByTypePet,
+  deletePublication
 };

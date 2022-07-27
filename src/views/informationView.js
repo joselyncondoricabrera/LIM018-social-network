@@ -77,34 +77,6 @@ function informationView() {
 
   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
   const editPublication = element.querySelector('.button-edit');
-  /*  const belongToUser = () => {
-      userSatate((user) => {
-        if(user){
-          const name = sessionStorage.getItem("petName")
-          publicationsOfCurrentUser(name)
-          .then(function(publications){
-            publications.forEach((pub) => {
-              console.log(pub)
-              /* getDocUser(pub.id)
-              .then((doc) => {
-                console.log(doc)
-              }) */
-  /* const dataUserId = pub._userDataWriter.firestore._authCredentials.currentUser.uid
-              console.log( dataUserId != userId)
-              console.log(dataUserId === userId)
-              if (dataUserId === userId){
-                console.log('nada')
-              } else {
-                const options = element.querySelector('.buttons-group');
-                options.style.display = 'none';
-              }
-              //console.log( dataUserId === userId)
-            })
-          })
-        }
-      })
-    }
-    belongToUser(); */
 
   editPublication.addEventListener('click', () => {
     const name = element.querySelector('.pet-name');

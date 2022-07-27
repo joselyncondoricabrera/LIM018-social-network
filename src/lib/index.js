@@ -1,3 +1,4 @@
+/* eslint-disable */
 // aqui exportaras las funciones que necesites
 const regex = {
   userR: /^[a-zA-Z0-9\_\-]{4,16}$/, // letras (mayus, minus), numeros, guion y guion bajo - de 4 a 16 caracteres
@@ -28,6 +29,7 @@ const resetForm = (classname, element) => {
 const selectedOption = (arr) => {
   for (const option of arr) {
     if (option.checked) {
+      /* eslint-enable */
       return option.value;
     }
   }

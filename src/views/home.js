@@ -44,7 +44,6 @@ function Home() {
 
   addPublicationButton.addEventListener('click', () => { window.location.hash = '#/newPublication'; });
   const allPub = element.querySelector('.home-publications');
-  console.log(allPub);
 
   const listPublications = () => {
     showPublications()
@@ -62,7 +61,7 @@ function Home() {
       })
       .catch((error) => {
         alert('Ha ocurrido un error al mostrar el contenido, intentalo más tarde');
-        console.log(error.code, error.message);
+        // console.log(error.code, error.message)
       });
   };
 
@@ -100,7 +99,7 @@ function Home() {
           });
         });
     } else {
-      console.log('nada');
+      // console.log('nada')
     }
     const name = element.querySelector('.card-name');
     sessionStorage.setItem('petName', name.innerText);

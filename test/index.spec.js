@@ -1,8 +1,15 @@
-// importamos la funcion que vamos a testear
-import { myFunction } from '../src/lib/index';
+/* eslint-disable no-trailing-spaces, no-unused-vars,
+ no-console, brace-style, space-infix-ops */
+import { createUser } from '../src/lib/firebase.js';
 
-describe('myFunction', () => {
+jest.mock('../src/lib/config.js');
+jest.mock('../src/lib/firebase.js');
+
+// const config = require('../src/lib/config.js');
+
+describe('createUser', () => {
   it('debería ser una función', () => {
-    expect(typeof myFunction).toBe('function');
+    // config.initializeApp = jest.fn();
+    expect(typeof createUser).toBe('function');
   });
 });

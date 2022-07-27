@@ -1,3 +1,4 @@
+/* eslint-disable no-alert, no-unused-vars */
 import { validateInput, resetForm } from '../lib/index.js';
 import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
 
@@ -38,28 +39,15 @@ function signUp() {
   const element = document.querySelector('body');
   element.innerHTML = signup;
 
-  const saveData = () => {
-    const username = element.querySelector('.username').value;
-    const mail = element.querySelector('.email').value;
-    const password = element.querySelector('.password').value;
-    registerUser(
-      validateInput(username, 'userR', 'username', element),
-      validateInput(mail, 'mailR', 'mail', element),
-      validateInput(password, 'passwordR', 'password', element),
-    );
-  };
-
-  element.querySelector('.create-account').addEventListener('click', saveData);
-
   const sendVerifactionEmail = () => {
     emailVerification()
       .then((email) => { alert('Se ha enviado un email de verificación a tu correo'); })
-      .catch((error) => { alert('Ha ocurrido un error, intentelo más tarde'), console.log(error); });
+      .catch((error) => { alert('Ha ocurrido un error, intentelo más tarde'); /* console.log(error); */ });
   };
 
   // función para crear usuario
   const registerUser = (username, mail, password) => {
-    if (username && mail && password != false) {
+    if (username && mail && password !== false) {
       createUser(mail, password)
         .then((userCredential) => {
           const user = userCredential.user.uid;
@@ -72,10 +60,23 @@ function signUp() {
         .catch((error) => {
           resetForm('form', element);
           alert('Ha ocurrido un error, intenta registrarte más tarde');
-          console.log(error);
+          // console.log(error);
         });
     }
   };
+
+  const saveData = () => {
+    const username = element.querySelector('.username').value;
+    const mail = element.querySelector('.email').value;
+    const password = element.querySelector('.password').value;
+    registerUser(
+      validateInput(username, 'userR', 'username', element),
+      validateInput(mail, 'mailR', 'mail', element),
+      validateInput(password, 'passwordR', 'password', element),
+    );
+  };
+
+  element.querySelector('.create-account').addEventListener('click', saveData);
 
   return element;
 }
