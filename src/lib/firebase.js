@@ -148,6 +148,14 @@ const publicationsOfCurrentUser = async (pub) => {
   } catch (e) { console.log(e); }
 };
 
+const publicationByTypePet = async (type) => {
+  try{
+    const publications = query(collectionGroup(db, 'publications'), where('petType', '==', type));
+    return await getDocs(publications);
+  } catch (e){ console.log(e);}
+
+};
+
 const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
     const publication = doc(db, 'users', user, 'publications', pub);
@@ -161,6 +169,8 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
     });
   } catch (e) { console.log(e); }
 };
+
+
 
 /* const deletePublication =  (name)=>{
   console.log('funcion activo');
@@ -221,4 +231,5 @@ export {
   updatePublication,
   deletePublication,
   publicationsOfCurrentUser,
+  publicationByTypePet
 };
