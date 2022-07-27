@@ -1,11 +1,9 @@
-/* eslint-disable no-trailing-spaces, object-curly-newline, comma-dangle, no-console */
-// eslint-disable-next-line import/no-unresolved
-/* import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+/* eslint-disable no-trailing-spaces, object-curly-newline, comma-dangle, 
+no-console, arrow-body-style */
+/* eslint-disable import/no-unresolved */
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
 
-import {
-  getStorage, ref, uploadBytes, getDownloadURL,
-  // eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js';
 
 import {
   getAuth,
@@ -16,7 +14,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendEmailVerification,
-  // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 import {
@@ -25,14 +22,13 @@ import {
   setDoc,
   getDoc,
   updateDoc,
-  // deleteDoc,
+  deleteDoc,
   collection,
   collectionGroup,
   addDoc,
   getDocs,
   query,
   where,
-  // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -50,33 +46,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
-const storage = getStorage(app); */
-import { 
-  auth, 
-  db, 
-  provider, 
-  storage, 
-  ref, 
-  uploadBytes, 
-  getDownloadURL,
-  signOut,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  sendEmailVerification,
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  deleteDoc,
-  collection,
-  collectionGroup,
-  addDoc,
-  getDocs,
-  query,
-  where,
-} from './config.js';
+const storage = getStorage(app);
 
 /* Funciones auth (para crear cuenta e iniciar sesión) */
 
@@ -163,7 +133,7 @@ const uploadImg = async (img) => {
   }
 };
 
-// listar publicaciones
+/* // listar publicaciones
 const showPublications = async () => {
   try {
     const publications = collectionGroup(db, 'publications');
@@ -172,7 +142,7 @@ const showPublications = async () => {
     return e;
     // console.log(e);
   }
-};
+}; */
 
 // publicaión tocada
 const clickPublication = async (name) => {
@@ -230,9 +200,14 @@ export {
   getUserData,
   createPublication,
   uploadImg,
-  showPublications,
   clickPublication,
   updatePublication,
   publicationsOfCurrentUser,
   deletePublication
 };
+
+export {
+  db,
+  getDocs,
+  collectionGroup,
+}

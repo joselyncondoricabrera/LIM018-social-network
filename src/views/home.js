@@ -1,5 +1,6 @@
 /* eslint-disable no-alert, no-unused-vars */
-import { showPublications, clickPublication } from '../lib/firebase.js';
+import {showPublications } from '../lib/firebase_utils.js';
+import { clickPublication } from '../lib/firebase.js';
 
 function Home() {
   const home = `
