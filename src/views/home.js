@@ -7,9 +7,11 @@ function Home() {
     <main class="home">
         <div class="home-header">
             <img class="imageLogo" src="./imgs/hugme-logo.png"/>
+            <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
             <p class="header__username">username</p>
             <button class= "header__add-button">
-            <img class="imageAddButton" src="./imgs/add.png">
+              <p>crear publicación</p>
+              <img class="imageAddButton" src="./imgs/add.png">
             </button>
         </div>
         
@@ -37,8 +39,9 @@ function Home() {
         </div>
     </footer>
     `;
-
-  const element = document.querySelector('body');
+  
+  const element = document.createElement('section');
+  element.classList.add('section-home');
   element.innerHTML = home;
 
   const addPublicationButton = element.querySelector('.header__add-button');
@@ -50,7 +53,7 @@ function Home() {
     showPublications()
       .then((publications) => {
         publications.forEach((pub) => {
-          allPub.innerHTML += `
+          return allPub.innerHTML += `
                     <div class="card publication-card">
                     <img class="card-img" src=${pub.data().petImg}/>
                     <div class="card card-info">
@@ -94,8 +97,8 @@ function Home() {
                             <p>Edad de la mascota en meses:</p>
                             <p>${pub.data().petAge}</p>
                             </div>
+                            <p class="description">${pub.data().petDescription}</p>
                         </div>
-                        <p class="description">${pub.data().petDescription}</p>
                     `;
           });
         });

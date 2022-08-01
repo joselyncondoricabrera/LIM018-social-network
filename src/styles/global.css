@@ -1,0 +1,1010 @@
+body {
+   margin: 0;
+   padding: 0;
+}
+/* estilos para login desktop */
+.section-login {
+   display: flex;
+}
+.background-desktop {
+   display: flex;
+}
+.background {
+   display: none;
+}
+.main-form {
+   margin: 77px 180px;
+}
+.main-form h1 {
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 44px;
+   line-height: 30px;
+   color: #343A40;
+}
+.main-form p {
+   margin-top: 33px;
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 18px;
+   color: #343A40;
+}
+.form {
+   margin: 66px 0;
+   display: flex;
+   flex-direction: column;
+   gap: 76px;
+}
+.form-input {
+   width: 561px;
+   height: 56px;
+   display: flex;
+   align-items: center;
+   gap: 11px;
+   border-bottom: 0.5px solid #ADB5BD;
+}
+.form-input img{
+   width: 33px;
+   height: 33px;
+}
+.form-input input{
+   height: 56px;
+   outline: none;
+   border: none;
+   background: transparent;
+}
+.form-input input::placeholder {
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 22px;
+   line-height: 18px;
+   color: #ADB5BD;
+}
+.form-button {
+   margin: 11px 0;
+   width: 561px;
+   height: 55px;
+   outline: none;
+   cursor: pointer;
+   background: #F5B2E8;
+   backdrop-filter: blur(54.37px);
+   border-radius: 13px;
+   border: none;
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 25px;
+   line-height: 24px;
+   text-align: center;
+   letter-spacing: 0.38px;
+   color: #FFFFFF;
+}
+.form-alert {
+   margin: -22px 0 -10px ;
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 15px;
+   line-height: 18px;
+}
+.form-link {
+   margin-top: -22px;
+   text-align: end;
+   text-decoration: none;
+   font-family: SF Pro Rounded;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 17px;
+   color: #343A40;
+}
+.incorrect-username, .incorrect-mail, .incorrect-password {
+   display: none;
+   color: #FF7581;
+}
+.correct-username, .correct-mail, .correct-password {
+   display: none;
+   color: #0ead69;
+}
+.container-authentication{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;     
+   align-items: center;
+}
+.container-authentication p{
+   font-family: SF Pro Rounded;
+   color: #343A40;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 17px;
+   margin-top: 0;
+   text-align: center;
+}
+.button-authentication{
+   width: 19.2px;
+   height: 19.2px;
+   background-color: transparent;
+   border: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+/* estilos para home desktop */
+.imageLogo {
+   display: none;
+}
+.home {
+   margin: 40px 44px;
+}
+.home-header{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin: 22px 0 33px;
+}
+.header__add-button{
+   display: flex;
+   width: 240px;
+   height: 33px;
+   align-items: center;
+   justify-content: center;
+   background: #FFFFFF;
+   box-shadow: 4px 0px 15px rgb(0 0 0 / 10%);
+   border-radius: 10px;
+   border: none;
+   flex-direction: row-reverse;
+   gap: 15px;
+   cursor: pointer;
+}
+.header__add-button p {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 24px;
+   color: #000000;
+}
+.home-publications{
+   margin: 44px 0;
+   display: grid;
+   justify-content: center;
+   grid-template-columns: repeat(5, 200px);
+   grid-row-gap: 44px;
+   grid-column-gap: 64px;
+}
+.publication-card {
+   display: flex;
+   flex-direction: column-reverse;
+   align-items: center;
+}
+.publication-card img {
+   width: 200px;
+   height: 240px;
+   border-radius: 30px;
+   position: relative;
+}
+.card-info {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 200px;
+   height: 40px;
+   background: #F5B2E8;
+   opacity: 0.9;
+   border-radius: 0px 0px 30px 30px;
+   position: absolute;
+}
+.card-info p {
+   font-family: 'CookieRun';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 30px;
+   color: #FFFFFF;
+   -webkit-text-stroke: 1.5px #4F4A42;
+}
+footer{
+   width: 100%;
+   height: 100px;
+   display: flex;
+   align-items: center;
+   background: #FCF6BD;
+   bottom: 0;
+   /* position: absolute; */
+}
+.container__footer-info{
+   display: flex;
+   align-items: center;
+   margin: 16px 18px;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 13px;
+   line-height: 0px;
+}
+.container__developers-info{
+   display: flex;
+   flex-direction: column;
+}
+.developers-info__title{
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 15px;
+}
+.home__subtitle{
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 40px;
+}
+.home__input-search{
+   margin: 44px 0;
+   width: 510px;
+   height: 44px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   text-align: center;
+   outline: none;
+}
+.home__input-search::placeholder{
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 22px;
+   color: #ADB5BD;
+   margin-left: -22px;
+
+   background-image: url('../imgs/lupa.png');
+   background-repeat: no-repeat;
+   background-position: 35% center;
+}
+.home__container-buttons{
+   display: flex;
+   justify-content: space-between;
+}
+.button-option{
+   height: 22px;
+   border: none;
+   color: #ADB5BD;
+   background-color: transparent;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 20px;
+   text-align: center;
+   padding: 0 0 30px;
+}
+.button-option:focus {
+border-bottom: 2px solid #FEB8C2;
+}
+
+/* estilos para new publication desktop */
+.section-new {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-image: url('../imgs/newDesktop.png');
+   background-repeat: no-repeat;
+}
+/* .new-publication {
+   display: flex;
+   flex-direction: column;
+  /*  margin: 0 18px;
+   position: relative;
+} */
+.new-publication-header {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   height: 42px;
+   gap: 50px;
+   margin: 22px 0 33px;
+}
+.new-publication-header h1 {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 38px;
+   line-height: 31px;
+   padding: 11px 0 0;
+}
+.form__new-publication, .form__edit-publication {
+   display: flex;
+   flex-direction: column;
+   gap: 11px;
+}
+.form__new-publication, .form__edit-publication p {
+   text-align: left;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 26px;
+   line-height: 24px;
+   color: #000000;
+}
+.question__options-group {
+   display: flex;
+   flex-direction: column;
+}
+.question__upload-group{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.options-group {
+   display: flex;
+   gap: 18px;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 22px;
+   line-height: 24px;
+   color: #6C757D;
+}
+.option__upload-file {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 119px;
+   height: 33px;
+   background: #C2F8CB;
+   border-radius: 20px;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 15px;
+   text-align: center;
+   color: #4F4A42;
+}
+.option__upload-file input{
+   display: none;
+}
+.question4__petname, .question5__petAge{
+   width: 500px;
+   height: 33px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   padding: 6px 0 6px 12px;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 21px;
+   color: #6C757D;
+}
+.question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
+   color: #ADB5BD;
+}
+.question6__description{
+   width: 500px;
+   height: 114px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 21px;
+   color: #6C757D;
+   padding:15px 0 0 15px;
+}
+.create-publication, .edit-publication{
+   width: 354px;
+   height: 55px;   
+   background: #C2F8CB;
+   border-radius: 20px;
+   border: none;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 25px;
+   margin: 22px 85px 44px;
+   color: #4F4A42;
+}
+.infornation-view {
+   margin: 44px 60px;
+}
+.information-header {
+   display: flex;
+   justify-content: space-between;
+   margin: 22px 0;
+}
+.information-header h1 {
+   font-family: 'CookieRun';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 30px;
+   line-height: 41px;
+   text-align: center;
+   color: #F5B2E8;
+   margin-left: 30px;
+   -webkit-text-stroke: 1.5px #4F4A42;
+}
+.buttons-group {
+   display: flex;
+   flex-direction: row;
+   gap: 11px;
+}
+.button-edit, .button-trash {
+   width: 33px;
+   height: 33px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: #FFFFFF;
+   box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+   border-radius: 10px;
+   border:none;
+   outline: none;
+}
+.publication-information{
+   display: flex;
+   gap: 30px ;
+}
+.publication-information img{
+   width: 540px;
+   height: 643px;
+   border-radius: 57px;
+   margin: 0 35px;
+}
+.information-content {
+   width: 354px;
+}
+.information-content h1 {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+}
+.text-caracter-pet {
+   display: flex;
+   justify-content: space-between;
+   
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 16px;
+   color: #6C757D;
+}
+.description {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 16px;
+   line-height: 19px;
+
+   color: #6C6C6C;
+}
+.div-buttons {
+   display: flex;
+   justify-content: space-between;
+   margin: 33px 0;
+}
+.button-love {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 64px;
+   height: 55px;
+   background: #F5B2E8;
+   border-radius: 20px;
+   border: none;
+}
+.button-adopt {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 9px;
+   width: 281px;
+   height: 55px;
+   background: #C2F8CB;
+   border-radius: 20px;
+   border: none;
+   text-align: center;
+   color: #4F4A42;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+}
+/* estilos nueva publicación */   
+.new-publication {
+   display: flex;
+   flex-direction: column;
+   margin: 0 18px;
+   position: relative;
+}
+.new-publication-header {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   height: 42px;
+   gap: 50px;
+   margin: 22px 0 33px;
+}
+.new-publication-header h1 {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 26px;
+   line-height: 31px;
+   padding: 11px 0 0;
+}
+.form__new-publication, .form__edit-publication {
+   display: flex;
+   flex-direction: column;
+   gap: 11px;
+}
+.form__new-publication, .form__edit-publication p {
+   text-align: left;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 24px;
+   color: #000000;
+}
+.question__options-group {
+   display: flex;
+   flex-direction: column;
+}
+.question__upload-group{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.options-group {
+   display: flex;
+   gap: 18px;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 24px;
+   color: #6C757D;
+}
+.option__upload-file {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 119px;
+   height: 33px;
+   background: #C2F8CB;
+   border-radius: 20px;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 15px;
+   text-align: center;
+   color: #4F4A42;
+}
+.option__upload-file input{
+   display: none;
+}
+.question4__petname, .question5__petAge{
+   width: 281px;
+   height: 33px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   padding: 6px 0 6px 12px;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   color: #6C757D;
+}
+.question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
+   color: #ADB5BD;
+}
+.question6__description{
+   width: 339px;
+   height: 114px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   color: #6C757D;
+   padding:15px 0 0 15px;
+}
+.create-publication, .edit-publication{
+   width: 354px;
+   height: 55px;   
+   background: #C2F8CB;
+   border-radius: 20px;
+   border: none;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 25px;
+   margin: 22px 0 44px;
+   color: #4F4A42;
+}
+
+/* estilos para mobile */
+@media (max-width: 390px) {
+/* estilos para login mobile*/
+   .imageLogo {
+      display: flex;
+   }
+   .logo-desktop {
+      display: none;
+   }
+   .body {
+      display: none;
+   }
+   .background-desktop {
+      display: none;
+   }
+   .background {
+      display: flex;
+      position: absolute;
+      top: 0;
+   }
+   .main-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 349px 18px;
+      position: absolute;
+   }
+   .main-form h1 {
+      width: 354px;
+      font-size: 25px;
+   }
+   .main-form p {
+      margin-top: 0;
+      width: 354px;
+      font-size: 15px;
+   }
+   .form {
+      margin: 33px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 33px;
+   }
+   .form-input {
+      width: 354px;
+      height: 33px;
+   }
+   .form-input input::placeholder {
+      font-size: 15px;
+   }
+   .form-button {
+      width: 354px;
+      height: 44px;
+      font-size: 18px;
+   }
+   .form-link {
+      font-size: 14px;
+   }
+   /* estilos para home mobile*/   
+   .home, .infornation-view {
+      margin: 0 18px;
+   }
+   .header__username{
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 18px;
+      text-align: center;
+   }
+   .header__add-button p {
+      display: none;
+   }
+   .header__add-button, .button-back{
+      display: flex;
+      width: 33px;
+      height: 33px;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      border:none;
+   }
+   .home__subtitle{
+      font-size: 24px;
+   }
+   .home__input-search{
+      margin: 33px 0;
+      width: 354px;
+   }
+   .home__input-search::placeholder{
+      font-size: 18px;
+   }
+   .button-option{
+      font-size: 18px;
+      padding: 0 0 15px;
+   }
+   .home-publications{
+      grid-template-columns: repeat(2, 144px);
+      grid-row-gap: 44px;
+      grid-column-gap: 60px;
+   }
+   .publication-card img {
+      width: 144px;
+      height: 220px;
+      border-radius: 20px;
+   }
+   .card-info {
+      width: 144px;
+      height: 35px;
+      border-radius: 0px 0px 20px 20px;
+   }
+   .card-info p {
+      font-size: 25px;
+   }
+   .container__footer-info{
+      display: flex;
+      align-items: center;
+      margin: 16px 18px;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 0px;
+   }
+   .container__developers-info{
+      display: flex;
+      flex-direction: column;
+   }
+   .developers-info__title{
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+   }
+
+   .information-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 22px 0;
+   }
+   .information-header h1 {
+      font-family: 'CookieRun';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 41px;
+      text-align: center;
+      color: #F5B2E8;
+      margin-left: 30px;
+      -webkit-text-stroke: 1.5px #4F4A42;
+   }
+   .buttons-group {
+      display: flex;
+      flex-direction: row;
+      gap: 11px;
+   }
+   .button-edit, .button-trash {
+      width: 33px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      border:none;
+      outline: none;
+   }
+   .publication-information img{
+      width: 283px;
+      height: 429px;
+      border-radius: 40px;
+      margin: 0 35px;
+   }
+   .information-content {
+      width: 354px;
+   }
+   .information-content h1 {
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+   }
+   .text-caracter-pet {
+      display: flex;
+      justify-content: space-between;
+      
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      color: #6C757D;
+   }
+   .description {
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #6C6C6C;
+   }
+   .div-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 33px 0;
+   }
+   .button-love {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 55px;
+      background: #F5B2E8;
+      border-radius: 20px;
+      border: none;
+   }
+   .button-adopt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 281px;
+      height: 55px;
+      background: #C2F8CB;
+      border-radius: 20px;
+      border: none;
+      text-align: center;
+      color: #4F4A42;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+   }
+   /* estilos nueva publicación */   
+   .new-publication {
+      display: flex;
+      flex-direction: column;
+      margin: 0 18px;
+      position: relative;
+   }
+   .new-publication-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 42px;
+      gap: 50px;
+      margin: 22px 0 33px;
+   }
+   .new-publication-header h1 {
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 31px;
+      padding: 11px 0 0;
+   }
+   .form__new-publication, .form__edit-publication {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+   }
+   .form__new-publication, .form__edit-publication p {
+      text-align: left;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+   }
+   .question__options-group {
+      display: flex;
+      flex-direction: column;
+   }
+   .question__upload-group{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   .options-group {
+      display: flex;
+      gap: 18px;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 24px;
+      color: #6C757D;
+   }
+   .option__upload-file {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 119px;
+      height: 33px;
+      background: #C2F8CB;
+      border-radius: 20px;
+
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      text-align: center;
+      color: #4F4A42;
+   }
+   .option__upload-file input{
+      display: none;
+   }
+   .question4__petname, .question5__petAge{
+      width: 281px;
+      height: 33px;
+      background: #F7F7F8;
+      border-radius: 12px;
+      border:none;
+      padding: 6px 0 6px 12px;
+      outline: none;
+
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      color: #6C757D;
+   }
+   .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
+      color: #ADB5BD;
+   }
+   .question6__description{
+      width: 339px;
+      height: 114px;
+      background: #F7F7F8;
+      border-radius: 12px;
+      border:none;
+      outline: none;
+
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      color: #6C757D;
+      padding:15px 0 0 15px;
+   }
+   .create-publication, .edit-publication{
+      width: 354px;
+      height: 55px;   
+      background: #C2F8CB;
+      border-radius: 20px;
+      border: none;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 25px;
+      margin: 22px 0 44px;
+      color: #4F4A42;
+   }
+}

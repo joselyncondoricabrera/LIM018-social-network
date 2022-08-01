@@ -7,9 +7,10 @@ import {
 function signIn() {
   const login = `
   <img class="background" src="./imgs//mobile-logIn.png"/>
+  <img class="background-desktop" src="./imgs/banner-desktop.png"/>
   <main class="main-form">
     <h1>Iniciar sesión</h1>
-    <p>Bienvenidx, gracias por visitarnos nuevamente.</p>
+    <p>Bienvenid@, gracias por visitarnos nuevamente.</p>
     <form class="form" >
       <div class="form-input">
         <img src="./imgs/email.png" />
@@ -34,7 +35,9 @@ function signIn() {
     </div>
   </main>
   `;
-  const element = document.querySelector('body');
+
+  const element = document.createElement('section');
+  element.classList.add('section-login');
   element.innerHTML = login;
 
   const logIn = (mail, password) => {

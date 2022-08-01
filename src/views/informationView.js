@@ -39,9 +39,11 @@ function informationView() {
         </div>
     </footer>
     `;
-
-  const element = document.querySelector('body');
+  
+  const element = document.createElement('section');
+  element.classList.add('section-information');
   element.innerHTML = information;
+
   const backHomeButton = element.querySelector('.button-back');
 
   const trashPublicationButton = element.querySelector('.button-trash');

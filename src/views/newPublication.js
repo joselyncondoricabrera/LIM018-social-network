@@ -90,7 +90,8 @@ function newPublication() {
     </footer>
     `;
 
-  const element = document.querySelector('body');
+  const element = document.createElement('section');
+  element.classList.add('section-new');
   element.innerHTML = publication;
 
   const backHomeButton = element.querySelector('.button-back');

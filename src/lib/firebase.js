@@ -98,7 +98,7 @@ const getUserData = async (uid) => {
   }
 };
 
-// crear publicación
+/* // crear publicación
 const createPublication = async (type, sex, img, name, age, description) => {
   try {
     const user = auth.currentUser.uid;
@@ -115,7 +115,7 @@ const createPublication = async (type, sex, img, name, age, description) => {
     return e;
     // console.log(e);
   }
-};
+}; */
 
 // subir y descargar imagen
 const uploadImg = async (img) => {
@@ -206,17 +206,19 @@ export {
   emailVerification,
   saveUser,
   getUserData,
-  createPublication,
   uploadImg,
   clickPublication,
   updatePublication,
   publicationsOfCurrentUser,
   publicationByTypePet,
-  deletePublication
+  deletePublication,
+  // createPublication,
 };
 
 export {
   db,
   getDocs,
+  collection,
   collectionGroup,
+  addDoc,
 }

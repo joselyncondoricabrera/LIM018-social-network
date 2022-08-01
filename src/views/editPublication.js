@@ -94,7 +94,8 @@ function editPublication() {
     </footer>
     `;
 
-  const element = document.querySelector('body');
+  const element = document.createElement('section');
+  element.classList.add('section-edit')
   element.innerHTML = edit;
 
   const question1 = document.querySelectorAll('input[name="question1__options"]');
