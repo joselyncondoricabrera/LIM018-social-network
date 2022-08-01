@@ -20,21 +20,21 @@ function editPublication() {
             <div>
                 <p>Selecciona el tipo de tu mascota</p>
                 <div class="options-group">
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question1__options" value="perro"/>
                         <label>Perro</label>
                     </div>
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question1__options" value="gato"/>
                         <label>Gato</label>
                     </div>
 
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question1__options" value="roedor"/>
                         <label>Roedor</label>
                     </div>
 
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question1__options" value="ave"/>
                         <label>Ave</label>
                     </div>
@@ -44,11 +44,11 @@ function editPublication() {
             <diV>
                 <p class="question">Selecciona el sexo de tu mascota</p>
                 <div class="options-group">
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question2__options" value="hembra"/>
                         <label>Hembra</label>
                     </div>
-                    <div>
+                    <div class="options">
                         <input class="radioButton" type="radio" name="question2__options" value="macho"/>
                         <label>Macho</label>
                     </div>
