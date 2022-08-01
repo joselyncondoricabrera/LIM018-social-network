@@ -6,20 +6,24 @@ import {
 
 function signIn() {
   const login = `
+<<<<<<< HEAD
   <img class="background" src="./imgs//mobile-logIn.png"/>
   <img class="background-desktop" src="./imgs/banner-desktop.png"/>
+=======
+  <img class="background" src="./imgs/mobile-logIn.png"/>
+>>>>>>> 0d9b90237b78c9546acc71dc91bd4c142784783c
   <main class="main-form">
     <h1>Iniciar sesión</h1>
     <p>Bienvenid@, gracias por visitarnos nuevamente.</p>
     <form class="form" >
       <div class="form-input">
-        <img src="./imgs/email.png" />
+        <img class="icon" src="./imgs/email.png" />
         <input class="email login-email" type="text" placeholder="email" required>
       </div>
       <span class="form-alert correct-mail">El email es válido</span>
       <span class="form-alert incorrect-mail">El email no es válido</span>
       <div class="form-input">
-        <img src="./imgs/key.png" />
+        <img class="icon" src="./imgs/key.png" />
         <input class="password login-password" type="password" placeholder="contraseña" required>
       </div>
       <span class="form-alert correct-password">La contraseña es válida</span>
