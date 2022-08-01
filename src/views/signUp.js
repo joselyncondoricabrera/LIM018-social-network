@@ -10,21 +10,21 @@ function signUp() {
         <p>Por favor llene los datos antes de continuar.</p>
         <form class="form">
             <div class="form-input" >
-                <img src="./imgs/user.png"/>
+                <img class="icon" src="./imgs/user.png"/>
                 <input class="username" name="username" type="text" placeholder="nombre de usuario" required>
             </div>
             <span class="form-alert correct-username">El nombre de usurio es válido</span>
             <span class="form-alert incorrect-username ">El nombre de usurio no es válido</span>
 
             <div class="form-input">
-                <img src="./imgs/email.png"/>
+                <img class="icon" src="./imgs/email.png"/>
                 <input class="email" type="email" placeholder="email" required>
             </div>
             <span class="form-alert correct-mail">El email es válido</span>
             <span class="form-alert incorrect-mail">El email no es válido</span>
 
             <div class="form-input">
-                <img src="./imgs/key.png"/>
+                <img class="icon" src="./imgs/key.png"/>
                 <input class="password" name="password" type="password" placeholder="contraseña" required>
             </div>
             <span class="form-alert correct-password">La contraseña es válida</span>
