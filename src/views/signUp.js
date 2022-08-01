@@ -5,6 +5,7 @@ import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
 function signUp() {
   const signup = `
     <img class="background" src="./imgs/mobile-createA.png" />
+    <img class="backgroundTablet" src="./imgs/tablet-createA.png"/>
     <main class="main-form">
         <h1>Crear cuenta</h1>
         <p>Por favor llene los datos antes de continuar.</p>

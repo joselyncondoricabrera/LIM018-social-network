@@ -11,9 +11,9 @@ body {
       position: absolute;
       top: 0;
    }
-  /* body{
-      background-image: url('../imgs/mobile-logIn.png');
-   }*/
+   .backgroundTablet{
+      display: none;
+   }
    .main-form {
       display: flex;
       flex-direction: column;
@@ -506,20 +506,21 @@ body {
 /*Estilos para tablet*/
 @media (min-device-width:391px)
 and (max-device-width: 834px){
- /*  body{
-      background-image: url('../imgs/tablet-login.png');
-   }*/
    .background {
-      position: absolute;
-      top: 0;
       display: none;
+   }
+   .backgroundTablet{
+      top: 0;
+      position: absolute;
+      display: block;
    }
    .main-form{
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 122px 54px ;   
+      margin: 122px 54px ;
+      position: absolute;   
    }
    .main-form h1{
       width: 726px;
@@ -542,7 +543,7 @@ and (max-device-width: 834px){
       color: #343A40;
    }
    .form{
-      margin: 43px 0;
+      margin: 43px 0 200px;
       display: flex;
       flex-direction: column;
       gap: 70px;
@@ -594,7 +595,7 @@ and (max-device-width: 834px){
       margin: -50px 0 -50px 0;
    }
    .form-button{
-      margin: 84px 0 0 0; /*a prueba margen*/
+      margin: 84px 0 0 0;
       width: 726px;
       height: 77px;
       background: #F5B2E8;
@@ -612,6 +613,9 @@ and (max-device-width: 834px){
       letter-spacing: 0.641244px;
       color: #FFFFFF;
    }
+   .create-account{
+      margin: 0;
+   }
    .form-link{
       margin-top: -37px;
       text-align: end;
@@ -623,6 +627,40 @@ and (max-device-width: 834px){
       line-height: 29px;
       color: #343A40;
    }
+   .container-authentication{
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;     
+      align-items: center;
+      font-family: 'SF Pro Rounded';
+      color: #343A40;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 29px;
+   }
+   .container-authentication p{
+      margin-top: 0;
+      text-align: center;
+   }
+   .button-authentication{
+      background-color: white;
+      width: 44px;
+      height: 44px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .button-authentication img{
+      width: 44px;
+      height: 44px;
+
+   };
+
+
+
    /*css crear home*/
    .home, .infornation-view {
       margin: 0 54px;
@@ -720,6 +758,7 @@ and (max-device-width: 834px){
    .publication-card {
       display: flex;
       flex-direction: column-reverse;
+      justify-content: space-between;
    }
    .publication-card img {
       width: 220px;
@@ -755,6 +794,7 @@ and (max-device-width: 834px){
       justify-content: center;
       background: #FCF6BD;
       bottom: 0;
+      border-color: yellow;
    }
    .container__footer-info{
       display: flex;

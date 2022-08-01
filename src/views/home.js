@@ -38,6 +38,8 @@ function Home() {
     </footer>
     `;
 
+    
+
   const element = document.querySelector('body');
   element.innerHTML = home;
 
