@@ -1,6 +1,7 @@
 /* eslint-disable no-alert, no-unused-vars */
 import { selectedOption, resetForm } from '../lib/index.js';
-import { uploadImg, createPublication } from '../lib/firebase.js';
+import { createPublication } from '../lib/firebase_utils.js';
+import { uploadImg } from '../lib/firebase.js';
 
 function newPublication() {
   const publication = `
