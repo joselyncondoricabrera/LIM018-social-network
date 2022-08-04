@@ -12,27 +12,28 @@ const validateInput = (input, type, campo, document) => {
     document.querySelector(`.incorrect-${campo}`).style.display = 'none';
     document.querySelector(`.correct-${campo}`).style.display = 'flex';
     return input;
+  } else {
+    document.querySelector(`.incorrect-${campo}`).style.display = 'flex';
+    document.querySelector(`.correct-${campo}`).style.display = 'none';
+    return false;
   }
-  document.querySelector(`.incorrect-${campo}`).style.display = 'flex';
-  document.querySelector(`.correct-${campo}`).style.display = 'none';
-  return false;
 };
 
 const resetForm = (classname, element) => {
   element.querySelector(`.${classname}`).reset();
   const span = element.querySelectorAll('.form-alert');
-  span.forEach((e) => {
-    e.innerHTML = '';
+  return span.forEach((e) => {
+   return e.innerHTML = '';
   });
 };
 
 const selectedOption = (arr) => {
   for (const option of arr) {
     if (option.checked) {
-      /* eslint-enable */
       return option.value;
     }
   }
+  return 'error';
 };
 
 export { validateInput, resetForm, selectedOption };

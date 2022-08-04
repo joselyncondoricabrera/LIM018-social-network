@@ -97,8 +97,8 @@ const getUserData = async (uid) => {
     // console.log(e);
   }
 };
-
-/* // crear publicación
+/* 
+// crear publicación
 const createPublication = async (type, sex, img, name, age, description) => {
   try {
     const user = auth.currentUser.uid;
@@ -174,7 +174,7 @@ const publicationByTypePet = async (type) => {
 
 };
 
-const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+/* const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
     const publication = doc(db, 'users', user, 'publications', pub);
     return await updateDoc(publication, {
@@ -189,7 +189,7 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
     return e;
     // console.log(e);
   }
-};
+}; */
 
 const deletePublication = async (userUid, idPublication) => {
   try {
@@ -208,11 +208,10 @@ export {
   getUserData,
   uploadImg,
   clickPublication,
-  updatePublication,
+  // updatePublication,
   publicationsOfCurrentUser,
   publicationByTypePet,
   deletePublication,
-  // createPublication,
 };
 
 export {
@@ -221,4 +220,7 @@ export {
   collection,
   collectionGroup,
   addDoc,
+  auth,
+  updateDoc,
+  doc,
 }

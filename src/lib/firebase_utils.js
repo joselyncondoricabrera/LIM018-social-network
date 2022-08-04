@@ -1,23 +1,23 @@
 import { 
   db,
   getDocs,
-  collection,
   collectionGroup,
-  addDoc, } from './firebase.js'
+  auth,
+  collection,
+  addDoc,
+  doc, 
+  updateDoc,
+} from './firebase.js'
 
 // listar publicaciones
 const showPublications = async () => {
-    try {
-      const publications = collectionGroup(db, 'publications');
-      return await getDocs(publications);
-    } catch (error) {
-      return error; 
-    }
+    const publications = collectionGroup(db, 'publications');
+    return await getDocs(publications);
 };
 
-const createPublication = async (type, sex, img, name, age, description) => {
+// crear publicaciones
+const createPublication = async (user, type, sex, img, name, age, description) => {
   try {
-    const user = auth.currentUser.uid;
     const pubCollection = collection(db, 'users', user, 'publications');
     return await addDoc(pubCollection, {
       petType: type,
@@ -27,13 +27,32 @@ const createPublication = async (type, sex, img, name, age, description) => {
       petAge: age,
       petDescription: description,
     });
-  } catch (e) {
-    console.log(e);
-    return e;
+  } catch (error) {
+    return error;
   }
 };
+
+/* // actualizar publicaciones
+const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+  try {
+    const publication = doc(db, 'users', user, 'publications', pub);
+    return await updateDoc(publication, {
+      petType: type,
+      petSex: sex,
+      petImg: img,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+    });
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
+}; */
 
 export {
     showPublications,
     createPublication,
+    /* updatePublication,
+    addDoc, */
 }

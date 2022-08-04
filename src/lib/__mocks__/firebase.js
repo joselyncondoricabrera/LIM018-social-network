@@ -1,54 +1,88 @@
-/* eslint-disable no-unused-vars, no-console, no-trailing-spaces, prefer-promise-reject-errors */
-
-export const auth = jest.fn();
-
-// mokeamos createUserWithEmailAndPassword que es una promesa resuelta
-export const createUser = jest.fn();
-
-export const user = jest.fn();
-
+// funciones mock para la función showPublications
 export const db = jest.fn();
 
 export const collectionGroup = jest.fn((_db_, _collection_) => _collection_);
 
 export const getDocs = jest.fn((collectionGroup) => Promise.resolve({
   [collectionGroup]: {
-    pub: {}
+    docs: [
+      {}
+    ],
   }
 }));
 
-export const collection = jest.fn((_db_, _collection_, _user_, _subCollection_) => _subCollection_ );
 
-export const addDoc = (name, age, description) => jest.fn((collection) => Promise.resolve({
-  [collection]: {
+
+
+
+
+
+
+
+
+
+
+
+
+
+// funciones mock para la función createPublication
+/* export const auth = jest.fn({
+  currentUser: {
+    uid: '001'
+  }
+});
+console.log(auth) */
+
+// la notación _variable_ significa que en realidad no lo va tomar 
+export const collection = jest.fn((_db_, _collection_, _user_, publications) => publications );
+
+export const addDoc = jest.fn((collection, type, sex, img, name, age, description) => new Promise(function(resolve, reject) {
+  if(!type || !sex || !img || !name || !age || !description) {
+    reject(new Error('fail'));
+  }
+  resolve({
+    [collection]: {
+      petType: type,
+      petSex: sex,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+      petImg: img,
+    }
+  });
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// funciones mock para la función updatePublication
+
+export const doc = jest.fn((_db_, _users_, _user_, _publications_, pub) => pub);
+
+export const updateDoc = (type, sex, img, name, age, description) => jest.fn((doc) => Promise.resolve({
+  [doc]: {
+    petType: type,
+    petSex: sex,
     petName: name,
     petAge: age,
     petDescription: description,
+    petImg: img,
   }
 }));
-
-export const uploadImg = (img) => jest.fn()
-
-/* const uploadImg = async (img) => {
-  const imgRef = ref(storage, img.name);
-  const metadata = {
-    contentType: img.type,
-  };
+/* const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
-    const uploadTask = await uploadBytes(imgRef, img, metadata);
-    // console.log(await getDownloadURL(uploadTask.ref));
-    return await getDownloadURL(uploadTask.ref);
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
-
-/* const createPublication = async (type, sex, img, name, age, description) => {
-  try {
-    const user = auth.currentUser.uid;
-    const pubCollection = collection(db, 'users', user, 'publications');
-    return await addDoc(pubCollection, {
+    const publication = doc(db, 'users', user, 'publications', pub);
+    return await updateDoc(publication, {
       petType: type,
       petSex: sex,
       petImg: img,
@@ -57,13 +91,7 @@ export const uploadImg = (img) => jest.fn()
       petDescription: description,
     });
   } catch (e) {
-    console.log(e);
     return e;
+    // console.log(e);
   }
 }; */
-
-export const signInAuth = () => Promise.resolve({
-  user: {
-    emailVerified:  true,
-  }
-})

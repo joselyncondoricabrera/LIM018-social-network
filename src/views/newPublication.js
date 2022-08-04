@@ -1,7 +1,7 @@
 /* eslint-disable no-alert, no-unused-vars */
 import { selectedOption, resetForm } from '../lib/index.js';
 import { createPublication } from '../lib/firebase_utils.js';
-import { uploadImg } from '../lib/firebase.js';
+import { uploadImg, userSatate } from '../lib/firebase.js';
 
 function newPublication() {
   const publication = `
@@ -102,17 +102,23 @@ function newPublication() {
   const question2 = document.querySelectorAll('input[name="question2__options"]');
 
   const newPub = (type, sex, img, name, age, description) => {
-    uploadImg(img)
-      .then((url) => {
-        createPublication(type, sex, url, name, age, description);
-        alert('La publicaión se ha creado con exito');
-        resetForm('form__new-publication', element);
-      })
-      .catch((error) => {
-        alert('Ha ocurrido un error, intenta registrarte más tarde');
-        resetForm('form__new-publication', element);
-        // console.log(error.code, error.message)
-      });
+    userSatate((user)=> {
+        console.log(user)
+        if(user){
+            uploadImg(img)
+            .then((url) => {
+              createPublication(user.uid, type, sex, url, name, age, description)
+              .then(() => console.log(p))
+              alert('La publicaión se ha creado con exito');
+              resetForm('form__new-publication', element);
+            })
+            .catch((error) => {
+              alert('Ha ocurrido un error, intenta registrarte más tarde');
+              console.log(error.code)
+              return resetForm('form__new-publication', element);;
+            });
+        }
+    })
   };
 
   const publicationData = () => {
