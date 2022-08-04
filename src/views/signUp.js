@@ -1,10 +1,9 @@
-/* eslint-disable no-alert, no-unused-vars */
 import { validateInput, resetForm } from '../lib/index.js';
 import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
 
 function signUp() {
   const signup = `
-    <img class="background" src="./imgs/mobile-createA.png" />
+    
     <img class="backgroundTablet" src="./imgs/tablet-createA.png"/>
     <main class="main-form">
         <h1>Crear cuenta</h1>
@@ -37,13 +36,15 @@ function signUp() {
     </main>
     `;
 
-  const element = document.querySelector('body');
+  const element = document.createElement('section');
+  element.classList.add('section-signup');
   element.innerHTML = signup;
 
   const sendVerifactionEmail = () => {
     emailVerification()
-      .then((email) => { alert('Se ha enviado un email de verificación a tu correo'); })
-      .catch((error) => { alert('Ha ocurrido un error, intentelo más tarde'); /* console.log(error); */ });
+      .then((email) => { alert('Se ha enviado un email de verificación al correo '+ email); })
+      .catch((error) => { alert('Ha ocurrido un error, intentelo más tarde'); 
+      console.log(error);});
   };
 
   // función para crear usuario

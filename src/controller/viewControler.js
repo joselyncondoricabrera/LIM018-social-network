@@ -1,13 +1,29 @@
 import { components } from '../views/components.js';
+
+  const doc = document.querySelector('body');
 // aquí recibimos la ruta
 export default function changeView(route) {
   switch (route) {
-    case '': { return components.login(); }
-    case '#/signup': { return components.signup(); }
-    case '#/home': { return components.home(); }
-    case '#/newPublication': { return components.publication(); }
-    case '#/information': { return components.information(); }
-    case '#/edit': { return components.edit(); }
-    default: { return components.login(); }
+    case '': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.login()); }
+    case '#/signup': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.signup()); }
+    case '#/home': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.home()); }
+    case '#/newPublication': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.publication()); }
+    case '#/information': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.information()); }
+    case '#/edit': { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.edit()); }
+    default: { 
+      doc.innerHTML = '';
+      return doc.appendChild(components.login()); }
   }
 }

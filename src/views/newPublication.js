@@ -1,6 +1,7 @@
 /* eslint-disable no-alert, no-unused-vars */
 import { selectedOption, resetForm } from '../lib/index.js';
-import { uploadImg, createPublication } from '../lib/firebase.js';
+import { createPublication } from '../lib/firebase_utils.js';
+import { uploadImg } from '../lib/firebase.js';
 
 function newPublication() {
   const publication = `
@@ -90,21 +91,23 @@ function newPublication() {
     </footer>
     `;
 
-  const element = document.querySelector('body');
+  const element = document.createElement('section');
+  element.classList.add('section-new');
   element.innerHTML = publication;
 
   const backHomeButton = element.querySelector('.button-back');
   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
 
-  const question1 = document.querySelectorAll('input[name="question1__options"]');
-  const question2 = document.querySelectorAll('input[name="question2__options"]');
+  const question1 = element.querySelectorAll('input[name="question1__options"]');
+  const question2 = element.querySelectorAll('input[name="question2__options"]');
 
   const newPub = (type, sex, img, name, age, description) => {
     uploadImg(img)
       .then((url) => {
         createPublication(type, sex, url, name, age, description);
-        alert('La publicaión se ha creado con exito');
+        alert('La publicación se ha creado con exito');
         resetForm('form__new-publication', element);
+        window.location.hash = '#/home';
       })
       .catch((error) => {
         alert('Ha ocurrido un error, intenta registrarte más tarde');
