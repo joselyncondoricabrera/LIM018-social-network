@@ -11,30 +11,9 @@ export const getDocs = jest.fn((collectionGroup) => Promise.resolve({
   }
 }));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // funciones mock para la función createPublication
-/* export const auth = jest.fn({
-  currentUser: {
-    uid: '001'
-  }
-});
-console.log(auth) */
-
 // la notación _variable_ significa que en realidad no lo va tomar 
-export const collection = jest.fn((_db_, _collection_, _user_, publications) => publications );
+export const collection = jest.fn((_db_, _users_, _user_, _publications_) => _publications_);
 
 export const addDoc = jest.fn((collection, type, sex, img, name, age, description) => new Promise(function(resolve, reject) {
   if(!type || !sex || !img || !name || !age || !description) {
@@ -42,6 +21,29 @@ export const addDoc = jest.fn((collection, type, sex, img, name, age, descriptio
   }
   resolve({
     [collection]: {
+      publication: {
+        petType: type,
+        petSex: sex,
+        petName: name,
+        petAge: age,
+        petDescription: description,
+        petImg: img,
+      }
+    }
+  });
+}));
+
+
+// funciones mock para la función updatePublication
+
+export const doc = jest.fn((_db_, _users_, _user_, _publications_, _publication_) =>  _publication_);
+
+export const updateDoc = jest.fn((doc, type, sex, name, age, description, img) => new Promise(function(resolve, reject) {
+  if(!doc) {
+    reject(new Error('fail'));
+  }
+  resolve({
+    [doc]: {
       petType: type,
       petSex: sex,
       petName: name,
@@ -49,49 +51,5 @@ export const addDoc = jest.fn((collection, type, sex, img, name, age, descriptio
       petDescription: description,
       petImg: img,
     }
-  });
+  })
 }));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// funciones mock para la función updatePublication
-
-export const doc = jest.fn((_db_, _users_, _user_, _publications_, pub) => pub);
-
-export const updateDoc = (type, sex, img, name, age, description) => jest.fn((doc) => Promise.resolve({
-  [doc]: {
-    petType: type,
-    petSex: sex,
-    petName: name,
-    petAge: age,
-    petDescription: description,
-    petImg: img,
-  }
-}));
-/* const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
-  try {
-    const publication = doc(db, 'users', user, 'publications', pub);
-    return await updateDoc(publication, {
-      petType: type,
-      petSex: sex,
-      petImg: img,
-      petName: name,
-      petAge: age,
-      petDescription: description,
-    });
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */

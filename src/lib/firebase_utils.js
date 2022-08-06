@@ -2,7 +2,6 @@ import {
   db,
   getDocs,
   collectionGroup,
-  auth,
   collection,
   addDoc,
   doc, 
@@ -32,27 +31,21 @@ const createPublication = async (user, type, sex, img, name, age, description) =
   }
 };
 
-/* // actualizar publicaciones
+// actualizar publicaciones
 const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
-  try {
-    const publication = doc(db, 'users', user, 'publications', pub);
-    return await updateDoc(publication, {
-      petType: type,
-      petSex: sex,
-      petImg: img,
-      petName: name,
-      petAge: age,
-      petDescription: description,
-    });
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
+  const publication = doc(db, 'users', user, 'publications', pub);
+  return await updateDoc(publication, {
+    petType: type,
+    petSex: sex,
+    petImg: img,
+    petName: name,
+    petAge: age,
+    petDescription: description,
+  });
+};
 
 export {
     showPublications,
     createPublication,
-    /* updatePublication,
-    addDoc, */
+    updatePublication,
 }

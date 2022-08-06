@@ -107,8 +107,7 @@ function newPublication() {
         if(user){
             uploadImg(img)
             .then((url) => {
-              createPublication(user.uid, type, sex, url, name, age, description)
-              .then(() => console.log(p))
+              createPublication(user.uid, type, sex, url, name, age, description);
               alert('La publicaión se ha creado con exito');
               resetForm('form__new-publication', element);
             })

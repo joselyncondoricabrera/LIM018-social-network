@@ -220,7 +220,6 @@ export {
   collection,
   collectionGroup,
   addDoc,
-  auth,
   updateDoc,
   doc,
 }
