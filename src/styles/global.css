@@ -1,19 +1,20 @@
-/* estilos para mobile */
-
 body {
-   margin: 0;
-   padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-@media (max-width: 390px) {
+/*@media (max-width: 390px) {*/
    /*CSS DE iniciar sesión*/
-   .background {
+  /*  .background {
       position: absolute;
       top: 0;
    }
-  /* body{
-      background-image: url('../imgs/mobile-logIn.png');
-   }*/
+   .backgroundTablet{
+      display: none;
+   }
+   .background-desktop{
+      display: none;
+   }
    .main-form {
       display: flex;
       flex-direction: column;
@@ -228,9 +229,9 @@ body {
       align-items: center;
       background: #FCF6BD;
       bottom: 0;
-      /* position: absolute; */
-   }
-   .container__footer-info{
+      /* position: absolute; 
+   }*/
+/*  .container__footer-info{
       display: flex;
       align-items: center;
       margin: 16px 18px;
@@ -502,16 +503,24 @@ body {
       color: #4F4A42;
    }
    
-}
+}*/
+
 /*Estilos para tablet*/
 /* @media (min-device-width:391px)
 and (max-device-width: 834px){
+
  /*  body{
       background-image: url('../imgs/tablet-login.png');
    }
    .background {
-      position: absolute;
+      display: none;
+   }
+   .backgroundTablet{
       top: 0;
+      position: absolute;
+      display: block;
+   }
+   .background-desktop{
       display: none;
    }
    .main-form{
@@ -519,7 +528,8 @@ and (max-device-width: 834px){
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 122px 54px ;   
+      margin: 122px 54px ;
+      position: absolute;   
    }
    .main-form h1{
       width: 726px;
@@ -542,7 +552,7 @@ and (max-device-width: 834px){
       color: #343A40;
    }
    .form{
-      margin: 43px 0;
+      margin: 43px 0 200px;
       display: flex;
       flex-direction: column;
       gap: 70px;
@@ -559,7 +569,6 @@ and (max-device-width: 834px){
       width: 33px;
       height: 33px;
    }
-
    .form-input input{
       border: none;
       background:transparent;
@@ -593,7 +602,7 @@ and (max-device-width: 834px){
       margin: -50px 0 -50px 0;
    }
    .form-button{
-      margin: 84px 0 0 0; 
+      margin: 84px 0 0 0;
       width: 726px;
       height: 77px;
       background: #F5B2E8;
@@ -611,6 +620,9 @@ and (max-device-width: 834px){
       letter-spacing: 0.641244px;
       color: #FFFFFF;
    }
+   .create-account{
+      margin: 0;
+   }
    .form-link{
       margin-top: -37px;
       text-align: end;
@@ -622,10 +634,50 @@ and (max-device-width: 834px){
       line-height: 29px;
       color: #343A40;
    }
+
+   /* .container-authentication{
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;     
+      align-items: center;
+      font-family: 'SF Pro Rounded';
+      color: #343A40;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 29px;
+   }
+   .container-authentication p{
+      margin-top: 0;
+      text-align: center;
+   }
+   .button-authentication{
+      background-color: white;
+      width: 44px;
+      height: 44px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .button-authentication img{
+      width: 44px;
+      height: 44px;
+   };
+
+   /*css crear home
+   .section{
+      margin: 0 54px;
+   }*/
+
    .home, .infornation-view {
       margin: 0 54px;
-
    }
+   .logo-desktop{
+      display: none;
+   }
+   
    .home-header{
       display: flex;
       align-items: center;
@@ -633,8 +685,7 @@ and (max-device-width: 834px){
       margin: 33px 0 41px;
    }
    .imageLogo{
-      width: 44.19px;
-      height: 58px;
+    display: none;
    }
    .header__username{
       font-family: 'SF Pro Rounded';
@@ -653,9 +704,14 @@ and (max-device-width: 834px){
       border-radius: 13.6364px;
       border: none;
    }
+   .header__add-button p{
+      display: none;
+   }
+   .imageBackButton{
+      display:none;
+   }
    .imageAddButton{
-      Width:28.41px;
-      Height:28.41px;
+     display: none;
    }
    .home__subtitle{
       font-family: 'SF Pro Rounded';
@@ -718,6 +774,7 @@ and (max-device-width: 834px){
    .publication-card {
       display: flex;
       flex-direction: column-reverse;
+      justify-content: space-between;
    }
    .publication-card img {
       width: 220px;
@@ -753,6 +810,7 @@ and (max-device-width: 834px){
       justify-content: center;
       background: #FCF6BD;
       bottom: 0;
+      border-color: yellow;
    }
    .container__footer-info{
       display: flex;
@@ -821,6 +879,74 @@ and (max-device-width: 834px){
       border-radius: 10px;
       border:none;
       outline: none;
+   }
+   .imageTrashButton{
+      display: none;
+   }
+   .imageEditButton{
+      display: none;
+   }
+   .container__modal-delete{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(20px);
+      position: fixed;
+ /*     pointer-events:none;*/
+      top:0;
+      height: 100vh;
+      width: 100vw;
+   }
+   .content__modal-delete{
+      width: 420px;
+      height: 79px;
+      background: rgba(30, 30, 30, 0.75);
+      border-radius: 15px 15px 0px 0px;
+   /*   pointer-events:auto;*/
+   }
+   .title_modal-delete{
+      margin: 12px 0 11px;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 22px;
+      text-align: center;
+      letter-spacing: -0.408px;
+      color: #FFFFFF;
+   }
+   .subtitle_modal-delete{
+      margin: 0;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+      letter-spacing: -0.408px;
+      color: #FFFFFF;
+   }
+   .button-delete{
+      width: 420px;
+      height: 75px;
+      border:none;
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.408px;      
+      color: #0A84FF;
+      background: rgba(30, 30, 30, 0.75);
+      
+   }
+   .cancel{
+      border-radius: 0px 0px 15px 15px;
+    /*  pointer-events:auto;*/
    }
    .publication-information img{
       width: 428px;
@@ -1026,10 +1152,4 @@ and (max-device-width: 834px){
       color: #4F4A42;
 
    }
-
-
-   
-
 }
-
- */

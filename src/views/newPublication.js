@@ -98,8 +98,8 @@ function newPublication() {
   const backHomeButton = element.querySelector('.button-back');
   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
 
-  const question1 = document.querySelectorAll('input[name="question1__options"]');
-  const question2 = document.querySelectorAll('input[name="question2__options"]');
+  const question1 = element.querySelectorAll('input[name="question1__options"]');
+  const question2 = element.querySelectorAll('input[name="question2__options"]');
 
   const newPub = (type, sex, img, name, age, description) => {
     userSatate((user)=> {

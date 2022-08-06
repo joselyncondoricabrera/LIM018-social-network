@@ -216,10 +216,12 @@ export {
 
 export {
   db,
+  doc,
   getDocs,
   collection,
   collectionGroup,
   addDoc,
+  deleteDoc,
   auth,
   updateDoc,
   doc,

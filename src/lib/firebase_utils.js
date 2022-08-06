@@ -2,10 +2,10 @@ import {
   db,
   getDocs,
   collectionGroup,
-  auth,
+  deleteDoc,
   collection,
   addDoc,
-  doc, 
+  doc,
   updateDoc,
 } from './firebase.js'
 
@@ -50,9 +50,18 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
   }
 }; */
 
+
+const deletePublication = async (userUid, idPublication) => {
+  try {
+    // hace referencia a un documento
+    const pubRef = doc(db, 'users', userUid, 'publications', idPublication)
+    await deleteDoc(pubRef);
+  } catch (e) { console.log(e); }
+};
+
 export {
     showPublications,
     createPublication,
-    /* updatePublication,
-    addDoc, */
+    deletePublication,
+    updatePublication,
 }
