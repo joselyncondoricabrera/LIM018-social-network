@@ -6,10 +6,8 @@ import {
 
 function signIn() {
   const login = `
-
-  
   <img class="backgroundTablet" src="./imgs/tablet-login.png"/>
-
+  <img class="background" src="./imgs/mobile-logIn.png"/>
   <main class="main-form">
     <h1>Iniciar sesión</h1>
     <p>Bienvenid@, gracias por visitarnos nuevamente.</p>

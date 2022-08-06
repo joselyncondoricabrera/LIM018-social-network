@@ -75,7 +75,7 @@ function informationView() {
     buttonCancel.addEventListener('click', ()=>{
       containerModal.style.display = 'none';
     });
-
+    
     buttonDelete.addEventListener('click',()=>{
       userSatate((user) => {
         if (user) {

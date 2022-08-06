@@ -55,7 +55,9 @@ function Home() {
   const listPublications = () => {
     showPublications()
       .then((publications) => {
+        console.log(publications)
         publications.forEach((pub) => {
+          console.log(pub)
           return allPub.innerHTML += `
                     <div class="card publication-card">
                     <img class="card-img" src=${pub.data().petImg}/>
