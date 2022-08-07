@@ -6,38 +6,41 @@ import {
 
 function signIn() {
   const login = `
-  <img class="backgroundTablet" src="./imgs/tablet-login.png"/>
-  <img class="background" src="./imgs/mobile-logIn.png"/>
-  <main class="main-form">
-    <h1>Iniciar sesión</h1>
-    <p>Bienvenid@, gracias por visitarnos nuevamente.</p>
-    <form class="form" >
-      <div class="form-input">
-        <img class="icon" src="./imgs/email.png" />
-        <input class="email login-email" type="text" placeholder="email" required>
+   <!-- <img class="backgroundTablet" src="./imgs/tablet-login.png"/>
+    <img class="background" src="./imgs/mobile-logIn.png"/> -->
+    <img class="background" src="./imgs/loginDesktop.png"/>
+    <section class="login-section">
+      <h1>Iniciar sesión</h1>
+      <p>Bienvenid@, gracias por visitarnos nuevamente.</p>
+      <form class="form" >
+        <div class="form-input">
+          <img class="icon" src="./imgs/user.png" />
+          <input class="email login-email" type="text" placeholder="email" required>
+        </div>
+        <span class="form-alert correct-mail">El email es válido</span>
+        <span class="form-alert incorrect-mail">El email no es válido</span>
+        <div class="form-input">
+          <img class="icon" src="./imgs/key2.png" />
+          <input class="password login-password" type="password" placeholder="contraseña" required>
+        </div>
+        <span class="form-alert correct-password">La contraseña es válida</span>
+        <span class="form-alert incorrect-password">La contraseña debe contener al menos 4 caracteres y como máximo 12</span>
+        <div class="form-final-options">
+          <button class="form-button log-in" type="button">Iniciar sesión</button>
+          <a href="#/signup" class="form-link">no tienes cuenta?</a>
+        </div>
+      </form>
+      <div class="container-authentication">
+        <p>o ingresa con</p>
+        <button class="button-authentication">
+          <img src="./imgs/gDL.png" >
+        </button>
       </div>
-      <span class="form-alert correct-mail">El email es válido</span>
-      <span class="form-alert incorrect-mail">El email no es válido</span>
-      <div class="form-input">
-        <img class="icon" src="./imgs/key.png" />
-        <input class="password login-password" type="password" placeholder="contraseña" required>
-      </div>
-      <span class="form-alert correct-password">La contraseña es válida</span>
-      <span class="form-alert incorrect-password">La contraseña debe contener al menos 4 caracteres y como máximo 12</span>
-        <button class="form-button log-in" type="button">Iniciar sesión</button>
-        <a href="#/signup" class="form-link">no tienes cuenta?</a>
-    </form>
-    <div class="container-authentication">
-      <p>o ingresa con</p>
-      <button class="button-authentication">
-        <img src="./imgs/googleLogo.png" >
-      </button>
-    </div>
-  </main>
+    </section>
   `;
 
-  const element = document.createElement('section');
-  element.classList.add('section-login');
+  const element = document.createElement('main');
+  element.classList.add('login-main');
   element.innerHTML = login;
 
   const logIn = (mail, password) => {

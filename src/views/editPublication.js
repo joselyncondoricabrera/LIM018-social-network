@@ -1,13 +1,8 @@
 /* eslint-disable no-alert, no-shadow, no-unused-vars */
 import { selectedOption, resetForm } from '../lib/index.js';
 import { uploadImg } from '../lib/firebase.js';
-import {
-  userSatate,
-  publicationsOfCurrentUser,
-} from '../lib/firebase.js';
-import {
-  updatePublication
-} from '../lib/firebase_utils.js';
+import { userSatate, publicationsOfCurrentUser } from '../lib/firebase.js';
+import { updatePublication } from '../lib/firebase_utils.js';
 
 function editPublication() {
   const edit = `
