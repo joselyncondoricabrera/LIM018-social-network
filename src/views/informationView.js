@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
-import { userSatate, publicationsOfCurrentUser, deletePublication } from '../lib/firebase.js';
+import { userSatate, publicationsOfCurrentUser } from '../lib/firebase.js';
+import { deletePublication } from '../lib/firebase_utils.js';
 
 function informationView() {
   const information = `
@@ -75,7 +76,7 @@ function informationView() {
     buttonCancel.addEventListener('click', ()=>{
       containerModal.style.display = 'none';
     });
-
+    
     buttonDelete.addEventListener('click',()=>{
       userSatate((user) => {
         if (user) {

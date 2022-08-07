@@ -98,25 +98,6 @@ const getUserData = async (uid) => {
   }
 };
 
-/* // crear publicación
-const createPublication = async (type, sex, img, name, age, description) => {
-  try {
-    const user = auth.currentUser.uid;
-    const pubCollection = collection(db, 'users', user, 'publications');
-    return await addDoc(pubCollection, {
-      petType: type,
-      petSex: sex,
-      petImg: img,
-      petName: name,
-      petAge: age,
-      petDescription: description,
-    });
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
-
 // subir y descargar imagen
 const uploadImg = async (img) => {
   const imgRef = ref(storage, img.name);
@@ -132,17 +113,6 @@ const uploadImg = async (img) => {
     // console.log(e);
   }
 };
-
-/* // listar publicaciones
-const showPublications = async () => {
-  try {
-    const publications = collectionGroup(db, 'publications');
-    return await getDocs(publications);
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
 
 // publicaión tocada
 const clickPublication = async (name) => {
@@ -173,8 +143,39 @@ const publicationByTypePet = async (type) => {
   } catch (e){ console.log(e);}
 
 };
+/* 
+// crear publicación
+const createPublication = async (type, sex, img, name, age, description) => {
+  try {
+    const user = auth.currentUser.uid;
+    const pubCollection = collection(db, 'users', user, 'publications');
+    return await addDoc(pubCollection, {
+      petType: type,
+      petSex: sex,
+      petImg: img,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+    });
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
+}; */
 
-const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+
+/* // listar publicaciones
+const showPublications = async () => {
+  try {
+    const publications = collectionGroup(db, 'publications');
+    return await getDocs(publications);
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
+}; */
+
+/* const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
     const publication = doc(db, 'users', user, 'publications', pub);
     return await updateDoc(publication, {
@@ -189,13 +190,15 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
     return e;
     // console.log(e);
   }
-};
+}; */
 
-/*const deletePublication = async (userUid, idPublication) => {
+
+/* const deletePublication = async (userUid, idPublication) => {
   try {
     await deleteDoc(doc(db, 'users', userUid, 'publications', idPublication));
   } catch (e) { console.log(e); }
-};*/
+}; */
+
 
 export {
   userSatate,
@@ -208,11 +211,10 @@ export {
   getUserData,
   uploadImg,
   clickPublication,
-  updatePublication,
+  // updatePublication,
   publicationsOfCurrentUser,
   publicationByTypePet,
-  deletePublication,
-  // createPublication,
+  //deletePublication,
 };
 
 export {
@@ -224,6 +226,7 @@ export {
   collectionGroup,
   addDoc,
   deleteDoc,
-  auth,
-  createUserWithEmailAndPassword,
+
+  updateDoc,
 }
+

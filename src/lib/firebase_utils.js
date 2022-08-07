@@ -1,44 +1,25 @@
 import { 
   db,
-  auth,
-  doc,
   getDocs,
-  collection,
   collectionGroup,
-  addDoc,
   deleteDoc,
-  createUserWithEmailAndPassword,
- } from './firebase.js'
+  collection,
+  addDoc,
 
-  const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
+  doc,
+  updateDoc,
+} from './firebase.js'
 
-  const saveUser = async (uid, username, mail) => {
-    try {
-      // con setDoc establecemos el id de nuestro usuario,
-      // en este caso será el id que genera con auth de createUserWithEmailAndPassword
-      return await setDoc(doc(db, 'users', uid), {
-        username,
-        email: mail,
-      });
-    } catch (e) {
-      return e;
-      // console.log(e);
-    }
-  };
 
 // listar publicaciones
 const showPublications = async () => {
-    try {
-      const publications = collectionGroup(db, 'publications');
-      return await getDocs(publications);
-    } catch (error) {
-      return error; 
-    }
+    const publications = collectionGroup(db, 'publications');
+    return await getDocs(publications);
 };
 
-const createPublication = async (type, sex, img, name, age, description) => {
+// crear publicaciones
+const createPublication = async (user, type, sex, img, name, age, description) => {
   try {
-    const user = auth.currentUser.uid;
     const pubCollection = collection(db, 'users', user, 'publications');
     return await addDoc(pubCollection, {
       petType: type,
@@ -48,9 +29,25 @@ const createPublication = async (type, sex, img, name, age, description) => {
       petAge: age,
       petDescription: description,
     });
-  } catch (e) {
-    console.log(e);
-    return e;
+  } catch (error) {
+    return error;
+  }
+};
+
+// actualizar publicaciones
+const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
+  try {
+    const publication = doc(db, 'users', user, 'publications', pub);
+    return await updateDoc(publication, {
+      petType: type,
+      petSex: sex,
+      petImg: img,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+    });
+  } catch (error) {
+    return error;
   }
 };
 
@@ -60,7 +57,9 @@ const deletePublication = async (userUid, idPublication) => {
     // hace referencia a un documento
     const pubRef = doc(db, 'users', userUid, 'publications', idPublication)
     await deleteDoc(pubRef);
-  } catch (e) { console.log(e); }
+  } catch (error) {
+    return error;
+  }
 };
 
 export {
@@ -68,5 +67,7 @@ export {
     showPublications,
     createPublication,
     deletePublication,
-    saveUser,
+
+    updatePublication,
+
 }
