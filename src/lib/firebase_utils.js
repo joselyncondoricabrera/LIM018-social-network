@@ -2,9 +2,10 @@ import {
   db,
   getDocs,
   collectionGroup,
+  deleteDoc,
   collection,
   addDoc,
-  doc, 
+  doc,
   updateDoc,
 } from './firebase.js'
 
@@ -33,19 +34,35 @@ const createPublication = async (user, type, sex, img, name, age, description) =
 
 // actualizar publicaciones
 const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
-  const publication = doc(db, 'users', user, 'publications', pub);
-  return await updateDoc(publication, {
-    petType: type,
-    petSex: sex,
-    petImg: img,
-    petName: name,
-    petAge: age,
-    petDescription: description,
-  });
+  try {
+    const publication = doc(db, 'users', user, 'publications', pub);
+    return await updateDoc(publication, {
+      petType: type,
+      petSex: sex,
+      petImg: img,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+    });
+  } catch (error) {
+    return error;
+  }
+};
+
+
+const deletePublication = async (userUid, idPublication) => {
+  try {
+    // hace referencia a un documento
+    const pubRef = doc(db, 'users', userUid, 'publications', idPublication)
+    await deleteDoc(pubRef);
+  } catch (error) {
+    return error;
+  }
 };
 
 export {
     showPublications,
     createPublication,
+    deletePublication,
     updatePublication,
 }

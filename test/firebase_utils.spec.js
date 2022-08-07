@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, updateDoc } from '../src/lib/firebase.js';
-import { showPublications, createPublication, updatePublication } from '../src/lib/firebase_utils.js';
+import { showPublications, createPublication, updatePublication, deletePublication } from '../src/lib/firebase_utils.js';
 
 jest.mock('../src/lib/firebase.js');
 
@@ -20,12 +20,11 @@ describe('showPublications', () => {
 
 // test para la función de crear publicaciones
 describe('createPublication', () => {
-  const user = jest.fn();
   it('debería ser una función', async () => {
     await expect(typeof createPublication).toBe('function');
   });
   it('debería devolver un objeto', async () => {
-    await expect(typeof createPublication(user,'perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')).toBe('object');
+    await expect(typeof createPublication('user','perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')).toBe('object');
   });
   it('Debería crear una publicación', () => {
     const result =  {
@@ -40,7 +39,7 @@ describe('createPublication', () => {
         }
       }
     } ;
-    createPublication(user,'perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')
+    createPublication('user','perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')
     .then(async () => {
       const prueba = await addDoc(collection.mock.results[0].value,'perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')
       expect(prueba).toEqual(result)
@@ -73,4 +72,24 @@ describe('updatePublication', () => {
       expect(prueba).toEqual(result)
     })
   });
+  it('Debería fallar al actualizar una publicación', async () => {
+    const result = 'promise failed';
+    expect(await updatePublication()).toEqual(result);
+  });
+});
+
+// test para la función de eliminar publicaciones
+describe('deletePublication', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof deletePublication).toBe('function');
+  });
+  it('Deberia eliminar el documento', async () => {
+    const result = undefined;
+    expect(typeof deletePublication('user01','pub01')).toBe('object');
+    expect(await deletePublication('user01','pub01')).toEqual(result);
+  });
+  it('Deberia fallar al eliminar el documento', async () =>{
+    const result = 'promise failed';
+    expect(await deletePublication()).toEqual(result);
+   });
 });

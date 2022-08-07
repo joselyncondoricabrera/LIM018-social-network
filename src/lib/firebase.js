@@ -97,25 +97,6 @@ const getUserData = async (uid) => {
     // console.log(e);
   }
 };
-/* 
-// crear publicación
-const createPublication = async (type, sex, img, name, age, description) => {
-  try {
-    const user = auth.currentUser.uid;
-    const pubCollection = collection(db, 'users', user, 'publications');
-    return await addDoc(pubCollection, {
-      petType: type,
-      petSex: sex,
-      petImg: img,
-      petName: name,
-      petAge: age,
-      petDescription: description,
-    });
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
 
 // subir y descargar imagen
 const uploadImg = async (img) => {
@@ -132,17 +113,6 @@ const uploadImg = async (img) => {
     // console.log(e);
   }
 };
-
-/* // listar publicaciones
-const showPublications = async () => {
-  try {
-    const publications = collectionGroup(db, 'publications');
-    return await getDocs(publications);
-  } catch (e) {
-    return e;
-    // console.log(e);
-  }
-}; */
 
 // publicaión tocada
 const clickPublication = async (name) => {
@@ -173,6 +143,37 @@ const publicationByTypePet = async (type) => {
   } catch (e){ console.log(e);}
 
 };
+/* 
+// crear publicación
+const createPublication = async (type, sex, img, name, age, description) => {
+  try {
+    const user = auth.currentUser.uid;
+    const pubCollection = collection(db, 'users', user, 'publications');
+    return await addDoc(pubCollection, {
+      petType: type,
+      petSex: sex,
+      petImg: img,
+      petName: name,
+      petAge: age,
+      petDescription: description,
+    });
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
+}; */
+
+
+/* // listar publicaciones
+const showPublications = async () => {
+  try {
+    const publications = collectionGroup(db, 'publications');
+    return await getDocs(publications);
+  } catch (e) {
+    return e;
+    // console.log(e);
+  }
+}; */
 
 /* const updatePublication = async (pub, user, type, sex, img, name, age, description) => {
   try {
@@ -191,11 +192,11 @@ const publicationByTypePet = async (type) => {
   }
 }; */
 
-const deletePublication = async (userUid, idPublication) => {
+/* const deletePublication = async (userUid, idPublication) => {
   try {
     await deleteDoc(doc(db, 'users', userUid, 'publications', idPublication));
   } catch (e) { console.log(e); }
-};
+}; */
 
 export {
   userSatate,
@@ -211,15 +212,17 @@ export {
   // updatePublication,
   publicationsOfCurrentUser,
   publicationByTypePet,
-  deletePublication,
+  //deletePublication,
 };
 
 export {
   db,
+  doc,
   getDocs,
   collection,
   collectionGroup,
   addDoc,
+  deleteDoc,
   updateDoc,
   doc,
 }

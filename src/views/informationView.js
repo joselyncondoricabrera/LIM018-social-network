@@ -1,20 +1,24 @@
 /* eslint-disable no-alert */
-import { userSatate, publicationsOfCurrentUser, deletePublication } from '../lib/firebase.js';
+import { userSatate, publicationsOfCurrentUser } from '../lib/firebase.js';
+import { deletePublication } from '../lib/firebase_utils.js';
 
 function informationView() {
   const information = `
     <main class="infornation-view">
     <div class="information-header">
       <button class="button-back">
-          <img src='./imgs/back.png'>
+          <img class="imageBackButton" src='./imgs/back.png'>
+          <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
       </button>
       <h1 class="pet-name"></h1>
       <div class="buttons-group">
         <button class="button-trash">
-            <img src='./imgs/trash.png'>
+            <img class="imageTrashButton" src='./imgs/trash.png'>
+            <img class="imageTrashButton-tablet" src='./imgs/trash-tablet.png'>
         </button>
         <button class="button-edit">
-            <img src='./imgs/edit.png'>
+            <img class="imageEditButton" src='./imgs/edit.png'>
+            <img class="imageEditButton-tablet" src='./imgs/edit-tablet.png'>
         </button>
       </div>
     </div>
@@ -28,6 +32,15 @@ function informationView() {
            </button>
       </div>
     </main>
+    <div class="container__modal-delete">
+      <div class="content__modal-delete">
+        <p class="title_modal-delete">Borrar publicación</p>
+        <p class="subtitle_modal-delete">Si borras esta publicación no la podras recuperar</p>
+      </div>
+      <button class="button-delete acept" >Borrar</button>
+      <button class="button-delete cancel">Cancelar</button>
+
+    </div>
     <footer>
         <div class="container__footer-info">
             <div class="container__developers-info">
@@ -48,33 +61,46 @@ function informationView() {
 
   const trashPublicationButton = element.querySelector('.button-trash');
 
+  const containerModal  = element.querySelector('.container__modal-delete');
+
+  
+  containerModal.style.display='none';
+
   trashPublicationButton.addEventListener('click', () => {
+    const buttonCancel = element.querySelector('.cancel');
+    const buttonDelete = element.querySelector('.acept');
     // const data = sessionStorage.getItem('petName');
+
     const namePet = element.querySelector('.pet-name').innerHTML;
-    // console.log(data);
-
-    userSatate((user) => {
-      if (user) {
-        publicationsOfCurrentUser(namePet)
-          .then(
-            (pub) => {
-              pub.forEach((publication) => {
-                // console.log(publication.id);
-                deletePublication(user.uid, publication.id)
-                .then((e) => console.log(e) )
-                alert('La publicación se ha eliminado con éxito');
-
-                window.location.hash = '#/home';
-                // window.location.reload();
-              });
-            },
-          )
-          .catch(() => {
-            alert('Ah ocurrido un error!');
-          });
-      } else {
-        alert('el usuario no está en sesión');
-      }
+    containerModal.style.display = 'flex';
+    buttonCancel.addEventListener('click', ()=>{
+      containerModal.style.display = 'none';
+    });
+    
+    buttonDelete.addEventListener('click',()=>{
+      userSatate((user) => {
+        if (user) {
+          publicationsOfCurrentUser(namePet)
+            .then(
+              (pub) => {
+                pub.forEach((publication) => {
+                  // console.log(publication.id);
+                  deletePublication(user.uid, publication.id)
+                  .then(
+                    (e)=>{console.log(e); }
+                  )
+                  .catch();
+                  alert('La publicación se ha eliminado con éxito');
+                  window.location.hash = '#/home';
+                  // window.location.reload();
+                });
+              })
+            .catch(() => {
+              alert('Ah ocurrido un error!');});
+        }else {
+          alert('el usuario no está en sesión');
+        }
+      });
     });
   });
 

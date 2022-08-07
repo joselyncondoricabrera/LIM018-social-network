@@ -8,10 +8,13 @@ function Home() {
         <div class="home-header">
             <img class="imageLogo" src="./imgs/hugme-logo.png"/>
             <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
+            <img class="logo-tablet" src="./imgs/logo-tablet.png"/>
+            
             <p class="header__username">username</p>
             <button class= "header__add-button">
               <p>crear publicación</p>
               <img class="imageAddButton" src="./imgs/add.png">
+              <img class="imageAddButton-tablet" src="./imgs/add-tablet.png">
             </button>
         </div>
         
