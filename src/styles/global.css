@@ -7,16 +7,16 @@ body {
    display: none;
 }
 
-.login-main {
+.login-main, .signup-main {
    display: flex;
 }
 
-.login-section {
+.login-section, .signup-section {
    margin: 15px 150px;
    flex-direction: column;
 }
 
-.login-section h1 {
+.login-section h1 , .signup-section h1 {
    font-family: SF Pro Rounded;
    font-style: normal;
    font-weight: 400;
@@ -24,7 +24,7 @@ body {
    color: #343A40;
 }
 
-.login-section p {
+.login-section p , .signup-section p{
    font-family: SF Pro Rounded;
    font-style: normal;
    font-weight: 400;
