@@ -51,7 +51,7 @@ const storage = getStorage(app);
 /* Funciones auth (para crear cuenta e iniciar sesión) */
 
 // creando Usuario
-const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
+/*const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);*/
 
 // sign in user
 const signInAuth = (mail, password) => signInWithEmailAndPassword(auth, mail, password);
@@ -71,7 +71,7 @@ const userSatate = (state) => onAuthStateChanged(auth, state);
 /* Funciones firestore */
 
 // guardando datos del usuario creado en Firestore
-const saveUser = async (uid, username, mail) => {
+/*const saveUser = async (uid, username, mail) => {
   try {
     // con setDoc establecemos el id de nuestro usuario,
     // en este caso será el id que genera con auth de createUserWithEmailAndPassword
@@ -83,7 +83,7 @@ const saveUser = async (uid, username, mail) => {
     return e;
     // console.log(e);
   }
-};
+};*/
 
 // trayendo la data del user
 const getUserData = async (uid) => {
@@ -191,15 +191,15 @@ const updatePublication = async (pub, user, type, sex, img, name, age, descripti
   }
 };
 
-const deletePublication = async (userUid, idPublication) => {
+/*const deletePublication = async (userUid, idPublication) => {
   try {
     await deleteDoc(doc(db, 'users', userUid, 'publications', idPublication));
   } catch (e) { console.log(e); }
-};
+};*/
 
 export {
   userSatate,
-  createUser,
+  //createUser,
   signInAuth,
   googleAuth,
   logOut,
@@ -219,9 +219,11 @@ export {
   db,
   doc,
   getDocs,
+  setDoc,
   collection,
   collectionGroup,
   addDoc,
   deleteDoc,
   auth,
+  createUserWithEmailAndPassword,
 }

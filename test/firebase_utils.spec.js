@@ -2,8 +2,8 @@
  * @jest-environment jsdom
 */
 
-import { showPublications, createPublication, deletePublication } from '../src/lib/firebase_utils.js';
-import { createUser } from '../src/lib/firebase.js';
+import { showPublications, createPublication, deletePublication, createUser,saveUser  } from '../src/lib/firebase_utils.js';
+import { } from '../src/lib/firebase.js';
 import { Home } from '../src/views/home.js';
 import { newPublication } from '../src/views/newPublication.js';
 
@@ -14,6 +14,20 @@ jest.mock('../src/lib/firebase.js');
 describe('createUser', () => {
   it('debería ser una función', () => {
     expect(typeof createUser).toBe('function');
+  });
+  it('Debería crear cuenta correo: correo@gmail.com y  password: 1234',async ()=>{
+    console.log(createUser('correo@gmail.com','1234'));
+    expect(typeof createUser('correo@gmail.com','1234')).toBe('object');
+    expect( await createUser('correo@gmail.com','1234')).toEqual({email:'correo@gmail.com',password:'1234'});
+  });
+});
+
+describe('saveUser',()=>{
+  it('debería ser una función',() =>{
+    expect(typeof saveUser).toBe('function');
+  });
+  it('deberia guardar cuenta en firestore',() =>{
+    expect()
   });
 });
 

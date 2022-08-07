@@ -3,7 +3,10 @@
 export const auth = jest.fn();
 
 // mokeamos createUserWithEmailAndPassword que es una promesa resuelta
-export const createUser = jest.fn();
+export const createUserWithEmailAndPassword = (_auth_,correo,contraseña) => Promise.resolve({
+  email: correo,
+  password: contraseña,
+});
 
 export const user = jest.fn();
 
@@ -28,11 +31,20 @@ export const addDoc = (name, age, description) => jest.fn((collection) => Promis
 }));
 
 export const uploadImg = (img) => jest.fn()
-
+/*deletePublication mocks*/
 export const doc = jest.fn((_db_, _users_, _userUid_, _publications_, _idPublication_)=> _idPublication_);
 export const deleteDoc = jest.fn((doc) => Promise.resolve());
 console.log(deleteDoc);
 console.log(doc);
+
+
+/*saveUser*/
+export const setDoc = (username,email) => jest.fn((users) => Promise.resolve({
+  [users]:{
+    username:username,
+    email: email,
+  }
+}));
 
    /* const deletePublication = async (userUid, idPublication) => {
         try {

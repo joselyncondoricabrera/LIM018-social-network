@@ -1,5 +1,6 @@
 import { validateInput, resetForm } from '../lib/index.js';
 import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
+import {createUser, saveUser} from '../lib/firebase_utils.js';
 
 function signUp() {
   const signup = `
@@ -52,6 +53,8 @@ function signUp() {
     if (username && mail && password !== false) {
       createUser(mail, password)
         .then((userCredential) => {
+         // console.log(userCredential);
+
           const user = userCredential.user.uid;
           alert('Usuario creado con exito');
           sendVerifactionEmail();

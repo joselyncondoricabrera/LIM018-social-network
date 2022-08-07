@@ -6,7 +6,25 @@ import {
   collection,
   collectionGroup,
   addDoc,
-  deleteDoc, } from './firebase.js'
+  deleteDoc,
+  createUserWithEmailAndPassword,
+ } from './firebase.js'
+
+  const createUser = (mail, password) => createUserWithEmailAndPassword(auth, mail, password);
+
+  const saveUser = async (uid, username, mail) => {
+    try {
+      // con setDoc establecemos el id de nuestro usuario,
+      // en este caso será el id que genera con auth de createUserWithEmailAndPassword
+      return await setDoc(doc(db, 'users', uid), {
+        username,
+        email: mail,
+      });
+    } catch (e) {
+      return e;
+      // console.log(e);
+    }
+  };
 
 // listar publicaciones
 const showPublications = async () => {
@@ -46,7 +64,9 @@ const deletePublication = async (userUid, idPublication) => {
 };
 
 export {
+    createUser,
     showPublications,
     createPublication,
     deletePublication,
+    saveUser,
 }

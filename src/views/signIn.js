@@ -3,6 +3,7 @@ import { validateInput, resetForm } from '../lib/index.js';
 import {
   signInAuth, logOut, googleAuth, saveUser, getUserData,
 } from '../lib/firebase.js';
+import { saveUser} from '../lib/firebase_utils.js';
 
 function signIn() {
   const login = `
