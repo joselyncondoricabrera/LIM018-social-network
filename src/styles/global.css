@@ -2,10 +2,9 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/*@media (max-width: 390px) {*/
-   /*CSS DE iniciar sesión*/
-  /*  .background {
+@media (max-width: 390px) {
+/*    CSS DE iniciar sesión */
+   .background {
       position: absolute;
       top: 0;
    }
@@ -229,9 +228,9 @@ body {
       align-items: center;
       background: #FCF6BD;
       bottom: 0;
-      /* position: absolute; 
-   }*/
-/*  .container__footer-info{
+      /* position: absolute; */
+   }
+  .container__footer-info{
       display: flex;
       align-items: center;
       margin: 16px 18px;
@@ -503,13 +502,13 @@ body {
       color: #4F4A42;
    }
    
-}*/
+}
 
 /*Estilos para tablet*/
 /* @media (min-device-width:391px)
 and (max-device-width: 834px){
 
- /*  body{
+   body{
       background-image: url('../imgs/tablet-login.png');
    }
    .background {
@@ -635,7 +634,7 @@ and (max-device-width: 834px){
       color: #343A40;
    }
 
-   /* .container-authentication{
+ .container-authentication{
       display: flex;
       flex-direction: column;
 
@@ -666,10 +665,10 @@ and (max-device-width: 834px){
       height: 44px;
    };
 
-   /*css crear home
+   css crear home
    .section{
       margin: 0 54px;
-   }*/
+   }
 
    .home, .infornation-view {
       margin: 0 54px;
@@ -894,7 +893,7 @@ and (max-device-width: 834px){
       background: rgba(255, 255, 255, 0.01);
       backdrop-filter: blur(20px);
       position: fixed;
- /*     pointer-events:none;*/
+     pointer-events:none;*
       top:0;
       height: 100vh;
       width: 100vw;
@@ -904,7 +903,7 @@ and (max-device-width: 834px){
       height: 79px;
       background: rgba(30, 30, 30, 0.75);
       border-radius: 15px 15px 0px 0px;
-   /*   pointer-events:auto;*/
+      pointer-events:auto;
    }
    .title_modal-delete{
       margin: 12px 0 11px;
@@ -946,7 +945,7 @@ and (max-device-width: 834px){
    }
    .cancel{
       border-radius: 0px 0px 15px 15px;
-    /*  pointer-events:auto;*/
+      pointer-events:auto;
    }
    .publication-information img{
       width: 428px;
@@ -1152,3 +1151,4 @@ and (max-device-width: 834px){
       color: #4F4A42;
 
    }
+} */

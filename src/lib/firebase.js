@@ -224,5 +224,4 @@ export {
   addDoc,
   deleteDoc,
   updateDoc,
-  doc,
 }
