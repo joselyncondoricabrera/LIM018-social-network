@@ -6,9 +6,9 @@ import {
 
 function signIn() {
   const login = `
-   <!-- <img class="backgroundTablet" src="./imgs/tablet-login.png"/>
-    <img class="background" src="./imgs/mobile-logIn.png"/> -->
-    <img class="background" src="./imgs/loginDesktop.png"/>
+   <!-- <img class="backgroundTablet" src="./imgs/tablet-login.png"/> -->
+    <img class="background-login-desktop" src="./imgs/loginDesktop.png"/>
+    <img class="background-login-mobile" src="./imgs/mobile-logIn.png"/>
     <section class="login-section">
       <h1>Iniciar sesión</h1>
       <p>Bienvenid@, gracias por visitarnos nuevamente.</p>
