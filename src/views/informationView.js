@@ -42,14 +42,17 @@ function informationView() {
 
     </div>
     <footer>
-        <div class="container__footer-info">
-            <div class="container__developers-info">
-                <p class="developers-info__title">© Todos los derechos reservados</p>
-                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-                <p>developers : @Joselyn Condori - @Diana Llerena </p>
-            </div>
-            <img class="imageFooter" src="./imgs/footer-logo.png"/>
-        </div>
+      <div class="container__footer-info">
+          <div class="container__developers-info">
+              <p class="developers-info__title">© Todos los derechos reservados</p>
+              <div class="developers-info">
+              <p>diseño & developers :</p>
+              <a href="https://github.com/joselyncondoricabrera" target="_blank">@Joselyn Condori</a>
+              <a href="https://github.com/camotito0" target="_blank">@Diana Llerena</a>
+              </div>
+          </div>
+          <img class="imageFooter" src="./imgs/footer-logo.png"/>
+      </div>
     </footer>
     `;
   
