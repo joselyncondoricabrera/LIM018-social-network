@@ -6,8 +6,8 @@ function Home() {
   const home = `
   <section class="home">
     <div class="home-header">
-        <!--<img class="imageLogo" src="./imgs/hugme-logo.png"/>
-        <img class="logo-tablet" src="./imgs/logo-tablet.png"/> -->
+        <!--<img class="logo-tablet" src="./imgs/logo-tablet.png"/> -->
+        <img class="imageLogo" src="./imgs/hugme-logo.png"/>
         <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
         
         <p class="header__username">username</p>

@@ -271,8 +271,6 @@ body {
    color: #FFFFFF;
    -webkit-text-stroke: 1.5px #4F4A42;
 }
-
-
 footer{
    width: 100%;
    height: 100px;
@@ -313,10 +311,13 @@ footer{
 }
 
 
-@media (max-device-width:390px){
+@media (max-device-width:390px) {
    /* estilos para login-signup */
    body {
       background-image: none;
+   }
+   .logo-desktop {
+      display: none;
    }
    .background-login-desktop {
       display: none;
@@ -374,9 +375,133 @@ footer{
       gap: 5px;
    }
 
-   
-/*    estilos para home */
-   
+   /* estilos para home */
+   .home {
+      margin: 0 18px;
+   }
+   .home h1 {
+      font-size: 24px;
+   }
+   .header__add-button p {
+      display: none;
+   }
+   .home input{
+      margin: 11px 0 33px;
+      width: 354px;
+      font-size: 18px;
+   }
+   .home input::placeholder{
+      font-size: 18px;
+   }
+   .home__container-buttons {
+      margin: 0 0 33px;
+   }
+   .button-option{
+      font-size: 18px;
+   }
+   .home-publications{
+      margin: -11px 0 44px;
+      column-gap: 33px;
+      row-gap: 33px;
+   }
+   .publication-card img {
+      width: 145px;
+      height: 220px;
+      border-radius: 20px;
+   }
+   .card-info {
+      width: 145px;
+      height: 35px;
+      border-radius: 0px 0px 20px 20px;
+   }
+   .card-info p {
+      font-size: 20px;
+   }
+
+
+
+   /*  .home, .infornation-view {
+      margin: 0 18px;
+   }
+   .home-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 22px 0 33px;
+   }
+   .header__username{
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 18px;
+      text-align: center;
+   }
+   .header__add-button, .button-back{
+      display: flex;
+      width: 33px;
+      height: 33px;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      border:none;
+   }
+   .home__subtitle{
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+   }
+   .home__input-search{
+      margin: 33px 0;
+      width: 354px;
+      height: 44px;
+      background: #F7F7F8;
+      border-radius: 12px;
+      border:none;
+      text-align: center;
+      outline: none;
+   }
+   .home__input-search::placeholder{
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      color: #ADB5BD;
+      margin-left: -22px;
+
+      background-image: url('../imgs/lupa.png');
+      background-repeat: no-repeat;
+      background-position: 35% center;
+   }
+   .home__container-buttons{
+      display: flex;
+      justify-content: space-between;
+   }
+   .button-option{
+      height: 22px;
+      border: none;
+      color: #ADB5BD;
+      background-color: transparent;
+
+      font-family: 'SF Pro Rounded';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      text-align: center;
+      padding: 0 0 15px;
+   }
+   .button-option:focus {
+   border-bottom: 2px solid #FEB8C2;
+   }
+   .home-publications{
+      margin: 33px 0 44px;
+      display: grid;
+      grid-template-columns: repeat(2, 145px);
+      grid-row-gap: 44px;
+      grid-column-gap: 64px;
+   }
    /* .form-alert {
       margin: -22px 0 -10px ;
       font-family: SF Pro Rounded;
