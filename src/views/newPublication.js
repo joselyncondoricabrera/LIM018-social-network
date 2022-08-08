@@ -5,7 +5,7 @@ import { uploadImg, userSatate } from '../lib/firebase.js';
 
 function newPublication() {
   const publication = `
-    <main class="new-publication">
+    <section class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
                 <img src='./imgs/back.png'>
@@ -76,7 +76,7 @@ function newPublication() {
             
             <button type="button" class="create-publication">Crear publicación</button>
         </form>
-    </main>
+    </section>
 
 
     <footer>
@@ -94,8 +94,8 @@ function newPublication() {
     </footer>
     `;
 
-  const element = document.createElement('section');
-  element.classList.add('section-new');
+  const element = document.createElement('main');
+  element.classList.add('new-main');
   element.innerHTML = publication;
 
   const backHomeButton = element.querySelector('.button-back');

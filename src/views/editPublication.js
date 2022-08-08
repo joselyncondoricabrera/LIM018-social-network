@@ -6,7 +6,7 @@ import { updatePublication } from '../lib/firebase_utils.js';
 
 function editPublication() {
   const edit = `
-    <main class="new-publication">
+    <section class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
                 <img src='./imgs/back.png'>
@@ -77,7 +77,7 @@ function editPublication() {
 
             <button type="button" class="edit-publication">Actualizar publicación</button>
         </form>
-    </main>
+    </section>
 
     <footer>
       <div class="container__footer-info">
@@ -94,8 +94,8 @@ function editPublication() {
     </footer>
     `;
 
-  const element = document.createElement('section');
-  element.classList.add('section-edit')
+  const element = document.createElement('main');
+  element.classList.add('edit-main')
   element.innerHTML = edit;
 
   const question1 = document.querySelectorAll('input[name="question1__options"]');
