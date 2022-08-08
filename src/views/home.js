@@ -6,7 +6,7 @@ function Home() {
   const home = `
   <section class="home">
     <div class="home-header">
-        <!--<img class="logo-tablet" src="./imgs/logo-tablet.png"/> -->
+        <img class="logo-tablet" src="./imgs/logo-tablet.png"/>
         <img class="imageLogo" src="./imgs/hugme-logo.png"/>
         <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
         
@@ -14,7 +14,7 @@ function Home() {
         <button class= "header__add-button">
           <p>crear publicación</p>
           <img class="imageAddButton" src="./imgs/add.png">
-          <!--<img class="imageAddButton-tablet" src="./imgs/add-tablet.png">-->
+          <img class="imageAddButton-tablet" src="./imgs/add-tablet.png">
         </button>
     </div>
     

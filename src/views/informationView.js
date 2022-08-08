@@ -4,21 +4,21 @@ import { deletePublication } from '../lib/firebase_utils.js';
 
 function informationView() {
   const information = `
-    <section class="infornation-view">
+    <section class="information-view">
       <div class="information-header">
         <button class="button-back">
-            <!--<img class="imageBackButton" src='./imgs/back.png'>-->
-            <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
+            <img class="image-back-button-mobile" src='./imgs/back.png'>
+            <img class="image-back-button-tablet" src='./imgs/back-tablet.png'>
         </button>
         <h1 class="pet-name"></h1>
         <div class="buttons-group">
           <button class="button-trash">
-             <!--<img class="imageTrashButton" src='./imgs/trash.png'>-->
-              <img class="imageTrashButton-tablet" src='./imgs/trash-tablet.png'>
+              <img class="image-trash-button" src='./imgs/trash.png'>
+              <img class="image-trash-button-tablet" src='./imgs/trash-tablet.png'>
           </button>
           <button class="button-edit">
-              <!--<img class="imageEditButton" src='./imgs/edit.png'>-->
-              <img class="imageEditButton-tablet" src='./imgs/edit-tablet.png'>
+              <img class="image-edit-button" src='./imgs/edit.png'>
+              <img class="image-eddit-button-tablet" src='./imgs/edit-tablet.png'>
           </button>
         </div>
       </div>

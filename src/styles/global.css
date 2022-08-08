@@ -7,11 +7,10 @@ body {
 
 /* estilos para login-signup */
 
-.form-alert {
-   display: none;
-}
-
-.background-login-mobile {
+.form-alert, .imageLogo, .background-login-mobile, 
+.image-back-button, .image-back-button-mobile, 
+.image-trash-button, .image-edit-button, 
+.imageAddButton, .logo-tablet, .background-signup-mobile {
    display: none;
 }
 
@@ -27,7 +26,7 @@ body {
 .login-section h1 , .signup-section h1 {
    font-family: SF Pro Rounded;
    font-style: normal;
-   font-weight: 500;
+   font-weight: 400;
    font-size: 44px;
    color: #343A40;
 }
@@ -141,7 +140,7 @@ body {
 
 /* estilos para home */
 .home {
-   margin: 44px 30px;
+   margin: 33px;
 }
 
 .home-header {
@@ -183,7 +182,7 @@ body {
 .home h1 {
    font-family: 'SF Pro Rounded';
    font-style: normal;
-   font-weight: 400;
+   font-weight: 300;
    font-size: 40px;
 }
 .home input{
@@ -217,7 +216,7 @@ body {
    display: flex;
    justify-content: space-around;
 }
-.button-option{
+.button-option {
    cursor: pointer;
    height: 22px;
    border: none;
@@ -234,11 +233,11 @@ body {
 .button-option:focus {
    border-bottom: 2px solid #FEB8C2;
 }
-.home-publications{
+.home-publications {
    margin: 55px 0 44px;
    display: flex;
    flex-wrap: wrap;
-   justify-content: space-between;
+   justify-content: space-around;
    column-gap: 44px;
    row-gap: 44px;
 }
@@ -272,7 +271,7 @@ body {
    -webkit-text-stroke: 1.5px #4F4A42;
 }
 
-
+/* estilos para footer */
 footer{
    width: 100%;
    height: 100px;
@@ -286,7 +285,6 @@ footer{
 .container__footer-info {
    width: 100%;
    display: flex;
-   flex-wrap: wrap;
    align-items: center;
    justify-content: space-between;
    margin: 20px 30px;
@@ -312,14 +310,287 @@ footer{
    color: #343A40;
 }
 
+/* estilos para crear publicación */
+.new-main, .edit-main {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
 
-@media (max-device-width:390px){
+.new-publication-header {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   height: 42px;
+   gap: 88px;
+   margin: 22px 0 33px;
+   justify-content: flex-start;
+}
+.new-publication-header h1 {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 36px;
+   line-height: 31px;
+}
+.form__new-publication, .form__edit-publication {
+   display: flex;
+   flex-direction: column;
+   gap: 11px;
+}
+.form__new-publication p, .form__edit-publication p {
+   text-align: left;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 24px;
+   line-height: 24px;
+   color: #000000;
+}
+.question__options-group {
+   display: flex;
+   flex-direction: column;
+}
+.question__upload-group{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.options-group {
+   display: flex;
+   gap: 44px;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 24px;
+   color: #6C757D;
+}
+.option__upload-file {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 170px;
+   height: 44px;
+   background: #C2F8CB;
+   border-radius: 20px;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   text-align: center;
+   color: #4F4A42;
+}
+.option__upload-file input{
+   display: none;
+}
+.question4__petname, .question5__petAge{
+   width: 410px;
+   height: 33px;
+   background: #F7F7F8;
+   border-radius: 12px;
+   border:none;
+   padding: 6px 0 6px 12px;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   color: #6C757D;
+}
+.question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
+   color: #ADB5BD;
+   font-size: 20px;
+}
+.question6__description{
+   width: 410px;
+   height: 114px;
+   background: #F7F7F8;
+   border-radius: 18px;
+   border:none;
+   outline: none;
+
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   color: #6C757D;
+   padding:15px 0 0 15px;
+}
+.create-publication, .edit-publication{
+   width: 415px;
+   height: 55px;   
+   background: #C2F8CB;
+   border-radius: 20px;
+   border: none;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 25px;
+   margin: 22px 0 44px;
+   color: #4F4A42;
+} 
+
+/* estilos para information view */
+
+.information-main {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.publication-information {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 100px;
+   margin: 55px 0;
+}
+.information-header {
+   display: flex;
+   justify-content: space-between;
+   margin: 22px 0;
+   align-items: center;
+}
+.information-header h1 {
+   font-family: 'CookieRun';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 36px;
+   line-height: 41px;
+   text-align: center;
+   color: #F5B2E8;
+   margin-left: 30px;
+   -webkit-text-stroke: 1.5px #4F4A42;
+}
+.buttons-group {
+   display: flex;
+   flex-direction: row;
+   gap: 11px;
+}
+.button-edit, .button-trash {
+   width: 44px;
+   height: 44px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: #FFFFFF;
+   box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+   border-radius: 10px;
+   border:none;
+   outline: none;
+   cursor: pointer;
+}
+.publication-information img{
+   width: 440px;
+   height: 603px;
+   border-radius: 40px;
+   /* margin: 0 35px; */
+}
+.information-content {
+   width: 354px;
+}
+.information-content h1 {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 36px;
+}
+.text-caracter-pet {
+   display: flex;
+   justify-content: space-between;
+   
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   color: #6C757D;
+}
+.description {
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 20px;
+   line-height: 19px;
+
+   color: #6C6C6C;
+}
+.div-buttons {
+   display: flex;
+   justify-content: space-between;
+   margin: 33px 0;
+}
+.button-love {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 64px;
+   height: 55px;
+   background: #F5B2E8;
+   border-radius: 20px;
+   border: none;
+}
+
+.button-love img {
+   width: 30px;
+   height: 30px;
+}
+
+.button-adopt {
+   display: flex;
+   align-items: center;
+   gap: 9px;
+   width: 281px;
+   height: 55px;
+   background: #C2F8CB;
+   border-radius: 20px;
+   border: none;
+   text-align: center;
+   color: #4F4A42;
+   font-family: 'SF Pro Rounded';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 22px;
+   justify-content: center;
+}
+
+.button-adopt img {
+   width: 33px;
+   height: 33px;
+}
+
+.button-back{
+   display: flex;
+   width: 44px;
+   height: 44px;
+   align-items: center;
+   justify-content: center;
+   background: #FFFFFF;
+   box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+   border-radius: 10px;
+   border:none;
+   cursor: pointer;
+}
+
+
+
+@media (max-width: 480px) and (orientation:portrait) {
    /* estilos para login-signup */
    body {
       background-image: none;
    }
-   .background-login-desktop {
+   .image-back-button-tablet, .image-trash-button-tablet,
+   .image-eddit-button-tablet, .logo-desktop , 
+   .background-login-desktop, .image-back-button-tablet{
       display: none;
+   }
+   .imageLogo {
+      display: flex;
    }
    .login-main, .signup-main {
       display: inline;
@@ -374,771 +645,242 @@ footer{
       gap: 5px;
    }
 
-   
-/*    estilos para home */
-   
-   /* .form-alert {
-      margin: -22px 0 -10px ;
-      font-family: SF Pro Rounded;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 18px;
-   }
-   .incorrect-username, .incorrect-mail, .incorrect-password {
-      display: none;
-      color: #FF7581;
-   }
-   .correct-username, .correct-mail, .correct-password {
-      display: none;
-      color: #0ead69;
-   } */
-
-  /*  .home, .infornation-view {
+   /* estilos para home */
+   .home {
       margin: 0 18px;
    }
-   .home-header{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 22px 0 33px;
-   }
-   .header__username{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 18px;
-      text-align: center;
-   }
-   .header__add-button, .button-back{
-      display: flex;
-      width: 33px;
-      height: 33px;
-      align-items: center;
-      justify-content: center;
-      background: #FFFFFF;
-      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      border:none;
-   }
-   .home__subtitle{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
+   .home h1 {
       font-size: 24px;
    }
-   .home__input-search{
-      margin: 33px 0;
+   .header__add-button p {
+      display: none;
+   }
+   .home-header button {
+      width: 33px;
+      height: 33px;
+      justify-content: center;
+      border-radius: 10px;
+  }
+   .home input{
+      margin: 11px 0 33px;
       width: 354px;
-      height: 44px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      text-align: center;
-      outline: none;
-   }
-   .home__input-search::placeholder{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
       font-size: 18px;
-      color: #ADB5BD;
-      margin-left: -22px;
-
-      background-image: url('../imgs/lupa.png');
-      background-repeat: no-repeat;
-      background-position: 35% center;
    }
-   .home__container-buttons{
-      display: flex;
-      justify-content: space-between;
+   .home input::placeholder{
+      font-size: 18px;
+   }
+   .home__container-buttons {
+      margin: 0 0 33px;
    }
    .button-option{
-      height: 22px;
-      border: none;
-      color: #ADB5BD;
-      background-color: transparent;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
       font-size: 18px;
-      text-align: center;
-      padding: 0 0 15px;
-   }
-   .button-option:focus {
-   border-bottom: 2px solid #FEB8C2;
    }
    .home-publications{
-      margin: 33px 0 44px;
-      display: grid;
-      grid-template-columns: repeat(2, 145px);
-      grid-row-gap: 44px;
-      grid-column-gap: 64px;
-   }
-   footer{
-      width: 100%;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      background: #FCF6BD;
-      bottom: 0;
-   }
-  .container__footer-info{
-      display: flex;
-      align-items: center;
-      margin: 16px 18px;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 13px;
-      line-height: 0px;
-   }
-   .container__developers-info{
-      display: flex;
-      flex-direction: column;
-   }
-   .developers-info__title{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 15px;
-   }
-   .publication-card {
-      display: flex;
-      flex-direction: column-reverse;
+      margin: -11px 0 44px;
+      column-gap: 33px;
+      row-gap: 33px;
    }
    .publication-card img {
-      width: 144px;
+      width: 145px;
       height: 220px;
       border-radius: 20px;
-      position: relative;
    }
    .card-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       width: 145px;
       height: 35px;
-      background: #F5B2E8;
-      opacity: 0.9;
       border-radius: 0px 0px 20px 20px;
-      position: absolute;
    }
    .card-info p {
-      font-family: 'CookieRun';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 25px;
-      color: #FFFFFF;
-      -webkit-text-stroke: 1.5px #4F4A42;
+      font-size: 20px;
    }
-   .information-header {
+   footer {
+      padding: 0 0 5px;
+   }
+   .container__footer-info {
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+
+      font-size: 16px;
+   }
+   .developers-info {
+      display: inline;
+      margin: 0 0 20px 0;
+   }
+   .developers-info a {
+      font-size: 16px;
+   }
+
+/* estilos para crear publicación */
+   .new-main, .edit-main {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   .new-publication {
+      margin: 0 18px;
+   }
+   .new-publication-header {
+      gap: 50px;
+   }
+   .form__new-publication p, .form__edit-publication p {
+      font-size: 20px;
+   }
+   .options-group {
+      gap: 18px;
+   }
+   .question4__petname, .question5__petAge{
+      width: 339px;
+      height: 33px;
+   }
+   .question6__description{
+      width: 339px;
+   }
+   .create-publication, .edit-publication{
+      width: 354px;
+   }
+   .button-edit, .button-trash, .button-back {
+      width: 33px;
+      height: 33px;
+   }
+
+   /* estilos para information view */
+
+   .information-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+   .information-view {
+      margin: 0 18px;
+   }
+   .publication-information {
+      gap: 33px;
       margin: 22px 0;
    }
+   .information-header {
+      margin: 0;
+   }
    .information-header h1 {
-      font-family: 'CookieRun';
-      font-style: normal;
-      font-weight: 700;
       font-size: 30px;
-      line-height: 41px;
-      text-align: center;
-      color: #F5B2E8;
-      margin-left: 30px;
-      -webkit-text-stroke: 1.5px #4F4A42;
+      margin-left: 0;
    }
    .buttons-group {
       display: flex;
       flex-direction: row;
       gap: 11px;
    }
-   .button-edit, .button-trash {
-      width: 33px;
-      height: 33px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #FFFFFF;
-      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      border:none;
-      outline: none;
-   }
    .publication-information img{
       width: 283px;
       height: 429px;
-      border-radius: 40px;
       margin: 0 35px;
    }
    .information-content {
       width: 354px;
    }
    .information-content h1 {
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
       font-size: 24px;
    }
-   .text-caracter-pet {
-      display: flex;
-      justify-content: space-between;
-      
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
+   .text-caracter-pet, .description {
       font-size: 16px;
-      color: #6C757D;
-   }
-   .description {
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 19px;
-
-      color: #6C6C6C;
-   }
-   .div-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin: 33px 0;
    }
    .button-love {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
+      width: 55px;
       height: 55px;
-      background: #F5B2E8;
-      border-radius: 20px;
-      border: none;
+   }
+   .button-love img {
+      width: 28px;
+      height: 28px;
    }
    .button-adopt {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
       width: 281px;
       height: 55px;
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-      text-align: center;
-      color: #4F4A42;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
       font-size: 20px;
    }
-   .new-publication {
-      display: flex;
-      flex-direction: column;
-      margin: 0 18px;
-      position: relative;
-   }
-   .new-publication-header {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 42px;
-      gap: 50px;
-      margin: 22px 0 33px;
-   }
-   .new-publication-header h1 {
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 26px;
-      line-height: 31px;
-      padding: 11px 0 0;
-   }
-   .form__new-publication, .form__edit-publication {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-   }
-   .form__new-publication, .form__edit-publication p {
-      text-align: left;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 20px;
-      line-height: 24px;
-      color: #000000;
-   }
-   .question__options-group {
-      display: flex;
-      flex-direction: column;
-   }
-   .question__upload-group{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-   }
-   .options-group {
-      display: flex;
-      gap: 18px;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 20px;
-      line-height: 24px;
-      color: #6C757D;
-   }
-   .option__upload-file {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 119px;
+   .button-adopt img {
+      width: 33px;
       height: 33px;
-      background: #C2F8CB;
-      border-radius: 20px;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 15px;
-      text-align: center;
-      color: #4F4A42;
    }
-   .option__upload-file input{
-      display: none;
-   }
-   .question4__petname, .question5__petAge{
-      width: 281px;
-      height: 33px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      padding: 6px 0 6px 12px;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 21px;
-      color: #6C757D;
-   }
-   .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
-      color: #ADB5BD;
-   }
-   .question6__description{
-      width: 339px;
-      height: 114px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 21px;
-      color: #6C757D;
-      padding:15px 0 0 15px;
-   }
-   .create-publication, .edit-publication{
-      width: 354px;
-      height: 55px;   
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 25px;
-      margin: 22px 0 44px;
-      color: #4F4A42;
-   } */
-   
 }
 
-/*Estilos para tablet*/
-/* @media (min-device-width:391px)
-and (max-device-width: 834px){
 
+/* Estilos para tablet */
+@media (max-width: 860px) and (min-width: 481px){
    body{
       background-image: url('../imgs/tablet-login.png');
    }
-   .background {
+   .background, .background-desktop, .logo-desktop, .imageLogo, 
+   .header__add-button p , .imageBackButton, .imageAddButton, 
+   .background-login-desktop, .background-signup-mobile {
       display: none;
    }
-   .backgroundTablet{
+   .logo-tablet {
+      display: inline;
+   }
+   .backgroundTablet {
       top: 0;
       position: absolute;
       display: block;
    }
-   .background-desktop{
-      display: none;
-   }
-   .main-form{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+   /* estilos para home */
+   .home-header button {
       justify-content: center;
-      margin: 122px 54px ;
-      position: absolute;   
    }
-   .main-form h1{
-      width: 726px;
-      margin: 0;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 44px;
-      line-height: 53px;
-      color: #343A40;
-   }
-   .main-form p{
-      width: 726px;
-      margin: 22px 0px;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #343A40;
-   }
-   .form{
-      margin: 43px 0 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 70px;
-   }
-   .form-input{
-      display: flex;
-      width: 726px;
-      height: 44px;
-      align-items: center;
-      gap:22px;
-      border-bottom: 1px solid #ADB5BD;
-   }
-   .icon{
-      width: 33px;
-      height: 33px;
-   }
-   .form-input input{
-      border: none;
-      background:transparent;
-      outline: none;
-      height: 29px;
-      font-size: 24px;
-   }
-   .form-input input::placeholder{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-      color: #ADB5BD;
-   }
-   .form-alert{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-   }
-   .incorrect-username, .incorrect-mail, .incorrect-password {
-      display: none;
-      color: #FF7581;
-      margin: -50px 0 -50px 0;
-   }
-   .correct-username, .correct-mail, .correct-password {
-      display: none;
-      color: #0ead69;
-      margin: -50px 0 -50px 0;
-   }
-   .form-button{
-      margin: 84px 0 0 0;
-      width: 726px;
-      height: 77px;
-      background: #F5B2E8;
-      cursor: pointer;
-      outline: none;
-      border: none;
-      backdrop-filter: blur(91.7484px);
-      border-radius: 25px;
-      text-align: center;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 30px;
-      line-height: 40px;
-      letter-spacing: 0.641244px;
-      color: #FFFFFF;
-   }
-   .create-account{
-      margin: 0;
-   }
-   .form-link{
-      margin-top: -37px;
-      text-align: end;
-      text-decoration: none;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-      color: #343A40;
-   }
-
- .container-authentication{
-      display: flex;
-      flex-direction: column;
-
-      justify-content: center;     
-      align-items: center;
-      font-family: 'SF Pro Rounded';
-      color: #343A40;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-   }
-   .container-authentication p{
-      margin-top: 0;
-      text-align: center;
-   }
-   .button-authentication{
-      background-color: white;
-      width: 44px;
-      height: 44px;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
-   .button-authentication img{
-      width: 44px;
-      height: 44px;
-   };
-
-   css crear home
-   .section{
-      margin: 0 54px;
-   }
-
-   .home, .infornation-view {
-      margin: 0 54px;
-   }
-   .logo-desktop{
-      display: none;
-   }
-   
    .home-header{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 33px 0 41px;
-   }
-   .imageLogo{
-    display: none;
-   }
-   .header__username{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 32px;
-      line-height: 38px;
-      text-align: center;
-      color: #000000;
+      margin: 0 0 44px;
    }
    .header__add-button, .button-back{
-      width: 50px;
-      height: 50px;
-      background: #FFFFFF;
-      box-shadow: 5.45455px 0px 20.4545px rgba(0, 0, 0, 0.1);
-      border-radius: 13.6364px;
-      border: none;
+      width: 44px;
+      height: 44px;
    }
-   .header__add-button p{
-      display: none;
-   }
-   .imageBackButton{
-      display:none;
-   }
-   .imageAddButton{
-     display: none;
-   }
-   .home__subtitle{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 40px;
-      line-height: 48px;
-      color: #000000;
-   }
-   .home__input-search{
-      margin: 44px 0;
-      width: 726px;
-      height: 55px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border: none;
-      text-align: center;
-      outline: none;
-   }
-   .home__input-search::placeholder{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 29px;
-      color: #ADB5BD;
-      margin-left: -18px;
-
-      background-image: url('../imgs/lupa.png');
-      background-repeat: no-repeat;
-      background-position: 40% center;
-   }
-   .home__container-buttons{
-      display: flex;
-      justify-content: space-between;
-   }
-   .button-option{
-      height: 29px;
-      border: none;
-      background-color: transparent;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 29px;
-      text-align: center;
-      color: #6C757D;
-   }
-   .button-option:focus {
-      border-bottom: 2px solid #FEB8C2;
-   }
-   .home-publications{
-      margin: 55px 0 44px;
-      display: grid;
-      grid-template-columns: repeat(3, 220px);
-      grid-row-gap: 44px;
-      grid-column-gap: 33px;
-   }
-   .publication-card {
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-   }
+   .home-publications {
+      column-gap: 22px;
+  }
    .publication-card img {
-      width: 220px;
-      height: 333px;
-      border-radius: 30px;
-      position: relative;
+      width: 180px;
+      height: 293px;
    }
    .card-info{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 220px;
-      height: 60px;
-      background: #F5B2E8;
-      opacity: 0.9;
-      border-radius: 0px 0px 30px 30px;
-      position: absolute;
+      width: 180px;
+      height: 45px;
    }
    .card-info p{
-      font-family: 'CookieRun';
-      font-style: normal;
-      font-weight: 700;
+      font-size: 28px;
+   }
+
+   /* estilos para crear-editar publicación */
+
+   .new-publication-header {
+      gap: 80px;
+      margin: 22px 0 33px;
+   }
+   .new-publication-header h1 {
       font-size: 32px;
-      line-height: 44px;
-      color: #FFFFFF;
-      -webkit-text-stroke: 2px #4F4A42;
    }
-   footer{
-      width: 100%;
-      height: 100px;
-      display: flex;
-      align-items: center;
+   .form__new-publication p, .form__edit-publication p {
+      font-size: 24px;
+   }
+   .options-group {
+      font-size: 22px;
+   }
+
+   /*  estilos para information view  */
+   .information-view {
+      margin: 33px;
+   }
+   .publication-information {
+      gap: 55px;
       justify-content: center;
-      background: #FCF6BD;
-      bottom: 0;
-      border-color: yellow;
    }
-   .container__footer-info{
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      align-items: center;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 19px;  
-   }
-   .container__developers-info{
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
-   }
-   
-   .developers-info__title{
+  .information-header {
       margin: 0;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
-      color: #000000;
-
-      grid-column: 1 / span 2;
    }
 
+   /* estilos para login-signup */
+   .login-main, .signup-main {
+      display: inline;
+   }
    
-   .information-header {
-      display: flex;
-      justify-content: space-between;
-      margin: 44px 0;
-   }
-   .information-header img{
-      width:23px;
-      height:23px;
-
-   }
-   .information-header h1{
-      margin-left: 50px;
-      font-family: 'CookieRun';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 48px;
-      line-height: 65px;
-      text-align: center;
-      color: #F5B2E8;
-      -webkit-text-stroke: 1.5px #4F4A42;
-
-   }
-   .buttons-group {
-      display: flex;
-      flex-direction: row;
-      gap: 22px;
-   }
-   .button-edit, .button-trash {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #FFFFFF;
-      box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      border:none;
-      outline: none;
-   }
-   .imageTrashButton{
-      display: none;
-   }
-   .imageEditButton{
-      display: none;
-   }
    .container__modal-delete{
       display: flex;
       align-items: center;
@@ -1147,7 +889,7 @@ and (max-device-width: 834px){
       background: rgba(255, 255, 255, 0.01);
       backdrop-filter: blur(20px);
       position: fixed;
-     pointer-events:none;*
+      pointer-events:none;
       top:0;
       height: 100vh;
       width: 100vw;
@@ -1201,291 +943,4 @@ and (max-device-width: 834px){
       border-radius: 0px 0px 15px 15px;
       pointer-events:auto;
    }
-   .publication-information img{
-      width: 428px;
-      height: 649px;
-      border-radius: 56.7138px;
-      margin: 0 149px;
-   }
-   .information-content {
-      width: 726px;
-   }
-   .information-content h1 {
-      margin: 44px 0;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 36px;
-      line-height: 43px;
-   }
-   .text-caracter-pet {
-      display: flex;
-      justify-content: space-between;
-      
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 22px;
-      line-height: 26px;
-      color: #6C757D;
-   }
-   .description {
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 22px;
-      line-height: 26px;
-
-      color: #6C6C6C;
-   }
-   .div-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin: 66px 0;
-   }
-   .button-love {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 130px;
-      height: 77px;
-      background: #F5B2E8;
-      border-radius: 20px;
-      border: none;
-   }
-   .button-adopt {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      width: 577px;
-      height: 77px;
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-      text-align: center;
-      color: #4F4A42;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 34px;
-      line-height: 41px;
-   }
-  
-   .new-publication {
-      display: flex;
-      flex-direction: column;
-      margin: 0 54px;
-     position: relative;
-   }
-   .new-publication-header {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 60px;
-      gap: 150px;
-      margin: 44px 0 50px;
-   }
-   .new-publication-header h1 {
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 40px;
-      line-height: 48px;
-      padding: 11px 0 0;
-   }
-   .form__new-publication, .form__edit-publication {
-      display: flex;
-      flex-direction: column;
-      gap: 17px;
-   }
-   .form__new-publication, .form__edit-publication p{
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 28px;
-      line-height: 33px;
-   }
-   .question__options-group {
-      display: flex;
-      flex-direction: column;
-   }
-   .question__upload-group{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-   }
-   .options-group {
-      display: flex;
-      gap: 54px;
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 300;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-   }
-   .options{
-      display: flex;
-      align-items: center;
-      
-   }
-   .radioButton{
-      width: 22px;
-      height: 22px;
-   }
-   .option__upload-file {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 280px;
-      height: 55px;
-      background: #C2F8CB;
-      border-radius: 20px;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 30px;
-      text-align: center;
-      color: #4F4A42;
-   }
-   .option__upload-file input{
-      display: none;
-   }
-   .question4__petname, .question5__petAge{
-      width: 710px;
-      height: 55px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      padding: 0 0 0 16px;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-   }
-   .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
-      color: #ADB5BD;
-   }
-   .question6__description{
-      width: 710px;
-      height: 146px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-      padding:16px 0 0 16px;
-   }
-   .create-publication, .edit-publication{
-      Width: 726px;
-      Height: 77px;
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 34px;
-      line-height: 25px;
-      margin: 71px 0 44px;
-      color: #4F4A42;
-
-   }
-} */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     t-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-      padding:16px 0 0 16px;
-   }
-   .create-publication, .edit-publication{
-      Width: 726px;
-      Height: 77px;
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 34px;
-      line-height: 25px;
-      margin: 71px 0 44px;
-      color: #4F4A42;
-
-   }
-} */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ont-style: normal;
-      font-weight: 400;
-      font-size: 30px;
-      text-align: center;
-      color: #4F4A42;
-   }
-   .option__upload-file input{
-      display: none;
-   }
-   .question4__petname, .question5__petAge{
-      width: 710px;
-      height: 55px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      padding: 0 0 0 16px;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-   }
-   .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
-      color: #ADB5BD;
-   }
-   .question6__description{
-      width: 710px;
-      height: 146px;
-      background: #F7F7F8;
-      border-radius: 12px;
-      border:none;
-      outline: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      color: #6C757D;
-      padding:16px 0 0 16px;
-   }
-   .create-publication, .edit-publication{
-      Width: 726px;
-      Height: 77px;
-      background: #C2F8CB;
-      border-radius: 20px;
-      border: none;
-
-      font-family: 'SF Pro Rounded';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 34px;
-      line-height: 25px;
-      margin: 71px 0 44px;
-      color: #4F4A42;
-
-   }
-} */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+}

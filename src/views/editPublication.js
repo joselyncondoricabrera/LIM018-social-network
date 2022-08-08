@@ -9,8 +9,8 @@ function editPublication() {
     <section class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
-                <!--<img src='./imgs/back.png'>-->
-                <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
+                <img class="image-back-button" src='./imgs/back.png'>
+                <img class="image-back-button-tablet" src='./imgs/back-tablet.png'>
             </button>
             <h1 class="title">Editar publicación</h1>
         </div>
