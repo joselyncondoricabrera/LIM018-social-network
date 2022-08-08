@@ -13,8 +13,7 @@ function Home() {
         <p class="header__username">username</p>
         <button class= "header__add-button">
           <p>crear publicación</p>
-          <img class="imageAddButton" src="./imgs/add.png">
-          <img class="imageAddButton-tablet" src="./imgs/add-tablet.png">
+          <img class="image-addbutton" src="./imgs/add.png">
         </button>
     </div>
     

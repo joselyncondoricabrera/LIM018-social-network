@@ -589,13 +589,14 @@ footer{
    .background-login-desktop, .image-back-button-tablet{
       display: none;
    }
-   .imageLogo {
+   .imageLogo, .image-addbutton, .image-edit-button, 
+   .image-trash-button, .image-back-button-mobile{
       display: flex;
    }
    .login-main, .signup-main {
       display: inline;
    }
-   .background-login-mobile, .background-signup-mobile {
+  .background-login-mobile, .background-signup-mobile {
       display: flex;
       position: absolute;
       top: 0;
@@ -610,6 +611,7 @@ footer{
    .login-section p , .signup-section p {
       font-size: 16px;
    }
+
    .form {
       margin: 22px 0;
    }
@@ -712,6 +714,9 @@ footer{
    }
 
 /* estilos para crear publicación */
+   .new-publication-header h1 {
+      font-size: 30px;
+   }
    .new-main, .edit-main {
       display: flex;
       flex-direction: column;
@@ -744,7 +749,13 @@ footer{
       height: 33px;
    }
 
-   /* estilos para information view */
+   .option__upload-file {
+      width: 119px;
+      height: 33px;
+      font-size: 16px;
+  }
+
+   /* estilos para information view */ 
 
    .information-main {
       display: flex;
@@ -801,6 +812,198 @@ footer{
       width: 33px;
       height: 33px;
    }
+    /* 
+   .form {
+      margin: 22px 0;
+   }
+   .form-input {
+      gap: 11px;
+      margin: 44px 0;
+      width: 354px;
+      border-bottom: 0.5px solid #ADB5BD;
+   }
+   .form-input input{
+      width: 354px;
+      height: 22px;
+      font-size: 16px;
+   }
+   .form-input input::placeholder {
+      font-size: 15px;
+   }
+   .form-final-options {
+      margin: -10px 0;
+   }
+   .form-final-options button {
+      width: 354px;
+      height: 44px;
+      margin: 10px 0;
+      border-radius: 12px;
+      font-size: 20px;
+   }
+   .form-final-options a , .container-authentication p{
+      font-size: 16px;
+   }
+   .container-authentication {
+      margin: 10px 0;
+      gap: 5px;
+   }
+
+   /* estilos para home 
+   .home {
+      margin: 0 18px;
+   }
+   .home h1 {
+      font-size: 24px;
+   }
+   .header__add-button p {
+      display: none;
+   }
+   .home-header button {
+      width: 33px;
+      height: 33px;
+      justify-content: center;
+      border-radius: 10px;
+  }
+   .home input{
+      margin: 11px 0 33px;
+      width: 354px;
+      font-size: 18px;
+   }
+   .home input::placeholder{
+      font-size: 18px;
+   }
+   .home__container-buttons {
+      margin: 0 0 33px;
+   }
+   .button-option{
+      font-size: 18px;
+   }
+   .home-publications{
+      margin: -11px 0 44px;
+      column-gap: 33px;
+      row-gap: 33px;
+   }
+   .publication-card img {
+      width: 145px;
+      height: 220px;
+      border-radius: 20px;
+   }
+   .card-info {
+      width: 145px;
+      height: 35px;
+      border-radius: 0px 0px 20px 20px;
+   }
+   .card-info p {
+      font-size: 20px;
+   }
+   footer {
+      padding: 0 0 5px;
+   }
+   .container__footer-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      font-size: 16px;
+   }
+   .developers-info {
+      display: inline;
+      margin: 0 0 20px 0;
+   }
+   .developers-info a {
+      font-size: 16px;
+   }
+
+/* estilos para crear publicación 
+   .new-main, .edit-main {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   .new-publication {
+      margin: 0 18px;
+   }
+   .new-publication-header {
+      gap: 50px;
+   }
+   .form__new-publication p, .form__edit-publication p {
+      font-size: 20px;
+   }
+   .options-group {
+      gap: 18px;
+   }
+   .question4__petname, .question5__petAge{
+      width: 339px;
+      height: 33px;
+   }
+   .question6__description{
+      width: 339px;
+   }
+   .create-publication, .edit-publication{
+      width: 354px;
+   }
+   .button-edit, .button-trash, .button-back {
+      width: 33px;
+      height: 33px;
+   }
+
+   /* estilos para information view 
+
+   .information-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+   .information-view {
+      margin: 0 18px;
+   }
+   .publication-information {
+      gap: 33px;
+      margin: 22px 0;
+   }
+   .information-header {
+      margin: 0;
+   }
+   .information-header h1 {
+      font-size: 30px;
+      margin-left: 0;
+   }
+   .buttons-group {
+      display: flex;
+      flex-direction: row;
+      gap: 11px;
+   }
+   .publication-information img{
+      width: 283px;
+      height: 429px;
+      margin: 0 35px;
+   }
+   .information-content {
+      width: 354px;
+   }
+   .information-content h1 {
+      font-size: 24px;
+   }
+   .text-caracter-pet, .description {
+      font-size: 16px;
+   }
+   .button-love {
+      width: 55px;
+      height: 55px;
+   }
+   .button-love img {
+      width: 28px;
+      height: 28px;
+   }
+   .button-adopt {
+      width: 281px;
+      height: 55px;
+      font-size: 20px;
+   }
+   .button-adopt img {
+      width: 33px;
+      height: 33px;
+   } */
 }
 
 
