@@ -4,34 +4,26 @@ import { deletePublication } from '../lib/firebase_utils.js';
 
 function informationView() {
   const information = `
-    <main class="infornation-view">
-    <div class="information-header">
-      <button class="button-back">
-          <img class="imageBackButton" src='./imgs/back.png'>
-          <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
-      </button>
-      <h1 class="pet-name"></h1>
-      <div class="buttons-group">
-        <button class="button-trash">
-            <img class="imageTrashButton" src='./imgs/trash.png'>
-            <img class="imageTrashButton-tablet" src='./imgs/trash-tablet.png'>
+    <section class="infornation-view">
+      <div class="information-header">
+        <button class="button-back">
+            <!--<img class="imageBackButton" src='./imgs/back.png'>-->
+            <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
         </button>
-        <button class="button-edit">
-            <img class="imageEditButton" src='./imgs/edit.png'>
-            <img class="imageEditButton-tablet" src='./imgs/edit-tablet.png'>
-        </button>
+        <h1 class="pet-name"></h1>
+        <div class="buttons-group">
+          <button class="button-trash">
+             <!--<img class="imageTrashButton" src='./imgs/trash.png'>-->
+              <img class="imageTrashButton-tablet" src='./imgs/trash-tablet.png'>
+          </button>
+          <button class="button-edit">
+              <!--<img class="imageEditButton" src='./imgs/edit.png'>-->
+              <img class="imageEditButton-tablet" src='./imgs/edit-tablet.png'>
+          </button>
+        </div>
       </div>
-    </div>
       <div class="publication-information"></div>
-      <div class="div-buttons">
-           <button class="button-love">
-             <img src="./imgs/love.png">
-           </button>
-           <button class="button-adopt">
-             <img src="./imgs/logo-buttonAdopt.png">Adoptar
-           </button>
-      </div>
-    </main>
+    </section>
     <div class="container__modal-delete">
       <div class="content__modal-delete">
         <p class="title_modal-delete">Borrar publicación</p>
@@ -56,8 +48,8 @@ function informationView() {
     </footer>
     `;
   
-  const element = document.createElement('section');
-  element.classList.add('section-information');
+  const element = document.createElement('main');
+  element.classList.add('information-main');
   element.innerHTML = information;
 
   const backHomeButton = element.querySelector('.button-back');

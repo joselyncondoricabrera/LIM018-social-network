@@ -90,24 +90,32 @@ function Home() {
             const infoPub = document.querySelector('.publication-information');
             namePub.innerHTML = `${pub.data().petName}`;
             infoPub.innerHTML = `
-                        <img src=${pub.data().petImg}>
-                        <div class="information-content">
-                            <h1>Acerca de:</h1>
-                            <div class="text-caracter-pet">
-                            <p>Tipo de mascota:</p>
-                            <p>${pub.data().petType}</p>
-                            </div>
-                            <div class="text-caracter-pet">
-                            <p>Sexo de la mascota:</p>
-                            <p>${pub.data().petSex}</p>
-                            </div>
-                            <div class="text-caracter-pet">
-                            <p>Edad de la mascota en meses:</p>
-                            <p>${pub.data().petAge}</p>
-                            </div>
-                            <p class="description">${pub.data().petDescription}</p>
-                        </div>
-                    `;
+              <img src=${pub.data().petImg}>
+              <div class="information-content">
+                  <h1>Acerca de:</h1>
+                  <div class="text-caracter-pet">
+                  <p>Tipo de mascota:</p>
+                  <p>${pub.data().petType}</p>
+                  </div>
+                  <div class="text-caracter-pet">
+                  <p>Sexo de la mascota:</p>
+                  <p>${pub.data().petSex}</p>
+                  </div>
+                  <div class="text-caracter-pet">
+                  <p>Edad de la mascota en meses:</p>
+                  <p>${pub.data().petAge}</p>
+                  </div>
+                  <p class="description">${pub.data().petDescription}</p>
+                  <div class="div-buttons">
+                    <button class="button-love">
+                      <img src="./imgs/love.png">
+                    </button>
+                    <button class="button-adopt">
+                      <img src="./imgs/logo-buttonAdopt.png">Adoptar
+                    </button>
+                  </div>
+              </div>
+              `;
           });
         });
     } else {
