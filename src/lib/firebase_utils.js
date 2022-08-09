@@ -5,7 +5,6 @@ import {
   deleteDoc,
   collection,
   addDoc,
-
   doc,
   updateDoc,
 } from './firebase.js'
@@ -63,7 +62,6 @@ const deletePublication = async (userUid, idPublication) => {
 };
 
 export {
-    createUser,
     showPublications,
     createPublication,
     deletePublication,

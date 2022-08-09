@@ -1,6 +1,6 @@
 import { validateInput, resetForm } from '../lib/index.js';
 import { createUser, emailVerification, saveUser } from '../lib/firebase.js';
-import {createUser, saveUser} from '../lib/firebase_utils.js';
+//import {createUser, saveUser} from '../lib/firebase_utils.js';
 
 function signUp() {
   const signup = `

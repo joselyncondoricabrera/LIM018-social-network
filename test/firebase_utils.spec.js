@@ -18,21 +18,8 @@ describe('showPublications', () => {
       expect(publications).toEqual(result);
     })
   });
-  it('Debería crear cuenta correo: correo@gmail.com y  password: 1234',async ()=>{
-    console.log(createUser('correo@gmail.com','1234'));
-    expect(typeof createUser('correo@gmail.com','1234')).toBe('object');
-    expect( await createUser('correo@gmail.com','1234')).toEqual({email:'correo@gmail.com',password:'1234'});
-  });
 });
 
-describe('saveUser',()=>{
-  it('debería ser una función',() =>{
-    expect(typeof saveUser).toBe('function');
-  });
-  it('deberia guardar cuenta en firestore',() =>{
-    expect()
-  });
-});
 
 // test para la función de crear publicaciones
 describe('createPublication', () => {
@@ -44,6 +31,7 @@ describe('createPublication', () => {
   });
   it('Debería crear una publicación', () => {
     const result =  {
+      //duda publications ? llamarse igual que en el mock
       publications: {
         publication: {
           petType: 'perro',
@@ -84,6 +72,7 @@ describe('updatePublication', () => {
     }
     updatePublication('publication', 'user', 'gato', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')
     .then(async () => {
+      console.log(doc);
       const prueba = await updateDoc(doc.mock.results[0].value, 'gato', 'macho', 'lucas', '12 meses', 'muy lindo', 'cc')
       expect(prueba).toEqual(result)
     })
