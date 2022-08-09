@@ -55,9 +55,9 @@ export const updateDoc = jest.fn((doc, type, sex, name, age, description, img) =
 }));
 
 // funciones mock para la función deletePublication
-export const docD = jest.fn((_db_, _users_, _userUid_, _publications_, _idPublication_)=> _idPublication_);
-export const deleteDoc = jest.fn((docD) => new Promise(function(resolve, reject) {
-  if(!docD) {
+//export const docD = jest.fn((_db_, _users_, _userUid_, _publications_, _idPublication_) => _idPublication_);
+export const deleteDoc = jest.fn((doc) => new Promise(function(resolve, reject) {
+  if(!doc) {
     reject('promise failed');
   }
   resolve()

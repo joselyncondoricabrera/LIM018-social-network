@@ -1092,7 +1092,6 @@ footer{
       background: rgba(255, 255, 255, 0.01);
       backdrop-filter: blur(20px);
       position: fixed;
-      pointer-events:none;
       top:0;
       height: 100vh;
       width: 100vw;
@@ -1102,7 +1101,6 @@ footer{
       height: 79px;
       background: rgba(30, 30, 30, 0.75);
       border-radius: 15px 15px 0px 0px;
-      pointer-events:auto;
    }
    .title_modal-delete{
       margin: 12px 0 11px;
@@ -1126,10 +1124,10 @@ footer{
       letter-spacing: -0.408px;
       color: #FFFFFF;
    }
-   .button-delete{
+   .button-delete {
       width: 420px;
       height: 75px;
-      border:none;
+      border: none;
       font-family: 'SF Pro Rounded';
       font-style: normal;
       font-weight: 700;
@@ -1137,13 +1135,14 @@ footer{
       line-height: 22px;
       align-items: center;
       text-align: center;
-      letter-spacing: -0.408px;      
+      letter-spacing: -0.408px;
       color: #0A84FF;
       background: rgba(30, 30, 30, 0.75);
-      
-   }
+      margin-top: 3px;
+      cursor: pointer;
+  }
    .cancel{
       border-radius: 0px 0px 15px 15px;
-      pointer-events:auto;
    }
 }
+ 

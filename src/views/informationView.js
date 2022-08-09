@@ -63,8 +63,6 @@ function informationView() {
 
   trashPublicationButton.addEventListener('click', () => {
     const buttonCancel = element.querySelector('.cancel');
-    const buttonDelete = element.querySelector('.acept');
-    // const data = sessionStorage.getItem('petName');
 
     const namePet = element.querySelector('.pet-name').innerHTML;
     containerModal.style.display = 'flex';
@@ -72,7 +70,7 @@ function informationView() {
       containerModal.style.display = 'none';
     });
     
-    buttonDelete.addEventListener('click',()=>{
+    element.querySelector('.acept').addEventListener('click', () => {
       userSatate((user) => {
         if (user) {
           publicationsOfCurrentUser(namePet)
@@ -81,13 +79,13 @@ function informationView() {
                 pub.forEach((publication) => {
                   // console.log(publication.id);
                   deletePublication(user.uid, publication.id)
-                  .then(
-                    (e)=>{console.log(e); }
-                  )
-                  .catch();
-                  alert('La publicación se ha eliminado con éxito');
-                  window.location.hash = '#/home';
-                  // window.location.reload();
+                  .then(() => {
+                    alert('La publicación se ha eliminado con éxito');
+                    window.location.hash = '#/home';
+                  })
+                  .catch(() => {
+
+                  });
                 });
               })
             .catch(() => {
