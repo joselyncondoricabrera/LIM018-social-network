@@ -4,34 +4,26 @@ import { deletePublication } from '../lib/firebase_utils.js';
 
 function informationView() {
   const information = `
-    <main class="infornation-view">
-    <div class="information-header">
-      <button class="button-back">
-          <img class="imageBackButton" src='./imgs/back.png'>
-          <img class="imageBackButton-tablet" src='./imgs/back-tablet.png'>
-      </button>
-      <h1 class="pet-name"></h1>
-      <div class="buttons-group">
-        <button class="button-trash">
-            <img class="imageTrashButton" src='./imgs/trash.png'>
-            <img class="imageTrashButton-tablet" src='./imgs/trash-tablet.png'>
+    <section class="information-view">
+      <div class="information-header">
+        <button class="button-back">
+            <img class="image-back-button-mobile" src='./imgs/back.png'>
+            <img class="image-back-button-tablet" src='./imgs/back-tablet.png'>
         </button>
-        <button class="button-edit">
-            <img class="imageEditButton" src='./imgs/edit.png'>
-            <img class="imageEditButton-tablet" src='./imgs/edit-tablet.png'>
-        </button>
+        <h1 class="pet-name"></h1>
+        <div class="buttons-group">
+          <button class="button-trash">
+              <img class="image-trash-button" src='./imgs/trash.png'>
+              <img class="image-trash-button-tablet" src='./imgs/trash-tablet.png'>
+          </button>
+          <button class="button-edit">
+              <img class="image-edit-button" src='./imgs/edit.png'>
+              <img class="image-eddit-button-tablet" src='./imgs/edit-tablet.png'>
+          </button>
+        </div>
       </div>
-    </div>
       <div class="publication-information"></div>
-      <div class="div-buttons">
-           <button class="button-love">
-             <img src="./imgs/love.png">
-           </button>
-           <button class="button-adopt">
-             <img src="./imgs/logo-buttonAdopt.png">Adoptar
-           </button>
-      </div>
-    </main>
+    </section>
     <div class="container__modal-delete">
       <div class="content__modal-delete">
         <p class="title_modal-delete">Borrar publicación</p>
@@ -42,19 +34,22 @@ function informationView() {
 
     </div>
     <footer>
-        <div class="container__footer-info">
-            <div class="container__developers-info">
-                <p class="developers-info__title">© Todos los derechos reservados</p>
-                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-                <p>developers : @Joselyn Condori - @Diana Llerena </p>
-            </div>
-            <img class="imageFooter" src="./imgs/footer-logo.png"/>
-        </div>
+      <div class="container__footer-info">
+          <div class="container__developers-info">
+              <p class="developers-info__title">© Todos los derechos reservados</p>
+              <div class="developers-info">
+              <p>diseño & developers :</p>
+              <a href="https://github.com/joselyncondoricabrera" target="_blank">@Joselyn Condori</a>
+              <a href="https://github.com/camotito0" target="_blank">@Diana Llerena</a>
+              </div>
+          </div>
+          <img class="imageFooter" src="./imgs/footer-logo.png"/>
+      </div>
     </footer>
     `;
   
-  const element = document.createElement('section');
-  element.classList.add('section-information');
+  const element = document.createElement('main');
+  element.classList.add('information-main');
   element.innerHTML = information;
 
   const backHomeButton = element.querySelector('.button-back');
@@ -68,8 +63,6 @@ function informationView() {
 
   trashPublicationButton.addEventListener('click', () => {
     const buttonCancel = element.querySelector('.cancel');
-    const buttonDelete = element.querySelector('.acept');
-    // const data = sessionStorage.getItem('petName');
 
     const namePet = element.querySelector('.pet-name').innerHTML;
     containerModal.style.display = 'flex';
@@ -77,7 +70,7 @@ function informationView() {
       containerModal.style.display = 'none';
     });
     
-    buttonDelete.addEventListener('click',()=>{
+    element.querySelector('.acept').addEventListener('click', () => {
       userSatate((user) => {
         if (user) {
           publicationsOfCurrentUser(namePet)
@@ -86,13 +79,13 @@ function informationView() {
                 pub.forEach((publication) => {
                   // console.log(publication.id);
                   deletePublication(user.uid, publication.id)
-                  .then(
-                    (e)=>{console.log(e); }
-                  )
-                  .catch();
-                  alert('La publicación se ha eliminado con éxito');
-                  window.location.hash = '#/home';
-                  // window.location.reload();
+                  .then(() => {
+                    alert('La publicación se ha eliminado con éxito');
+                    window.location.hash = '#/home';
+                  })
+                  .catch(() => {
+
+                  });
                 });
               })
             .catch(() => {

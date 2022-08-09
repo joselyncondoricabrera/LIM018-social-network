@@ -5,7 +5,7 @@ import { uploadImg, userSatate } from '../lib/firebase.js';
 
 function newPublication() {
   const publication = `
-    <main class="new-publication">
+    <section class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
                 <img src='./imgs/back.png'>
@@ -76,23 +76,26 @@ function newPublication() {
             
             <button type="button" class="create-publication">Crear publicación</button>
         </form>
-    </main>
+    </section>
 
 
     <footer>
-        <div class="container__footer-info">
-            <div class="container__developers-info">
-                <p class="developers-info__title">© Todos los derechos reservados</p>
-                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-                <p>developers : @Joselyn Condori - @Diana Llerena </p>
-            </div>
-            <img class="imageFooter" src="./imgs/footer-logo.png"/>
-        </div>
+      <div class="container__footer-info">
+          <div class="container__developers-info">
+              <p class="developers-info__title">© Todos los derechos reservados</p>
+              <div class="developers-info">
+              <p>diseño & desarrollo :</p>
+              <a href="https://github.com/joselyncondoricabrera" target="_blank">@Joselyn Condori</a>
+              <a href="https://github.com/camotito0" target="_blank">@Diana Llerena</a>
+              </div>
+          </div>
+          <img class="imageFooter" src="./imgs/footer-logo.png"/>
+      </div>
     </footer>
     `;
 
-  const element = document.createElement('section');
-  element.classList.add('section-new');
+  const element = document.createElement('main');
+  element.classList.add('new-main');
   element.innerHTML = publication;
 
   const backHomeButton = element.querySelector('.button-back');

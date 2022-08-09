@@ -4,47 +4,49 @@ import { clickPublication,  publicationByTypePet } from '../lib/firebase.js';
 
 function Home() {
   const home = `
-    <main class="home">
-        <div class="home-header">
-            <img class="imageLogo" src="./imgs/hugme-logo.png"/>
-            <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
-            <img class="logo-tablet" src="./imgs/logo-tablet.png"/>
-            
-            <p class="header__username">username</p>
-            <button class= "header__add-button">
-              <p>crear publicación</p>
-              <img class="imageAddButton" src="./imgs/add.png">
-              <img class="imageAddButton-tablet" src="./imgs/add-tablet.png">
-            </button>
-        </div>
+  <section class="home">
+    <div class="home-header">
+        <img class="logo-tablet" src="./imgs/logo-tablet.png"/>
+        <img class="imageLogo" src="./imgs/hugme-logo.png"/>
+        <img class="logo-desktop" src="./imgs/logo-desktop.png"/>
         
-        <h1 class="home__subtitle">Encuentra un nuevo <br> amigo</h1>
+        <p class="header__username">username</p>
+        <button class= "header__add-button">
+          <p>crear publicación</p>
+          <img class="image-addbutton" src="./imgs/add.png">
+        </button>
+    </div>
+    
+    <h1 class="home__subtitle">Encuentra un nuevo <br> amigo</h1>
 
-        <input class="home__input-search" type="text" placeholder="Buscar">
+    <input class="home__input-search" type="text" placeholder="Buscar">
 
-        <div class="home__container-buttons">
-            <button class="button-option all">Todo</button>
-            <button class="button-option dog">Perro</button>
-            <button class="button-option cat">Gato</button>
-            <button class="button-option rodent">Roedor</button>
-            <button class="button-option bird">Ave</button>
-        </div>
-        <section class="home-publications"></section>
-    </main>
-    <footer>
-        <div class="container__footer-info">
-            <div class="container__developers-info">
-                <p class="developers-info__title">© Todos los derechos reservados</p>
-                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-                <p>developers : @Joselyn Condori - @Diana Llerena </p>
-            </div>
-            <img class="imageFooter" src="./imgs/footer-logo.png"/>
-        </div>
-    </footer>
+    <div class="home__container-buttons">
+        <button class="button-option all">Todo</button>
+        <button class="button-option dog">Perro</button>
+        <button class="button-option cat">Gato</button>
+        <button class="button-option rodent">Roedor</button>
+        <button class="button-option bird">Ave</button>
+    </div>
+    <section class="home-publications"></section>
+  </section>
+  <footer>
+      <div class="container__footer-info">
+          <div class="container__developers-info">
+              <p class="developers-info__title">© Todos los derechos reservados</p>
+              <div class="developers-info">
+              <p>diseño & developers :</p>
+              <a href="https://github.com/joselyncondoricabrera" target="_blank">@Joselyn Condori</a>
+              <a href="https://github.com/camotito0" target="_blank">@Diana Llerena</a>
+              </div>
+          </div>
+          <img class="imageFooter" src="./imgs/footer-logo.png"/>
+      </div>
+  </footer>
     `;
   
-  const element = document.createElement('section');
-  element.classList.add('section-home');
+  const element = document.createElement('main');
+  element.classList.add('home-main');
   element.innerHTML = home;
 
   const addPublicationButton = element.querySelector('.header__add-button');
@@ -87,24 +89,32 @@ function Home() {
             const infoPub = document.querySelector('.publication-information');
             namePub.innerHTML = `${pub.data().petName}`;
             infoPub.innerHTML = `
-                        <img src=${pub.data().petImg}>
-                        <div class="information-content">
-                            <h1>Acerca de:</h1>
-                            <div class="text-caracter-pet">
-                            <p>Tipo de mascota:</p>
-                            <p>${pub.data().petType}</p>
-                            </div>
-                            <div class="text-caracter-pet">
-                            <p>Sexo de la mascota:</p>
-                            <p>${pub.data().petSex}</p>
-                            </div>
-                            <div class="text-caracter-pet">
-                            <p>Edad de la mascota en meses:</p>
-                            <p>${pub.data().petAge}</p>
-                            </div>
-                            <p class="description">${pub.data().petDescription}</p>
-                        </div>
-                    `;
+              <img src=${pub.data().petImg}>
+              <div class="information-content">
+                  <h1>Acerca de:</h1>
+                  <div class="text-caracter-pet">
+                  <p>Tipo de mascota:</p>
+                  <p>${pub.data().petType}</p>
+                  </div>
+                  <div class="text-caracter-pet">
+                  <p>Sexo de la mascota:</p>
+                  <p>${pub.data().petSex}</p>
+                  </div>
+                  <div class="text-caracter-pet">
+                  <p>Edad de la mascota en meses:</p>
+                  <p>${pub.data().petAge}</p>
+                  </div>
+                  <p class="description">${pub.data().petDescription}</p>
+                  <div class="div-buttons">
+                    <button class="button-love">
+                      <img src="./imgs/love.png">
+                    </button>
+                    <button class="button-adopt">
+                      <img src="./imgs/logo-buttonAdopt.png">Adoptar
+                    </button>
+                  </div>
+              </div>
+              `;
           });
         });
     } else {

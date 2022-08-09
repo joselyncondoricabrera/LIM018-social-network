@@ -1,20 +1,16 @@
 /* eslint-disable no-alert, no-shadow, no-unused-vars */
 import { selectedOption, resetForm } from '../lib/index.js';
 import { uploadImg } from '../lib/firebase.js';
-import {
-  userSatate,
-  publicationsOfCurrentUser,
-} from '../lib/firebase.js';
-import {
-  updatePublication
-} from '../lib/firebase_utils.js';
+import { userSatate, publicationsOfCurrentUser } from '../lib/firebase.js';
+import { updatePublication } from '../lib/firebase_utils.js';
 
 function editPublication() {
   const edit = `
-    <main class="new-publication">
+    <section class="new-publication">
         <div class="new-publication-header">
             <button class="button-back">
-                <img src='./imgs/back.png'>
+                <img class="image-back-button" src='./imgs/back.png'>
+                <img class="image-back-button-tablet" src='./imgs/back-tablet.png'>
             </button>
             <h1 class="title">Editar publicación</h1>
         </div>
@@ -82,22 +78,25 @@ function editPublication() {
 
             <button type="button" class="edit-publication">Actualizar publicación</button>
         </form>
-    </main>
+    </section>
 
     <footer>
-        <div class="container__footer-info">
-            <div class="container__developers-info">
-                <p class="developers-info__title">© Todos los derechos reservados</p>
-                <p>diseño : @Joselyn Condori - @Diana Llerena</p>
-                <p>developers : @Joselyn Condori - @Diana Llerena </p>
-            </div>
-            <img class="imageFooter" src="./imgs/footer-logo.png"/>
-        </div>
+      <div class="container__footer-info">
+          <div class="container__developers-info">
+              <p class="developers-info__title">© Todos los derechos reservados</p>
+              <div class="developers-info">
+              <p>diseño & developers :</p>
+              <a href="https://github.com/joselyncondoricabrera" target="_blank">@Joselyn Condori</a>
+              <a href="https://github.com/camotito0" target="_blank">@Diana Llerena</a>
+              </div>
+          </div>
+          <img class="imageFooter" src="./imgs/footer-logo.png"/>
+      </div>
     </footer>
     `;
 
-  const element = document.createElement('section');
-  element.classList.add('section-edit')
+  const element = document.createElement('main');
+  element.classList.add('edit-main')
   element.innerHTML = edit;
 
   const question1 = document.querySelectorAll('input[name="question1__options"]');
