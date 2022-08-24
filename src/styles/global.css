@@ -13,13 +13,17 @@ body {
 .imageAddButton, .logo-tablet, .background-signup-mobile {
    display: none;
 }
+.background-login-desktop{
+   width: 711px;
+   height: 657px;
+}
 
 .login-main, .signup-main {
    display: flex;
 }
 
 .login-section, .signup-section {
-   margin: 15px 150px;
+   margin: 15px 220px;
    flex-direction: column;
 }
 
@@ -27,7 +31,7 @@ body {
    font-family: SF Pro Rounded;
    font-style: normal;
    font-weight: 400;
-   font-size: 44px;
+   font-size: 34px;/*resto 10px*/
    color: #343A40;
 }
 
@@ -35,7 +39,7 @@ body {
    font-family: SF Pro Rounded;
    font-style: normal;
    font-weight: 400;
-   font-size: 24px;
+   font-size: 14px;
    line-height: 18px;
    color: #343A40;
 }
@@ -48,9 +52,9 @@ body {
    display: flex;
    align-items: center;
    gap: 15px;
-   padding: 0 0 10px 0;
-   margin: 55px 0;
-   width: 470px;
+   padding: 0 0 3px 0;
+   margin: 45px 0;
+   width: 400px;
    border-bottom: 1px solid #ADB5BD;
 }
 
@@ -64,7 +68,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px; /*-5 px*/
    line-height: 29px;
    color: #343A40;
 }
@@ -73,7 +77,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 18px;
+   font-size: 15px;
    line-height: 29px;
    color: #ADB5BD;
 }
@@ -86,8 +90,8 @@ body {
 }
 
 .form-final-options button {
-   width: 490px;
-   height: 55px;
+   width: 400px;
+   height: 42px;
    margin: 10px 0;
    background: #F5B2E8;
    backdrop-filter: blur(96.6425px);
@@ -100,7 +104,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 500;
-   font-size: 22px;
+   font-size: 18px;
    line-height: 43px;
    text-align: center;
    color: #FFFFFF;
@@ -111,7 +115,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 18px;
+   font-size: 15px;
    line-height: 29px;
    color: #BE3BA5;
 }
@@ -128,7 +132,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 22px;
+   font-size: 15px;
 }
 
 .container-authentication button {
@@ -140,7 +144,7 @@ body {
 
 /* estilos para home */
 .home {
-   margin: 33px;
+   margin:50px 73px 73px;
 }
 
 .home-header {
@@ -153,12 +157,12 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    text-align: center;
 }
 
 .home-header button {
-   height: 44px;
+   height: 34px;
    display: flex;
    align-items: center;
    flex-direction: row-reverse;
@@ -183,12 +187,12 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 40px;
+   font-size: 20px;
 }
 .home input{
    margin: 22px 0 44px 0;
    width: 460px;
-   height: 44px;
+   height: 38px;
    background: #F7F7F8;
    border-radius: 12px;
    border:none;
@@ -198,14 +202,14 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    color: #343A40;
 }
 .home input::placeholder{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 18px;
    color: #ADB5BD;
 
    background-image: url('../imgs/lupa.png');
@@ -226,7 +230,7 @@ body {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 20px;
+   font-size: 16px;
    text-align: center;
    padding: 0 0 25px 0;
 }
@@ -238,7 +242,7 @@ body {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-around;
-   column-gap: 44px;
+   column-gap: 94px;
    row-gap: 44px;
 }
 .publication-card {
@@ -246,27 +250,27 @@ body {
    flex-direction: column-reverse;
 }
 .publication-card img {
-   width: 220px;
-   height: 340px;
-   border-radius: 28px;
+   width: 150px;
+   height: 210px;
+   border-radius: 18px;
    position: relative;
 }
 .card-info {
    display: flex;
    align-items: center;
    justify-content: center;
-   width: 220px;
-   height: 45px;
+   width: 150px;
+   height: 35px;
    background: #F5B2E8;
    opacity: 0.9;
-   border-radius: 0px 0px 28px 28px;
+   border-radius: 0px 0px 18px 18px;
    position: absolute;
 }
 .card-info p {
    font-family: 'CookieRun';
    font-style: normal;
    font-weight: 700;
-   font-size: 25px;
+   font-size: 18px;
    color: #FFFFFF;
    -webkit-text-stroke: 1.5px #4F4A42;
 }
@@ -274,7 +278,7 @@ body {
 /* estilos para footer */
 footer{
    width: 100%;
-   height: 100px;
+   height: 60px;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -287,12 +291,12 @@ footer{
    display: flex;
    align-items: center;
    justify-content: space-between;
-   margin: 20px 30px;
+   margin: 10px 30px;
 
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 18px;
+   font-size: 13px;
    line-height: 19px;
 }
 .developers-info {
@@ -300,14 +304,23 @@ footer{
    align-items: center;
    gap: 22px;
 }
+.developers-info p{
+   margin: 0;
+}
+.developers-info__title{
+   margin: 0;
+}
 
 .developers-info a {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 18px;
+   font-size: 13px;
    line-height: 29px;
    color: #343A40;
+}
+.imageFooter{
+   height: 40px;
 }
 
 /* estilos para crear publicación */
@@ -330,7 +343,7 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 36px;
+   font-size: 20px;
    line-height: 31px;
 }
 .form__new-publication, .form__edit-publication {
@@ -339,11 +352,12 @@ footer{
    gap: 11px;
 }
 .form__new-publication p, .form__edit-publication p {
+   margin: 5px 0;
    text-align: left;
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 24px;
+   font-size: 16px;
    line-height: 24px;
    color: #000000;
 }
@@ -362,7 +376,7 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 13px;
    line-height: 24px;
    color: #6C757D;
 }
@@ -370,15 +384,15 @@ footer{
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 170px;
-   height: 44px;
+   width: 160px;
+   height: 38px;
    background: #C2F8CB;
    border-radius: 20px;
 
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 20px;
+   font-size: 16px;
    text-align: center;
    color: #4F4A42;
 }
@@ -387,7 +401,7 @@ footer{
 }
 .question4__petname, .question5__petAge{
    width: 410px;
-   height: 33px;
+   height: 20px;
    background: #F7F7F8;
    border-radius: 12px;
    border:none;
@@ -397,13 +411,13 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 18px;
+   font-size: 13px;
    line-height: 21px;
    color: #6C757D;
 }
 .question4__petname::placeholder, .question5__petAge::placeholder, .question6__description::placeholder{
    color: #ADB5BD;
-   font-size: 20px;
+   font-size: 13px;
 }
 .question6__description{
    width: 410px;
@@ -416,21 +430,21 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 18px;
+   font-size: 13px;
    line-height: 21px;
    color: #6C757D;
    padding:15px 0 0 15px;
 }
 .create-publication, .edit-publication{
-   width: 415px;
-   height: 55px;   
+   width: 425px;
+   height: 45px;   
    background: #C2F8CB;
    border-radius: 20px;
    border: none;
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 25px;
    margin: 22px 0 44px;
    color: #4F4A42;
@@ -447,6 +461,7 @@ footer{
 .publication-information {
    display: flex;
    align-items: center;
+   justify-content: center;
    flex-wrap: wrap;
    gap: 100px;
    margin: 55px 0;
@@ -461,7 +476,7 @@ footer{
    font-family: 'CookieRun';
    font-style: normal;
    font-weight: 700;
-   font-size: 36px;
+   font-size: 26px;
    line-height: 41px;
    text-align: center;
    color: #F5B2E8;
@@ -487,8 +502,8 @@ footer{
    cursor: pointer;
 }
 .publication-information img{
-   width: 440px;
-   height: 603px;
+   width: 340px;
+   height: 381px;
    border-radius: 40px;
    /* margin: 0 35px; */
 }
@@ -499,7 +514,7 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 400;
-   font-size: 36px;
+   font-size: 20px;
 }
 .text-caracter-pet {
    display: flex;
@@ -508,14 +523,14 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    color: #6C757D;
 }
 .description {
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 20px;
+   font-size: 15px;
    line-height: 19px;
 
    color: #6C6C6C;
@@ -529,8 +544,8 @@ footer{
    display: flex;
    align-items: center;
    justify-content: center;
-   width: 64px;
-   height: 55px;
+   width: 60px;
+   height: 35px;
    background: #F5B2E8;
    border-radius: 20px;
    border: none;
@@ -545,8 +560,8 @@ footer{
    display: flex;
    align-items: center;
    gap: 9px;
-   width: 281px;
-   height: 55px;
+   width: 271px;
+   height: 35px;
    background: #C2F8CB;
    border-radius: 20px;
    border: none;
@@ -590,17 +605,17 @@ footer{
    width: 100vw;
 }
 .content__modal-delete{
-   width: 420px;
-   height: 79px;
+   width: 300px;
+   height: 60px;
    background: rgba(30, 30, 30, 0.75);
    border-radius: 15px 15px 0px 0px;
 }
 .title_modal-delete{
-   margin: 12px 0 11px;
+   margin: 7px 0 6px;
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 500;
-   font-size: 20px;
+   font-size: 13px;
    line-height: 22px;
    text-align: center;
    letter-spacing: -0.408px;
@@ -611,20 +626,20 @@ footer{
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 300;
-   font-size: 16px;
+   font-size: 13px;
    line-height: 22px;
    text-align: center;
    letter-spacing: -0.408px;
    color: #FFFFFF;
 }
 .button-delete {
-   width: 420px;
-   height: 75px;
+   width: 300px;
+   height: 60px;
    border: none;
    font-family: 'SF Pro Rounded';
    font-style: normal;
    font-weight: 700;
-   font-size: 20px;
+   font-size: 13px;
    line-height: 22px;
    align-items: center;
    text-align: center;
@@ -639,7 +654,7 @@ footer{
 }
 
 
-
+/*estilos para mobil*/
 @media (max-width: 480px) and (orientation:portrait) {
    /* estilos para login-signup */
    body {
@@ -757,21 +772,21 @@ footer{
       font-size: 20px;
    }
    footer {
-      padding: 0 0 5px;
+      padding: 6px 0 5px;
    }
    .container__footer-info {
       display: flex;
       flex-direction: row;
       align-items: center;
 
-      font-size: 16px;
+      font-size: 12px;
    }
    .developers-info {
       display: inline;
       margin: 0 0 20px 0;
    }
    .developers-info a {
-      font-size: 16px;
+      font-size: 12px;
    }
 
 /* estilos para crear publicación */
@@ -781,7 +796,7 @@ footer{
    .new-main, .edit-main {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
    }
    .new-publication {
       margin: 0 18px;
@@ -888,15 +903,15 @@ footer{
    } */
    .content__modal-delete{
       width: 270px;
-      height: 100px;
+      height: 65px;
    }
    .title_modal-delete{
       font-weight: 400;
-      font-size: 18px;
+      font-size: 13px;
    }
    .subtitle_modal-delete{
       font-weight: 300;
-      font-size: 16px;
+      font-size: 13px;
    }
    .button-delete {
       width: 270px;
@@ -942,14 +957,14 @@ footer{
   }
    .publication-card img {
       width: 180px;
-      height: 293px;
+      height: 270px;
    }
    .card-info{
       width: 180px;
       height: 45px;
    }
    .card-info p{
-      font-size: 28px;
+      font-size: 20px;
    }
 
    /* estilos para crear-editar publicación */

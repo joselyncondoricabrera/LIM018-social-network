@@ -49,15 +49,19 @@ function Home() {
   element.classList.add('home-main');
   element.innerHTML = home;
 
+//boton crear publicación
   const addPublicationButton = element.querySelector('.header__add-button');
 
   addPublicationButton.addEventListener('click', () => { window.location.hash = '#/newPublication'; });
+  
+  //contenedor que contiene todas las publicaciones
   const allPub = element.querySelector('.home-publications');
 
   const listPublications = () => {
     showPublications()
       .then((publications) => {
         console.log(publications)
+
         publications.forEach((pub) => {
           console.log(pub)
           return allPub.innerHTML += `
@@ -79,7 +83,9 @@ function Home() {
   listPublications();
 
   allPub.addEventListener('click', (e) => {
-    e.preventDefault();
+    //e.preventDefault();
+    // comprobar si es nodo hijo
+    
     if (e.target.classList.contains('card-name')) {
       window.location.hash = '#/information';
       clickPublication(e.target.innerText)

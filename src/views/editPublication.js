@@ -98,9 +98,9 @@ function editPublication() {
   const element = document.createElement('main');
   element.classList.add('edit-main')
   element.innerHTML = edit;
-
-  const question1 = document.querySelectorAll('input[name="question1__options"]');
-  const question2 = document.querySelectorAll('input[name="question2__options"]');
+  
+  const question1 = element.querySelectorAll('input[name="question1__options"]');
+  const question2 = element.querySelectorAll('input[name="question2__options"]');
 
   const toUpdatePub = (data, type, sex, petImg, petName, petAge, description) => {
     userSatate((user) => {
@@ -122,6 +122,7 @@ function editPublication() {
                   );
                   alert('La publicación se ha actualizado con exito.');
                   resetForm('form__edit-publication', element);
+                  window.location.hash = '#/home'; 
                 })
                 .catch((error) => {
                   alert('Ha ocurrido un error, intenta registrarte más tarde');
@@ -139,6 +140,7 @@ function editPublication() {
   };
 
   const editData = () => {
+    console.log('funcion editar');
     const data = sessionStorage.getItem('petName');
     const option1 = selectedOption(question1);
     const option2 = selectedOption(question2);

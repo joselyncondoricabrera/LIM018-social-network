@@ -15,7 +15,7 @@ export const getDocs = jest.fn((collectionGroup) => Promise.resolve({
 
 // funciones mock para la función createPublication
 // la notación _variable_ significa que en realidad no lo va tomar 
-export const collection = jest.fn((_db_, _users_, _user_, _publications_) => _publications_);
+export const collection = jest.fn((_db_, _users_, _user_ , _publications_) => _publications_);
 
 export const addDoc = jest.fn((collection, type, sex, img, name, age, description) => new Promise(function(resolve, reject) {
   if(!type || !sex || !img || !name || !age || !description) {

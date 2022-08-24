@@ -61,6 +61,7 @@ function signUp() {
           const user = userCredential.user.uid;
           alert('Usuario creado con exito');
           sendVerifactionEmail();
+          //guarda en el firestore
           saveUser(user, username, mail, password);
           resetForm('form', element);
           window.location.hash = '';

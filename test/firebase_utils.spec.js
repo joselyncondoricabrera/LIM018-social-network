@@ -7,8 +7,8 @@ jest.mock('../src/lib/firebase.js');
 
 // test para la función de mostrar publicaciones
 describe('showPublications', () => {
-  it('debería ser una función', async () => {
-    await expect(typeof showPublications).toBe('function');
+  it('debería ser una función',  () => {
+    expect(typeof showPublications).toBe('function');
   });
   it('Deberían mostrarse las publicaciones', () => {
     const result =  { publications: { docs: [{}] } } ;
@@ -23,8 +23,8 @@ describe('showPublications', () => {
 
 // test para la función de crear publicaciones
 describe('createPublication', () => {
-  it('debería ser una función', async () => {
-    await expect(typeof createPublication).toBe('function');
+  it('debería ser una función', () => {
+    expect(typeof createPublication).toBe('function');
   });
   it('debería devolver un objeto', async () => {
     await expect(typeof createPublication('user','perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')).toBe('object');
@@ -53,8 +53,8 @@ describe('createPublication', () => {
 
 // test para la función de editar publicaciones
 describe('updatePublication', () => {
-  it('debería ser una función', async () => {
-    await expect(typeof updatePublication).toBe('function');
+  it('debería ser una función',() => {
+    expect(typeof updatePublication).toBe('function');
   });
   it('debería devolver un objeto', async () => {
     await expect(typeof updatePublication('publication', 'user', 'perro', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')).toBe('object');
@@ -72,7 +72,7 @@ describe('updatePublication', () => {
     }
     updatePublication('publication', 'user', 'gato', 'macho', 'cc', 'lucas', '12 meses', 'muy lindo')
     .then(async () => {
-      console.log(doc);
+      console.log(doc.mock);
       const prueba = await updateDoc(doc.mock.results[0].value, 'gato', 'macho', 'lucas', '12 meses', 'muy lindo', 'cc')
       expect(prueba).toEqual(result)
     })

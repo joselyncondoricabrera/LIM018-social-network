@@ -65,6 +65,7 @@ function informationView() {
     const buttonCancel = element.querySelector('.cancel');
 
     const namePet = element.querySelector('.pet-name').innerHTML;
+    
     containerModal.style.display = 'flex';
     buttonCancel.addEventListener('click', ()=>{
       containerModal.style.display = 'none';
@@ -98,12 +99,13 @@ function informationView() {
   });
 
   backHomeButton.addEventListener('click', () => { window.location.hash = '#/home'; });
+  
   const editPublication = element.querySelector('.button-edit');
 
   editPublication.addEventListener('click', () => {
-    const name = element.querySelector('.pet-name');
+    //const name = element.querySelector('.pet-name');
     // console.log(name);
-    sessionStorage.setItem('petName', name.innerText);
+    //sessionStorage.setItem('petName', name.innerText);
     window.location.hash = '#/edit';
   });
 

@@ -114,7 +114,7 @@ const uploadImg = async (img) => {
   }
 };
 
-// publicaión tocada
+// publicación tocada
 const clickPublication = async (name) => {
   try {
     const publications = query(collectionGroup(db, 'publications'), where('petName', '==', name));
